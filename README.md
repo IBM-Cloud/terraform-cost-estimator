@@ -118,6 +118,6 @@ go run main.go plan=../example/tfplan.json
 ```
 
 ## Sample output
-![Estimated cost](/image)
+![Estimated cost](/image.png)
 
 
