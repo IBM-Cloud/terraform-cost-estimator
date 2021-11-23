@@ -80,3 +80,44 @@ List of terraform Resources Supported by the SDK are
 - ibm_container_worker_pool
 
 
+# tfcost-cli
+Cli for IBM-Cloud terraform cost calculator
+
+## Using the CLI
+### Requirements
+>You must have a working Terraform template with IBM-Cloud resources
+
+
+The CLI has ```examples``` folder which cites few examples plan.json that you can use as input.
+
+```bash
+go mod vendor
+```
+If you get issue while vendoring go mod then export
+```bash
+
+export GO111MODULE=on
+export GOPRIVATE=*.ibm.com
+```
+
+Steps to generate the json planFile
+1. Inside the directory which contains the tf files do
+```bash
+terraform plan --out tfplan.binary
+```
+2. After generating the binary file generate the respective plan json file using
+```bash
+terraform show -json tfplan.binary > tfplan.json
+```
+
+Now To generate the cost output from planJSON input do
+
+```bash
+export IC_API_KEY=your_api_key
+go run tfcost.go --plan=examples/tfplan.json
+```
+
+## Sample output
+
+
+
