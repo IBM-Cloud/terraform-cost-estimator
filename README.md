@@ -113,10 +113,11 @@ Now To generate the cost output from planJSON input do
 
 ```bash
 export IC_API_KEY=your_api_key
-go run tfcost.go --plan=examples/tfplan.json
+cd tfcost
+go run main.go plan=../example/tfplan.json
 ```
 
 ## Sample output
-
+![Estimated cost](/image)
 
 
