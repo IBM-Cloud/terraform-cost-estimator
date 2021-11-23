@@ -78,8 +78,7 @@ List of terraform Resources Supported by the SDK are
 - ibm_container_cluster
 - ibm_container_vpc_cluster
 - ibm_container_worker_pool
-
-
+```
 # tfcost-cli
 Cli for IBM-Cloud terraform cost calculator
 
