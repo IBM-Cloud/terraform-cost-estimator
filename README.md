@@ -1,8 +1,8 @@
 # IBM Cloud Terraform Cost estimator 
 
-this sdk provides the Go implementation for parsing the input terraform plan data, and provides an estimated cost of the template .
+This project provides the Go implementation for parsing the input terraform plan data, and provides an estimated cost of the template. It can be used as an SDK as well as a CLI
 
-## Installing
+## Installing the SDK
 
 1. Install the SDK using the following command
 
@@ -19,7 +19,7 @@ go get -u github.com/IBM-Cloud/terraform-cost-estimator
 
 ## Using the SDK
 
-You must have a working terraform template with IBM cloud resources.
+>You must have a working terraform template with IBM cloud resources.
 
 The SDK has ```examples``` folder which cites few examples on how to use the SDK.
 
@@ -29,6 +29,10 @@ import "github.com/IBM-Cloud/terraform-cost-estimator/api"
 func main(){
 
     bom, err := costcalculator.GetCost(planFile.json, iam-oauth-token)
+
+    costClient, err := costcalculator.NewTFCostClient(&costcalculator.Config{
+	    IAMAccessToken: token,
+    })
     .....
 }
 ```
@@ -74,13 +78,15 @@ List of terraform Resources Supported by the SDK are
 - ibm_is_vpn_gateway
 - ibm_is_image      
 - ibm_is_vpc   
-- ibm_is_subnet      
+- ibm_is_subnet     
 - ibm_container_cluster
 - ibm_container_vpc_cluster
 - ibm_container_worker_pool
+- ibm_satellite_cluster
+- ibm_service_instance
 ```
-# tfcost-cli
-Cli for IBM-Cloud terraform cost calculator
+# Terraform cost CLI
+The following are the instructions and steps to use cli for IBM-Cloud terraform cost calculator
 
 ## Using the CLI
 ### Requirements
@@ -112,7 +118,7 @@ terraform show -json tfplan.binary > tfplan.json
 Now To generate the cost output from planJSON input do
 
 ```bash
-export IC_API_KEY=your_api_key
+export IC_API_KEY=your_ibmcloud_api_key
 cd tfcost
 go run main.go plan=../example/tfplan.json
 ```
