@@ -2,6 +2,8 @@
 
 This project provides the Go implementation for parsing the input terraform plan data, and provides an estimated cost of the template. It can be used as an SDK as well as a CLI
 
+## Terraform Cost Estimator SDK
+
 ## Installing the SDK
 
 1. Install the SDK using the following command
