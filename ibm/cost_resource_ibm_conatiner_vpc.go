@@ -3,7 +3,7 @@ package costcalculator
 import (
 	"fmt"
 
-	rest "github.com/IBM-Cloud/terraform-cost-estimator/rest"
+	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
 	"go.uber.org/zap"
 )
 
