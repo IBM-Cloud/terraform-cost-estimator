@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/IBM-Cloud/terraform-cost-estimator/pricing"
-	rest "github.com/IBM-Cloud/terraform-cost-estimator/rest"
+	"github.com/IBM-Cloud/terraform-cost-estimator/ibm/pricing"
+	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
 	"go.uber.org/zap"
 )
 

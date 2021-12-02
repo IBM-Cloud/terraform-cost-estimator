@@ -3,8 +3,8 @@ package costcalculator
 import (
 	"fmt"
 
-	"github.com/IBM-Cloud/terraform-cost-estimator/pricing"
-	rest "github.com/IBM-Cloud/terraform-cost-estimator/rest"
+	"github.com/IBM-Cloud/terraform-cost-estimator/ibm/pricing"
+	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
 )
 
 const (

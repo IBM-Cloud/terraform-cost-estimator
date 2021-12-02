@@ -1,0 +1,3664 @@
+{
+    "format_version": "0.1",
+    "terraform_version": "0.15.5",
+    "variables": {
+        "addl_host_count": {
+            "value": 6
+        },
+        "cluster": {
+            "value": "satellite-ibm-cluster"
+        },
+        "cluster_tags": {
+            "value": [
+                "env:cluster"
+            ]
+        },
+        "cluster_zones": {
+            "value": [
+                "us-east-1",
+                "us-east-2",
+                "us-east-3"
+            ]
+        },
+        "default_wp_labels": {
+            "value": {
+                "pool_name": "default-worker-pool"
+            }
+        },
+        "host_count": {
+            "value": 3
+        },
+        "host_labels": {
+            "value": [
+                "env:prod"
+            ]
+        },
+        "ibm_region": {
+            "value": "us-east"
+        },
+        "ibmcloud_api_key": {
+            "value": "r5njjlvvzjYk1KPTjhj_VLl8eKmFW82oOZ55qfpYiv89"
+        },
+        "is_location_exist": {
+            "value": false
+        },
+        "is_prefix": {
+            "value": "satellite-ibm"
+        },
+        "kube_version": {
+            "value": "4.6_openshift"
+        },
+        "location": {
+            "value": "satellite-ibm"
+        },
+        "location_bucket": {
+            "value": null
+        },
+        "location_zones": {
+            "value": [
+                "us-east-1",
+                "us-east-2",
+                "us-east-3"
+            ]
+        },
+        "managed_from": {
+            "value": "wdc"
+        },
+        "public_key": {
+            "value": null
+        },
+        "resource_group": {
+            "value": "Default"
+        },
+        "tags": {
+            "value": [
+                "env:prod"
+            ]
+        },
+        "worker_count": {
+            "value": 1
+        },
+        "worker_pool_name": {
+            "value": "satellite-ibm-cluster-wp"
+        },
+        "workerpool_labels": {
+            "value": {
+                "pool_name": "worker-pool"
+            }
+        }
+    },
+    "planned_values": {
+        "root_module": {
+            "resources": [
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[0]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 0,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-0",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[1]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 1,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-1",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[2]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 2,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-2",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[3]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 3,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-3",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[4]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 4,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-4",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[5]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 5,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-5",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[6]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 6,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-6",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[7]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 7,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-7",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip[8]",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "index": 8,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-fip-8",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[0]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 0,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-0",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-1"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[1]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 1,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-1",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-2"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[2]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 2,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-2",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-3"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[3]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 3,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-3",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-1"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[4]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 4,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-4",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-2"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[5]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 5,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-5",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-3"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[6]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 6,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-6",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-1"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[7]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 7,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-7",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-2"
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance[8]",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "index": 8,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "auto_delete_volume": null,
+                        "dedicated_host": null,
+                        "dedicated_host_group": null,
+                        "force_recovery_time": null,
+                        "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                        "instance_template": null,
+                        "name": "satellite-ibm-instance-8",
+                        "network_interfaces": [],
+                        "primary_network_interface": [
+                            {
+                                "allow_ip_spoofing": false,
+                                "port_speed": null
+                            }
+                        ],
+                        "profile": "mx2-8x64",
+                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                        "timeouts": null,
+                        "volumes": null,
+                        "wait_before_delete": true,
+                        "zone": "us-east-3"
+                    }
+                },
+                {
+                    "address": "ibm_is_ssh_key.satellite_ssh",
+                    "mode": "managed",
+                    "type": "ibm_is_ssh_key",
+                    "name": "satellite_ssh",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "name": "satellite-ibm-ssh"
+                    }
+                },
+                {
+                    "address": "ibm_is_subnet.satellite_subnet[0]",
+                    "mode": "managed",
+                    "type": "ibm_is_subnet",
+                    "name": "satellite_subnet",
+                    "index": 0,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "ip_version": "ipv4",
+                        "name": "satellite-ibm-subnet-0",
+                        "public_gateway": null,
+                        "timeouts": null,
+                        "total_ipv4_address_count": 256,
+                        "zone": "us-east-1"
+                    }
+                },
+                {
+                    "address": "ibm_is_subnet.satellite_subnet[1]",
+                    "mode": "managed",
+                    "type": "ibm_is_subnet",
+                    "name": "satellite_subnet",
+                    "index": 1,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "ip_version": "ipv4",
+                        "name": "satellite-ibm-subnet-1",
+                        "public_gateway": null,
+                        "timeouts": null,
+                        "total_ipv4_address_count": 256,
+                        "zone": "us-east-2"
+                    }
+                },
+                {
+                    "address": "ibm_is_subnet.satellite_subnet[2]",
+                    "mode": "managed",
+                    "type": "ibm_is_subnet",
+                    "name": "satellite_subnet",
+                    "index": 2,
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "ip_version": "ipv4",
+                        "name": "satellite-ibm-subnet-2",
+                        "public_gateway": null,
+                        "timeouts": null,
+                        "total_ipv4_address_count": 256,
+                        "zone": "us-east-3"
+                    }
+                },
+                {
+                    "address": "ibm_is_vpc.satellite_vpc",
+                    "mode": "managed",
+                    "type": "ibm_is_vpc",
+                    "name": "satellite_vpc",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "address_prefix_management": "auto",
+                        "classic_access": false,
+                        "name": "satellite-ibm-vpc",
+                        "timeouts": null
+                    }
+                },
+                {
+                    "address": "tls_private_key.example",
+                    "mode": "managed",
+                    "type": "tls_private_key",
+                    "name": "example",
+                    "provider_name": "registry.terraform.io/hashicorp/tls",
+                    "schema_version": 0,
+                    "values": {
+                        "algorithm": "RSA",
+                        "ecdsa_curve": "P224",
+                        "rsa_bits": 4096
+                    }
+                }
+            ],
+            "child_modules": [
+                {
+                    "resources": [
+                        {
+                            "address": "module.satellite-cluster.data.ibm_satellite_cluster.read_cluster",
+                            "mode": "data",
+                            "type": "ibm_satellite_cluster",
+                            "name": "read_cluster",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0
+                        },
+                        {
+                            "address": "module.satellite-cluster.data.ibm_satellite_cluster_worker_pool.read_cluster_wp",
+                            "mode": "data",
+                            "type": "ibm_satellite_cluster_worker_pool",
+                            "name": "read_cluster_wp",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "name": "satellite-ibm-cluster-wp"
+                            }
+                        },
+                        {
+                            "address": "module.satellite-cluster.ibm_satellite_cluster.create_cluster",
+                            "mode": "managed",
+                            "type": "ibm_satellite_cluster",
+                            "name": "create_cluster",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "default_worker_pool_labels": {
+                                    "pool_name": "default-worker-pool"
+                                },
+                                "disable_public_service_endpoint": false,
+                                "enable_config_admin": true,
+                                "host_labels": [
+                                    "env:prod"
+                                ],
+                                "kube_version": "4.6_openshift",
+                                "name": "satellite-ibm-cluster",
+                                "patch_version": null,
+                                "pull_secret": null,
+                                "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                                "retry_patch_version": null,
+                                "tags": [
+                                    "env:cluster"
+                                ],
+                                "timeouts": null,
+                                "wait_for_worker_update": true,
+                                "worker_count": 3,
+                                "zones": [
+                                    {
+                                        "id": "us-east-1"
+                                    },
+                                    {
+                                        "id": "us-east-2"
+                                    },
+                                    {
+                                        "id": "us-east-3"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "address": "module.satellite-cluster.ibm_satellite_cluster_worker_pool.create_cluster_wp",
+                            "mode": "managed",
+                            "type": "ibm_satellite_cluster_worker_pool",
+                            "name": "create_cluster_wp",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "disk_encryption": null,
+                                "entitlement": null,
+                                "host_labels": [
+                                    "env:prod"
+                                ],
+                                "name": "satellite-ibm-cluster-wp",
+                                "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                                "timeouts": null,
+                                "worker_count": 1,
+                                "worker_pool_labels": {
+                                    "pool_name": "worker-pool"
+                                },
+                                "zones": [
+                                    {
+                                        "id": "us-east-1"
+                                    },
+                                    {
+                                        "id": "us-east-2"
+                                    },
+                                    {
+                                        "id": "us-east-3"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "address": "module.satellite-cluster"
+                },
+                {
+                    "resources": [
+                        {
+                            "address": "module.satellite-host.ibm_satellite_host.assign_host[0]",
+                            "mode": "managed",
+                            "type": "ibm_satellite_host",
+                            "name": "assign_host",
+                            "index": 0,
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "host_id": "satellite-ibm-instance-0",
+                                "host_provider": "ibm",
+                                "labels": [
+                                    "env:prod"
+                                ],
+                                "timeouts": null,
+                                "zone": "us-east-1"
+                            }
+                        },
+                        {
+                            "address": "module.satellite-host.ibm_satellite_host.assign_host[1]",
+                            "mode": "managed",
+                            "type": "ibm_satellite_host",
+                            "name": "assign_host",
+                            "index": 1,
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "host_id": "satellite-ibm-instance-1",
+                                "host_provider": "ibm",
+                                "labels": [
+                                    "env:prod"
+                                ],
+                                "timeouts": null,
+                                "zone": "us-east-2"
+                            }
+                        },
+                        {
+                            "address": "module.satellite-host.ibm_satellite_host.assign_host[2]",
+                            "mode": "managed",
+                            "type": "ibm_satellite_host",
+                            "name": "assign_host",
+                            "index": 2,
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "host_id": "satellite-ibm-instance-2",
+                                "host_provider": "ibm",
+                                "labels": [
+                                    "env:prod"
+                                ],
+                                "timeouts": null,
+                                "zone": "us-east-3"
+                            }
+                        }
+                    ],
+                    "address": "module.satellite-host"
+                },
+                {
+                    "resources": [
+                        {
+                            "address": "module.satellite-location.data.ibm_satellite_attach_host_script.script",
+                            "mode": "data",
+                            "type": "ibm_satellite_attach_host_script",
+                            "name": "script",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "host_provider": "ibm",
+                                "labels": [
+                                    "env:prod"
+                                ]
+                            }
+                        },
+                        {
+                            "address": "module.satellite-location.data.ibm_satellite_location.location",
+                            "mode": "data",
+                            "type": "ibm_satellite_location",
+                            "name": "location",
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0
+                        },
+                        {
+                            "address": "module.satellite-location.ibm_satellite_location.create_location[0]",
+                            "mode": "managed",
+                            "type": "ibm_satellite_location",
+                            "name": "create_location",
+                            "index": 0,
+                            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                            "schema_version": 0,
+                            "values": {
+                                "cos_config": [
+                                    {
+                                        "bucket": null,
+                                        "endpoint": null,
+                                        "region": null
+                                    }
+                                ],
+                                "cos_credentials": [],
+                                "description": null,
+                                "location": "satellite-ibm",
+                                "logging_account_id": null,
+                                "managed_from": "wdc",
+                                "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                                "tags": [
+                                    "env:prod"
+                                ],
+                                "timeouts": null,
+                                "zones": [
+                                    "us-east-1",
+                                    "us-east-2",
+                                    "us-east-3"
+                                ]
+                            }
+                        }
+                    ],
+                    "address": "module.satellite-location"
+                }
+            ]
+        }
+    },
+    "resource_changes": [
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[0]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 0,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-0",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[1]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 1,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-1",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[2]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 2,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-2",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[3]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 3,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-3",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[4]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 4,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-4",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[5]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 5,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-5",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[6]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 6,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-6",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[7]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 7,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-7",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_floating_ip.satellite_ip[8]",
+            "mode": "managed",
+            "type": "ibm_is_floating_ip",
+            "name": "satellite_ip",
+            "index": 8,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-fip-8",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "address": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "target": true,
+                    "zone": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[0]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 0,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-0",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-1"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[1]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 1,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-1",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-2"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[2]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 2,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-2",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-3"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[3]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 3,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-3",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-1"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[4]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 4,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-4",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-2"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[5]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 5,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-5",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-3"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[6]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 6,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-6",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-1"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[7]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 7,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-7",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-2"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_instance.satellite_instance[8]",
+            "mode": "managed",
+            "type": "ibm_is_instance",
+            "name": "satellite_instance",
+            "index": 8,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "auto_delete_volume": null,
+                    "dedicated_host": null,
+                    "dedicated_host_group": null,
+                    "force_recovery_time": null,
+                    "image": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                    "instance_template": null,
+                    "name": "satellite-ibm-instance-8",
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "allow_ip_spoofing": false,
+                            "port_speed": null
+                        }
+                    ],
+                    "profile": "mx2-8x64",
+                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "volumes": null,
+                    "wait_before_delete": true,
+                    "zone": "us-east-3"
+                },
+                "after_unknown": {
+                    "boot_volume": true,
+                    "disks": true,
+                    "gpu": true,
+                    "id": true,
+                    "keys": true,
+                    "memory": true,
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "id": true,
+                            "name": true,
+                            "primary_ipv4_address": true,
+                            "security_groups": true,
+                            "subnet": true
+                        }
+                    ],
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "status": true,
+                    "tags": true,
+                    "user_data": true,
+                    "vcpu": true,
+                    "volume_attachments": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "boot_volume": [],
+                    "disks": [],
+                    "gpu": [],
+                    "keys": [],
+                    "network_interfaces": [],
+                    "primary_network_interface": [
+                        {
+                            "security_groups": []
+                        }
+                    ],
+                    "tags": [],
+                    "vcpu": [],
+                    "volume_attachments": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_ssh_key.satellite_ssh",
+            "mode": "managed",
+            "type": "ibm_is_ssh_key",
+            "name": "satellite_ssh",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-ssh"
+                },
+                "after_unknown": {
+                    "fingerprint": true,
+                    "id": true,
+                    "length": true,
+                    "public_key": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "tags": true,
+                    "type": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_subnet.satellite_subnet[0]",
+            "mode": "managed",
+            "type": "ibm_is_subnet",
+            "name": "satellite_subnet",
+            "index": 0,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "ip_version": "ipv4",
+                    "name": "satellite-ibm-subnet-0",
+                    "public_gateway": null,
+                    "timeouts": null,
+                    "total_ipv4_address_count": 256,
+                    "zone": "us-east-1"
+                },
+                "after_unknown": {
+                    "available_ipv4_address_count": true,
+                    "crn": true,
+                    "id": true,
+                    "ipv4_cidr_block": true,
+                    "network_acl": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "routing_table": true,
+                    "status": true,
+                    "tags": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_subnet.satellite_subnet[1]",
+            "mode": "managed",
+            "type": "ibm_is_subnet",
+            "name": "satellite_subnet",
+            "index": 1,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "ip_version": "ipv4",
+                    "name": "satellite-ibm-subnet-1",
+                    "public_gateway": null,
+                    "timeouts": null,
+                    "total_ipv4_address_count": 256,
+                    "zone": "us-east-2"
+                },
+                "after_unknown": {
+                    "available_ipv4_address_count": true,
+                    "crn": true,
+                    "id": true,
+                    "ipv4_cidr_block": true,
+                    "network_acl": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "routing_table": true,
+                    "status": true,
+                    "tags": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_subnet.satellite_subnet[2]",
+            "mode": "managed",
+            "type": "ibm_is_subnet",
+            "name": "satellite_subnet",
+            "index": 2,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "ip_version": "ipv4",
+                    "name": "satellite-ibm-subnet-2",
+                    "public_gateway": null,
+                    "timeouts": null,
+                    "total_ipv4_address_count": 256,
+                    "zone": "us-east-3"
+                },
+                "after_unknown": {
+                    "available_ipv4_address_count": true,
+                    "crn": true,
+                    "id": true,
+                    "ipv4_cidr_block": true,
+                    "network_acl": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "routing_table": true,
+                    "status": true,
+                    "tags": true,
+                    "vpc": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "ibm_is_vpc.satellite_vpc",
+            "mode": "managed",
+            "type": "ibm_is_vpc",
+            "name": "satellite_vpc",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "address_prefix_management": "auto",
+                    "classic_access": false,
+                    "name": "satellite-ibm-vpc",
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "crn": true,
+                    "cse_source_addresses": true,
+                    "default_network_acl": true,
+                    "default_network_acl_name": true,
+                    "default_routing_table": true,
+                    "default_routing_table_name": true,
+                    "default_security_group": true,
+                    "default_security_group_name": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "security_group": true,
+                    "status": true,
+                    "subnets": true,
+                    "tags": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "cse_source_addresses": [],
+                    "security_group": [],
+                    "subnets": [],
+                    "tags": []
+                }
+            }
+        },
+        {
+            "address": "module.satellite-cluster.data.ibm_satellite_cluster.read_cluster",
+            "module_address": "module.satellite-cluster",
+            "mode": "data",
+            "type": "ibm_satellite_cluster",
+            "name": "read_cluster",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "read"
+                ],
+                "before": null,
+                "after": {},
+                "after_unknown": {
+                    "crn": true,
+                    "health": true,
+                    "id": true,
+                    "ingress_hostname": true,
+                    "ingress_secret": true,
+                    "kube_version": true,
+                    "location": true,
+                    "name": true,
+                    "private_service_endpoint": true,
+                    "private_service_endpoint_url": true,
+                    "public_service_endpoint": true,
+                    "public_service_endpoint_url": true,
+                    "resource_group_id": true,
+                    "resource_group_name": true,
+                    "server_url": true,
+                    "state": true,
+                    "status": true,
+                    "tags": true,
+                    "worker_count": true,
+                    "worker_pools": true,
+                    "workers": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "ingress_secret": true,
+                    "tags": [],
+                    "worker_pools": [],
+                    "workers": []
+                }
+            }
+        },
+        {
+            "address": "module.satellite-cluster.data.ibm_satellite_cluster_worker_pool.read_cluster_wp",
+            "module_address": "module.satellite-cluster",
+            "mode": "data",
+            "type": "ibm_satellite_cluster_worker_pool",
+            "name": "read_cluster_wp",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "read"
+                ],
+                "before": null,
+                "after": {
+                    "name": "satellite-ibm-cluster-wp"
+                },
+                "after_unknown": {
+                    "auto_scale_enabled": true,
+                    "cluster": true,
+                    "flavor": true,
+                    "host_labels": true,
+                    "id": true,
+                    "isolation": true,
+                    "region": true,
+                    "resource_group_id": true,
+                    "state": true,
+                    "worker_count": true,
+                    "worker_pool_labels": true,
+                    "zones": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "host_labels": {},
+                    "worker_pool_labels": {},
+                    "zones": []
+                }
+            }
+        },
+        {
+            "address": "module.satellite-cluster.ibm_satellite_cluster.create_cluster",
+            "module_address": "module.satellite-cluster",
+            "mode": "managed",
+            "type": "ibm_satellite_cluster",
+            "name": "create_cluster",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "default_worker_pool_labels": {
+                        "pool_name": "default-worker-pool"
+                    },
+                    "disable_public_service_endpoint": false,
+                    "enable_config_admin": true,
+                    "host_labels": [
+                        "env:prod"
+                    ],
+                    "kube_version": "4.6_openshift",
+                    "name": "satellite-ibm-cluster",
+                    "patch_version": null,
+                    "pull_secret": null,
+                    "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "retry_patch_version": null,
+                    "tags": [
+                        "env:cluster"
+                    ],
+                    "timeouts": null,
+                    "wait_for_worker_update": true,
+                    "worker_count": 3,
+                    "zones": [
+                        {
+                            "id": "us-east-1"
+                        },
+                        {
+                            "id": "us-east-2"
+                        },
+                        {
+                            "id": "us-east-3"
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "crn": true,
+                    "default_worker_pool_labels": {},
+                    "host_labels": [
+                        false
+                    ],
+                    "id": true,
+                    "ingress_hostname": true,
+                    "ingress_secret": true,
+                    "location": true,
+                    "master_status": true,
+                    "master_url": true,
+                    "pod_subnet": true,
+                    "private_service_endpoint_enabled": true,
+                    "private_service_endpoint_url": true,
+                    "public_service_endpoint_enabled": true,
+                    "public_service_endpoint_url": true,
+                    "resource_group_name": true,
+                    "service_subnet": true,
+                    "state": true,
+                    "tags": [
+                        false
+                    ],
+                    "zones": [
+                        {},
+                        {},
+                        {}
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "default_worker_pool_labels": {},
+                    "host_labels": [
+                        false
+                    ],
+                    "ingress_secret": true,
+                    "tags": [
+                        false
+                    ],
+                    "zones": [
+                        {},
+                        {},
+                        {}
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-cluster.ibm_satellite_cluster_worker_pool.create_cluster_wp",
+            "module_address": "module.satellite-cluster",
+            "mode": "managed",
+            "type": "ibm_satellite_cluster_worker_pool",
+            "name": "create_cluster_wp",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "disk_encryption": null,
+                    "entitlement": null,
+                    "host_labels": [
+                        "env:prod"
+                    ],
+                    "name": "satellite-ibm-cluster-wp",
+                    "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "timeouts": null,
+                    "worker_count": 1,
+                    "worker_pool_labels": {
+                        "pool_name": "worker-pool"
+                    },
+                    "zones": [
+                        {
+                            "id": "us-east-1"
+                        },
+                        {
+                            "id": "us-east-2"
+                        },
+                        {
+                            "id": "us-east-3"
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "cluster": true,
+                    "flavor": true,
+                    "host_labels": [
+                        false
+                    ],
+                    "id": true,
+                    "isolation": true,
+                    "worker_pool_labels": {},
+                    "zones": [
+                        {},
+                        {},
+                        {}
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "host_labels": [
+                        false
+                    ],
+                    "worker_pool_labels": {},
+                    "zones": [
+                        {},
+                        {},
+                        {}
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-host.ibm_satellite_host.assign_host[0]",
+            "module_address": "module.satellite-host",
+            "mode": "managed",
+            "type": "ibm_satellite_host",
+            "name": "assign_host",
+            "index": 0,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "host_id": "satellite-ibm-instance-0",
+                    "host_provider": "ibm",
+                    "labels": [
+                        "env:prod"
+                    ],
+                    "timeouts": null,
+                    "zone": "us-east-1"
+                },
+                "after_unknown": {
+                    "cluster": true,
+                    "host_state": true,
+                    "id": true,
+                    "labels": [
+                        false
+                    ],
+                    "location": true,
+                    "worker_pool": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "labels": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-host.ibm_satellite_host.assign_host[1]",
+            "module_address": "module.satellite-host",
+            "mode": "managed",
+            "type": "ibm_satellite_host",
+            "name": "assign_host",
+            "index": 1,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "host_id": "satellite-ibm-instance-1",
+                    "host_provider": "ibm",
+                    "labels": [
+                        "env:prod"
+                    ],
+                    "timeouts": null,
+                    "zone": "us-east-2"
+                },
+                "after_unknown": {
+                    "cluster": true,
+                    "host_state": true,
+                    "id": true,
+                    "labels": [
+                        false
+                    ],
+                    "location": true,
+                    "worker_pool": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "labels": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-host.ibm_satellite_host.assign_host[2]",
+            "module_address": "module.satellite-host",
+            "mode": "managed",
+            "type": "ibm_satellite_host",
+            "name": "assign_host",
+            "index": 2,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "host_id": "satellite-ibm-instance-2",
+                    "host_provider": "ibm",
+                    "labels": [
+                        "env:prod"
+                    ],
+                    "timeouts": null,
+                    "zone": "us-east-3"
+                },
+                "after_unknown": {
+                    "cluster": true,
+                    "host_state": true,
+                    "id": true,
+                    "labels": [
+                        false
+                    ],
+                    "location": true,
+                    "worker_pool": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "labels": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-location.data.ibm_satellite_attach_host_script.script",
+            "module_address": "module.satellite-location",
+            "mode": "data",
+            "type": "ibm_satellite_attach_host_script",
+            "name": "script",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "read"
+                ],
+                "before": null,
+                "after": {
+                    "host_provider": "ibm",
+                    "labels": [
+                        "env:prod"
+                    ]
+                },
+                "after_unknown": {
+                    "description": true,
+                    "host_script": true,
+                    "id": true,
+                    "labels": [
+                        false
+                    ],
+                    "location": true,
+                    "script_dir": true,
+                    "script_path": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "labels": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.satellite-location.data.ibm_satellite_location.location",
+            "module_address": "module.satellite-location",
+            "mode": "data",
+            "type": "ibm_satellite_location",
+            "name": "location",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "read"
+                ],
+                "before": null,
+                "after": {},
+                "after_unknown": {
+                    "created_on": true,
+                    "crn": true,
+                    "description": true,
+                    "host_attached_count": true,
+                    "host_available_count": true,
+                    "id": true,
+                    "ingress_hostname": true,
+                    "ingress_secret": true,
+                    "location": true,
+                    "logging_account_id": true,
+                    "managed_from": true,
+                    "resource_group_id": true,
+                    "resource_group_name": true,
+                    "tags": true,
+                    "zones": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "ingress_secret": true,
+                    "tags": [],
+                    "zones": []
+                }
+            }
+        },
+        {
+            "address": "module.satellite-location.ibm_satellite_location.create_location[0]",
+            "module_address": "module.satellite-location",
+            "mode": "managed",
+            "type": "ibm_satellite_location",
+            "name": "create_location",
+            "index": 0,
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "cos_config": [
+                        {
+                            "bucket": null,
+                            "endpoint": null,
+                            "region": null
+                        }
+                    ],
+                    "cos_credentials": [],
+                    "description": null,
+                    "location": "satellite-ibm",
+                    "logging_account_id": null,
+                    "managed_from": "wdc",
+                    "resource_group_id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                    "tags": [
+                        "env:prod"
+                    ],
+                    "timeouts": null,
+                    "zones": [
+                        "us-east-1",
+                        "us-east-2",
+                        "us-east-3"
+                    ]
+                },
+                "after_unknown": {
+                    "cos_config": [
+                        {}
+                    ],
+                    "cos_credentials": [],
+                    "created_on": true,
+                    "crn": true,
+                    "host_attached_count": true,
+                    "host_available_count": true,
+                    "id": true,
+                    "ingress_hostname": true,
+                    "ingress_secret": true,
+                    "resource_group_name": true,
+                    "tags": [
+                        false
+                    ],
+                    "zones": [
+                        false,
+                        false,
+                        false
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "cos_config": [
+                        {}
+                    ],
+                    "cos_credentials": [],
+                    "ingress_secret": true,
+                    "tags": [
+                        false
+                    ],
+                    "zones": [
+                        false,
+                        false,
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "tls_private_key.example",
+            "mode": "managed",
+            "type": "tls_private_key",
+            "name": "example",
+            "provider_name": "registry.terraform.io/hashicorp/tls",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "algorithm": "RSA",
+                    "ecdsa_curve": "P224",
+                    "rsa_bits": 4096
+                },
+                "after_unknown": {
+                    "id": true,
+                    "private_key_pem": true,
+                    "public_key_fingerprint_md5": true,
+                    "public_key_openssh": true,
+                    "public_key_pem": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "private_key_pem": true
+                }
+            }
+        }
+    ],
+    "prior_state": {
+        "format_version": "0.1",
+        "terraform_version": "0.15.5",
+        "values": {
+            "root_module": {
+                "resources": [
+                    {
+                        "address": "data.ibm_is_image.rhel7",
+                        "mode": "data",
+                        "type": "ibm_is_image",
+                        "name": "rhel7",
+                        "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                        "schema_version": 0,
+                        "values": {
+                            "architecture": "amd64",
+                            "checksum": "802d35029638a3464b4507387095c59b1ec479ec1621c25ba63612f99a01df06",
+                            "crn": "crn:v1:bluemix:public:is:us-east:a/811f8abfbd32425597dc7ba40da98fa6::image:r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                            "encryption": "none",
+                            "encryption_key": null,
+                            "id": "r014-99bbf5ee-bf89-402f-a936-173eeff03ce5",
+                            "name": "ibm-redhat-7-9-minimal-amd64-3",
+                            "os": "red-7-amd64",
+                            "source_volume": null,
+                            "status": "available",
+                            "visibility": "public"
+                        }
+                    },
+                    {
+                        "address": "data.ibm_resource_group.resource_group",
+                        "mode": "data",
+                        "type": "ibm_resource_group",
+                        "name": "resource_group",
+                        "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                        "schema_version": 0,
+                        "values": {
+                            "id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                            "is_default": null,
+                            "name": "Default"
+                        }
+                    }
+                ],
+                "child_modules": [
+                    {
+                        "resources": [
+                            {
+                                "address": "module.satellite-cluster.data.ibm_resource_group.rg",
+                                "mode": "data",
+                                "type": "ibm_resource_group",
+                                "name": "rg",
+                                "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                                    "is_default": null,
+                                    "name": "Default"
+                                }
+                            }
+                        ],
+                        "address": "module.satellite-cluster"
+                    },
+                    {
+                        "resources": [
+                            {
+                                "address": "module.satellite-location.data.ibm_resource_group.resource_group",
+                                "mode": "data",
+                                "type": "ibm_resource_group",
+                                "name": "resource_group",
+                                "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "d2f1704cfdfd44d196cbe19cbe99a15b",
+                                    "is_default": null,
+                                    "name": "Default"
+                                }
+                            }
+                        ],
+                        "address": "module.satellite-location"
+                    }
+                ]
+            }
+        }
+    },
+    "configuration": {
+        "provider_config": {
+            "ibm": {
+                "name": "ibm",
+                "expressions": {
+                    "ibmcloud_api_key": {
+                        "references": [
+                            "var.ibmcloud_api_key"
+                        ]
+                    },
+                    "region": {
+                        "references": [
+                            "var.ibm_region"
+                        ]
+                    }
+                }
+            },
+            "module.satellite-cluster:ibm": {
+                "name": "ibm",
+                "module_address": "module.satellite-cluster"
+            },
+            "module.satellite-host:ibm": {
+                "name": "ibm",
+                "module_address": "module.satellite-host"
+            },
+            "module.satellite-location:ibm": {
+                "name": "ibm",
+                "module_address": "module.satellite-location"
+            }
+        },
+        "root_module": {
+            "resources": [
+                {
+                    "address": "ibm_is_floating_ip.satellite_ip",
+                    "mode": "managed",
+                    "type": "ibm_is_floating_ip",
+                    "name": "satellite_ip",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "references": [
+                                "var.is_prefix",
+                                "count.index"
+                            ]
+                        },
+                        "target": {
+                            "references": [
+                                "ibm_is_instance.satellite_instance",
+                                "count.index"
+                            ]
+                        }
+                    },
+                    "schema_version": 0,
+                    "count_expression": {
+                        "references": [
+                            "var.host_count",
+                            "var.addl_host_count"
+                        ]
+                    }
+                },
+                {
+                    "address": "ibm_is_instance.satellite_instance",
+                    "mode": "managed",
+                    "type": "ibm_is_instance",
+                    "name": "satellite_instance",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "image": {
+                            "references": [
+                                "data.ibm_is_image.rhel7"
+                            ]
+                        },
+                        "keys": {
+                            "references": [
+                                "ibm_is_ssh_key.satellite_ssh"
+                            ]
+                        },
+                        "name": {
+                            "references": [
+                                "var.is_prefix",
+                                "count.index"
+                            ]
+                        },
+                        "primary_network_interface": [
+                            {
+                                "subnet": {
+                                    "references": [
+                                        "local.subnet_ids",
+                                        "count.index"
+                                    ]
+                                }
+                            }
+                        ],
+                        "profile": {
+                            "constant_value": "mx2-8x64"
+                        },
+                        "resource_group": {
+                            "references": [
+                                "data.ibm_resource_group.resource_group"
+                            ]
+                        },
+                        "user_data": {
+                            "references": [
+                                "module.satellite-location.host_script"
+                            ]
+                        },
+                        "vpc": {
+                            "references": [
+                                "ibm_is_vpc.satellite_vpc"
+                            ]
+                        },
+                        "zone": {
+                            "references": [
+                                "local.zones",
+                                "count.index"
+                            ]
+                        }
+                    },
+                    "schema_version": 0,
+                    "count_expression": {
+                        "references": [
+                            "var.host_count",
+                            "var.addl_host_count"
+                        ]
+                    }
+                },
+                {
+                    "address": "ibm_is_ssh_key.satellite_ssh",
+                    "mode": "managed",
+                    "type": "ibm_is_ssh_key",
+                    "name": "satellite_ssh",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "references": [
+                                "var.is_prefix"
+                            ]
+                        },
+                        "public_key": {
+                            "references": [
+                                "var.public_key",
+                                "var.public_key",
+                                "tls_private_key.example"
+                            ]
+                        }
+                    },
+                    "schema_version": 0,
+                    "depends_on": [
+                        "module.satellite-location"
+                    ]
+                },
+                {
+                    "address": "ibm_is_subnet.satellite_subnet",
+                    "mode": "managed",
+                    "type": "ibm_is_subnet",
+                    "name": "satellite_subnet",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "references": [
+                                "var.is_prefix",
+                                "count.index"
+                            ]
+                        },
+                        "total_ipv4_address_count": {
+                            "constant_value": 256
+                        },
+                        "vpc": {
+                            "references": [
+                                "ibm_is_vpc.satellite_vpc"
+                            ]
+                        },
+                        "zone": {
+                            "references": [
+                                "var.ibm_region",
+                                "count.index"
+                            ]
+                        }
+                    },
+                    "schema_version": 0,
+                    "count_expression": {
+                        "constant_value": 3
+                    }
+                },
+                {
+                    "address": "ibm_is_vpc.satellite_vpc",
+                    "mode": "managed",
+                    "type": "ibm_is_vpc",
+                    "name": "satellite_vpc",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "references": [
+                                "var.is_prefix"
+                            ]
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "tls_private_key.example",
+                    "mode": "managed",
+                    "type": "tls_private_key",
+                    "name": "example",
+                    "provider_config_key": "tls",
+                    "expressions": {
+                        "algorithm": {
+                            "constant_value": "RSA"
+                        },
+                        "rsa_bits": {
+                            "constant_value": 4096
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "data.ibm_is_image.rhel7",
+                    "mode": "data",
+                    "type": "ibm_is_image",
+                    "name": "rhel7",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "constant_value": "ibm-redhat-7-9-minimal-amd64-3"
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "data.ibm_resource_group.resource_group",
+                    "mode": "data",
+                    "type": "ibm_resource_group",
+                    "name": "resource_group",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "name": {
+                            "references": [
+                                "var.resource_group"
+                            ]
+                        }
+                    },
+                    "schema_version": 0
+                }
+            ],
+            "module_calls": {
+                "satellite-cluster": {
+                    "source": "./modules/cluster",
+                    "expressions": {
+                        "cluster": {
+                            "references": [
+                                "var.cluster"
+                            ]
+                        },
+                        "cluster_tags": {
+                            "references": [
+                                "var.cluster_tags"
+                            ]
+                        },
+                        "default_wp_labels": {
+                            "references": [
+                                "var.default_wp_labels"
+                            ]
+                        },
+                        "host_labels": {
+                            "references": [
+                                "var.host_labels"
+                            ]
+                        },
+                        "kube_version": {
+                            "references": [
+                                "var.kube_version"
+                            ]
+                        },
+                        "location": {
+                            "references": [
+                                "module.satellite-host.location"
+                            ]
+                        },
+                        "resource_group": {
+                            "references": [
+                                "var.resource_group"
+                            ]
+                        },
+                        "worker_count": {
+                            "references": [
+                                "var.worker_count"
+                            ]
+                        },
+                        "worker_pool_name": {
+                            "references": [
+                                "var.worker_pool_name"
+                            ]
+                        },
+                        "workerpool_labels": {
+                            "references": [
+                                "var.workerpool_labels"
+                            ]
+                        },
+                        "zones": {
+                            "references": [
+                                "var.cluster_zones"
+                            ]
+                        }
+                    },
+                    "module": {
+                        "outputs": {
+                            "cluster_id": {
+                                "expression": {
+                                    "references": [
+                                        "data.ibm_satellite_cluster.read_cluster"
+                                    ]
+                                }
+                            },
+                            "worker_pool_id": {
+                                "expression": {
+                                    "references": [
+                                        "data.ibm_satellite_cluster_worker_pool.read_cluster_wp"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "ibm_satellite_cluster.create_cluster",
+                                "mode": "managed",
+                                "type": "ibm_satellite_cluster",
+                                "name": "create_cluster",
+                                "provider_config_key": "satellite-cluster:ibm",
+                                "expressions": {
+                                    "default_worker_pool_labels": {
+                                        "references": [
+                                            "var.default_wp_labels"
+                                        ]
+                                    },
+                                    "enable_config_admin": {
+                                        "constant_value": true
+                                    },
+                                    "host_labels": {
+                                        "references": [
+                                            "var.host_labels"
+                                        ]
+                                    },
+                                    "kube_version": {
+                                        "references": [
+                                            "var.kube_version"
+                                        ]
+                                    },
+                                    "location": {
+                                        "references": [
+                                            "var.location"
+                                        ]
+                                    },
+                                    "name": {
+                                        "references": [
+                                            "var.cluster"
+                                        ]
+                                    },
+                                    "resource_group_id": {
+                                        "references": [
+                                            "data.ibm_resource_group.rg"
+                                        ]
+                                    },
+                                    "tags": {
+                                        "references": [
+                                            "var.cluster_tags"
+                                        ]
+                                    },
+                                    "wait_for_worker_update": {
+                                        "constant_value": true
+                                    },
+                                    "worker_count": {
+                                        "references": [
+                                            "var.worker_count"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "ibm_satellite_cluster_worker_pool.create_cluster_wp",
+                                "mode": "managed",
+                                "type": "ibm_satellite_cluster_worker_pool",
+                                "name": "create_cluster_wp",
+                                "provider_config_key": "satellite-cluster:ibm",
+                                "expressions": {
+                                    "cluster": {
+                                        "references": [
+                                            "data.ibm_satellite_cluster.read_cluster"
+                                        ]
+                                    },
+                                    "host_labels": {
+                                        "references": [
+                                            "var.host_labels"
+                                        ]
+                                    },
+                                    "name": {
+                                        "references": [
+                                            "var.worker_pool_name"
+                                        ]
+                                    },
+                                    "resource_group_id": {
+                                        "references": [
+                                            "data.ibm_resource_group.rg"
+                                        ]
+                                    },
+                                    "worker_count": {
+                                        "references": [
+                                            "var.worker_count"
+                                        ]
+                                    },
+                                    "worker_pool_labels": {
+                                        "references": [
+                                            "var.workerpool_labels"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.ibm_resource_group.rg",
+                                "mode": "data",
+                                "type": "ibm_resource_group",
+                                "name": "rg",
+                                "provider_config_key": "satellite-cluster:ibm",
+                                "expressions": {
+                                    "name": {
+                                        "references": [
+                                            "var.resource_group"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.ibm_satellite_cluster.read_cluster",
+                                "mode": "data",
+                                "type": "ibm_satellite_cluster",
+                                "name": "read_cluster",
+                                "provider_config_key": "satellite-cluster:ibm",
+                                "expressions": {
+                                    "name": {
+                                        "references": [
+                                            "ibm_satellite_cluster.create_cluster"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.ibm_satellite_cluster_worker_pool.read_cluster_wp",
+                                "mode": "data",
+                                "type": "ibm_satellite_cluster_worker_pool",
+                                "name": "read_cluster_wp",
+                                "provider_config_key": "satellite-cluster:ibm",
+                                "expressions": {
+                                    "cluster": {
+                                        "references": [
+                                            "data.ibm_satellite_cluster.read_cluster"
+                                        ]
+                                    },
+                                    "name": {
+                                        "references": [
+                                            "ibm_satellite_cluster_worker_pool.create_cluster_wp"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0,
+                                "depends_on": [
+                                    "ibm_satellite_cluster_worker_pool.create_cluster_wp"
+                                ]
+                            }
+                        ],
+                        "variables": {
+                            "cluster": {
+                                "description": "Satellite Location Name"
+                            },
+                            "cluster_tags": {
+                                "default": [
+                                    "env:cluster"
+                                ],
+                                "description": "List of tags associated with this resource."
+                            },
+                            "default_wp_labels": {
+                                "default": {
+                                    "poolname": "default-worker-pool"
+                                },
+                                "description": "Label to add default worker pool"
+                            },
+                            "host_labels": {
+                                "description": "Label to add to attach host script"
+                            },
+                            "kube_version": {
+                                "description": "Satellite Kube Version"
+                            },
+                            "location": {
+                                "description": "Satellite Location Name"
+                            },
+                            "resource_group": {
+                                "description": "Resource Group Name that has to be targeted"
+                            },
+                            "worker_count": {
+                                "default": 1,
+                                "description": "Worker Count for default pool"
+                            },
+                            "worker_pool_name": {
+                                "description": "Worker Pool Name"
+                            },
+                            "workerpool_labels": {
+                                "default": {
+                                    "poolname": "worker-pool"
+                                },
+                                "description": "Label to add to workerpool"
+                            },
+                            "zones": {
+                                "default": [
+                                    "us-east-1",
+                                    "us-east-2",
+                                    "us-east-3"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "satellite-host": {
+                    "source": "./modules/host",
+                    "expressions": {
+                        "host_count": {
+                            "references": [
+                                "var.host_count"
+                            ]
+                        },
+                        "host_labels": {
+                            "references": [
+                                "var.host_labels"
+                            ]
+                        },
+                        "host_provider": {
+                            "constant_value": "ibm"
+                        },
+                        "host_vms": {
+                            "references": [
+                                "ibm_is_instance.satellite_instance"
+                            ]
+                        },
+                        "location": {
+                            "references": [
+                                "module.satellite-location.location_id"
+                            ]
+                        },
+                        "location_zones": {
+                            "references": [
+                                "var.location_zones"
+                            ]
+                        }
+                    },
+                    "module": {
+                        "outputs": {
+                            "location": {
+                                "expression": {
+                                    "references": [
+                                        "ibm_satellite_host.assign_host[0]"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "ibm_satellite_host.assign_host",
+                                "mode": "managed",
+                                "type": "ibm_satellite_host",
+                                "name": "assign_host",
+                                "provider_config_key": "satellite-host:ibm",
+                                "expressions": {
+                                    "host_id": {
+                                        "references": [
+                                            "var.host_vms",
+                                            "count.index"
+                                        ]
+                                    },
+                                    "host_provider": {
+                                        "references": [
+                                            "var.host_provider"
+                                        ]
+                                    },
+                                    "labels": {
+                                        "references": [
+                                            "var.host_labels"
+                                        ]
+                                    },
+                                    "location": {
+                                        "references": [
+                                            "var.location"
+                                        ]
+                                    },
+                                    "zone": {
+                                        "references": [
+                                            "var.location_zones",
+                                            "count.index"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0,
+                                "count_expression": {
+                                    "references": [
+                                        "var.host_count"
+                                    ]
+                                }
+                            }
+                        ],
+                        "variables": {
+                            "host_count": {
+                                "default": 3,
+                                "description": "The total number of ibm/aws host to create for control plane"
+                            },
+                            "host_labels": {
+                                "description": "Label to add to attach host script"
+                            },
+                            "host_provider": {
+                                "default": "ibm",
+                                "description": "The cloud provider of host/vms"
+                            },
+                            "host_vms": {
+                                "default": [],
+                                "description": "A list of hostnames to attach for setting up location control plane."
+                            },
+                            "location": {
+                                "description": "Satellite Location Name"
+                            },
+                            "location_zones": {
+                                "default": [
+                                    "us-east-1",
+                                    "us-east-2",
+                                    "us-east-3"
+                                ],
+                                "description": "Allocate your hosts across these three zones"
+                            }
+                        }
+                    }
+                },
+                "satellite-location": {
+                    "source": "./modules/location",
+                    "expressions": {
+                        "host_labels": {
+                            "references": [
+                                "var.host_labels"
+                            ]
+                        },
+                        "ibm_region": {
+                            "references": [
+                                "var.ibm_region"
+                            ]
+                        },
+                        "is_location_exist": {
+                            "references": [
+                                "var.is_location_exist"
+                            ]
+                        },
+                        "location": {
+                            "references": [
+                                "var.location"
+                            ]
+                        },
+                        "location_bucket": {
+                            "references": [
+                                "var.location_bucket"
+                            ]
+                        },
+                        "location_zones": {
+                            "references": [
+                                "var.location_zones"
+                            ]
+                        },
+                        "managed_from": {
+                            "references": [
+                                "var.managed_from"
+                            ]
+                        },
+                        "resource_group": {
+                            "references": [
+                                "var.resource_group"
+                            ]
+                        },
+                        "tags": {
+                            "references": [
+                                "var.tags"
+                            ]
+                        }
+                    },
+                    "module": {
+                        "outputs": {
+                            "host_script": {
+                                "expression": {
+                                    "references": [
+                                        "data.ibm_satellite_attach_host_script.script"
+                                    ]
+                                }
+                            },
+                            "location_id": {
+                                "expression": {
+                                    "references": [
+                                        "data.ibm_satellite_location.location"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "ibm_satellite_location.create_location",
+                                "mode": "managed",
+                                "type": "ibm_satellite_location",
+                                "name": "create_location",
+                                "provider_config_key": "satellite-location:ibm",
+                                "expressions": {
+                                    "cos_config": [
+                                        {
+                                            "bucket": {
+                                                "references": [
+                                                    "var.location_bucket",
+                                                    "var.location_bucket"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "location": {
+                                        "references": [
+                                            "var.location"
+                                        ]
+                                    },
+                                    "managed_from": {
+                                        "references": [
+                                            "var.managed_from"
+                                        ]
+                                    },
+                                    "resource_group_id": {
+                                        "references": [
+                                            "data.ibm_resource_group.resource_group"
+                                        ]
+                                    },
+                                    "tags": {
+                                        "references": [
+                                            "var.tags"
+                                        ]
+                                    },
+                                    "zones": {
+                                        "references": [
+                                            "var.location_zones"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0,
+                                "count_expression": {
+                                    "references": [
+                                        "var.is_location_exist"
+                                    ]
+                                }
+                            },
+                            {
+                                "address": "data.ibm_resource_group.resource_group",
+                                "mode": "data",
+                                "type": "ibm_resource_group",
+                                "name": "resource_group",
+                                "provider_config_key": "satellite-location:ibm",
+                                "expressions": {
+                                    "name": {
+                                        "references": [
+                                            "var.resource_group"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.ibm_satellite_attach_host_script.script",
+                                "mode": "data",
+                                "type": "ibm_satellite_attach_host_script",
+                                "name": "script",
+                                "provider_config_key": "satellite-location:ibm",
+                                "expressions": {
+                                    "host_provider": {
+                                        "references": [
+                                            "var.host_provider"
+                                        ]
+                                    },
+                                    "labels": {
+                                        "references": [
+                                            "var.host_labels"
+                                        ]
+                                    },
+                                    "location": {
+                                        "references": [
+                                            "data.ibm_satellite_location.location"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.ibm_satellite_location.location",
+                                "mode": "data",
+                                "type": "ibm_satellite_location",
+                                "name": "location",
+                                "provider_config_key": "satellite-location:ibm",
+                                "expressions": {
+                                    "location": {
+                                        "references": [
+                                            "var.is_location_exist",
+                                            "ibm_satellite_location.create_location[0]",
+                                            "var.location"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0,
+                                "depends_on": [
+                                    "ibm_satellite_location.create_location"
+                                ]
+                            }
+                        ],
+                        "variables": {
+                            "host_labels": {
+                                "default": [
+                                    "env:prod"
+                                ],
+                                "description": "Labels to add to attach host script"
+                            },
+                            "host_provider": {
+                                "default": "ibm",
+                                "description": "The cloud provider of host|vms"
+                            },
+                            "ibm_region": {
+                                "default": "us-east",
+                                "description": "Region of the IBM Cloud account. Currently supported regions for satellite are us-east and eu-gb region."
+                            },
+                            "is_location_exist": {
+                                "default": false,
+                                "description": "Location Name"
+                            },
+                            "location": {
+                                "default": "sat-loc-1031",
+                                "description": "Location Name"
+                            },
+                            "location_bucket": {
+                                "default": null,
+                                "description": "COS bucket name"
+                            },
+                            "location_zones": {
+                                "default": [
+                                    "us-east-1",
+                                    "us-east-2",
+                                    "us-east-3"
+                                ],
+                                "description": "Allocate your hosts across these three zones"
+                            },
+                            "managed_from": {
+                                "default": "wdc",
+                                "description": "The IBM Cloud region to manage your Satellite location from. Choose a region close to your on-prem data center for better performance."
+                            },
+                            "resource_group": {
+                                "description": "Name of the resource group on which location has to be created"
+                            },
+                            "tags": {
+                                "default": [
+                                    "env:dev"
+                                ],
+                                "description": "List of tags associated with this satellite."
+                            }
+                        }
+                    }
+                }
+            },
+            "variables": {
+                "addl_host_count": {
+                    "default": 6,
+                    "description": "The total number of additional host for cluster assignment"
+                },
+                "cluster": {
+                    "default": "satellite-ibm-cluster",
+                    "description": "Satellite Cluster Name"
+                },
+                "cluster_tags": {
+                    "default": [
+                        "env:cluster"
+                    ],
+                    "description": "List of tags associated with this resource."
+                },
+                "cluster_zones": {
+                    "default": [
+                        "us-east-1",
+                        "us-east-2",
+                        "us-east-3"
+                    ],
+                    "description": "Allocate zones to cluster"
+                },
+                "default_wp_labels": {
+                    "default": {
+                        "pool_name": "default-worker-pool"
+                    },
+                    "description": "Label to add default worker pool"
+                },
+                "host_count": {
+                    "default": 3,
+                    "description": "The total number of ibm host to create for control plane"
+                },
+                "host_labels": {
+                    "default": [
+                        "env:prod"
+                    ],
+                    "description": "Labels to add to attach host script"
+                },
+                "ibm_region": {
+                    "default": "us-east",
+                    "description": "Region of the IBM Cloud account. Currently supported regions for satellite are us-east and eu-gb region."
+                },
+                "ibmcloud_api_key": {
+                    "description": "IBM Cloud API Key"
+                },
+                "is_location_exist": {
+                    "default": false,
+                    "description": "Determines if the location has to be created or not"
+                },
+                "is_prefix": {
+                    "default": "satellite-ibm",
+                    "description": "Prefix to the Names of the VPC Infrastructure resources"
+                },
+                "kube_version": {
+                    "default": "4.6_openshift",
+                    "description": "Satellite Kube Version"
+                },
+                "location": {
+                    "default": "satellite-ibm",
+                    "description": "Location Name"
+                },
+                "location_bucket": {
+                    "default": null,
+                    "description": "COS bucket name"
+                },
+                "location_zones": {
+                    "default": [
+                        "us-east-1",
+                        "us-east-2",
+                        "us-east-3"
+                    ],
+                    "description": "Allocate your hosts across these three zones"
+                },
+                "managed_from": {
+                    "default": "wdc",
+                    "description": "The IBM Cloud region to manage your Satellite location from. Choose a region close to your on-prem data center for better performance."
+                },
+                "public_key": {
+                    "default": null,
+                    "description": "SSH Public Key. Get your ssh key by running `ssh-key-gen` command"
+                },
+                "resource_group": {
+                    "description": "Name of the resource group on which location has to be created"
+                },
+                "tags": {
+                    "default": [
+                        "env:prod"
+                    ],
+                    "description": "List of tags associated with this satellite."
+                },
+                "worker_count": {
+                    "default": 1,
+                    "description": "Worker Count for default pool"
+                },
+                "worker_pool_name": {
+                    "default": "satellite-ibm-cluster-wp",
+                    "description": "Worker Pool Name"
+                },
+                "workerpool_labels": {
+                    "default": {
+                        "pool_name": "worker-pool"
+                    },
+                    "description": "Label to add to workerpool"
+                }
+            }
+        }
+    }
+}
