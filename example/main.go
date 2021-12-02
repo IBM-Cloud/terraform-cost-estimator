@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/api"
+	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/ibm"
 	"go.uber.org/zap"
 )
 

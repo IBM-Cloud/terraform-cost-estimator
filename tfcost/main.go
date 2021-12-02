@@ -8,9 +8,9 @@ import (
 	"os"
 	"strings"
 
+	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/api"
 	"github.com/IBM-Cloud/terraform-cost-estimator/authentication"
 	"github.com/IBM-Cloud/terraform-cost-estimator/helpers"
-	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/ibm"
 	"github.com/fatih/color"
 	"github.com/kataras/tablewriter"
 	"github.com/landoop/tableprinter"
