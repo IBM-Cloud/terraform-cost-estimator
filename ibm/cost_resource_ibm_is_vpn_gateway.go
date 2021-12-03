@@ -5,6 +5,7 @@ import (
 
 	"github.com/IBM-Cloud/terraform-cost-estimator/ibm/pricing"
 	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
+	"go.uber.org/zap"
 )
 
 const (
@@ -60,6 +61,36 @@ func getVpnCost(resdata Resource, token string, generation int) (*BillOfMaterial
 	billdata.AddDependencyData(1, floatingIPID, ipcost)
 
 	return &billdata, vpncost, nil
+
+}
+
+//New function IncCostFuncMap
+func getVpnCost2(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
+	logger.Info("Entry:getVPNCost")
+
+	vpnPricingClient := pricing.NewPlanService(generation, vpnID)
+
+	planID, err := vpnPricingClient.GetVPCPlan()
+	if err != nil {
+		return 0, err
+	}
+	vpncost, err := vpnCost(planID, token)
+	if err != nil {
+		return 0, err
+	}
+	ipPricingClient := pricing.NewPlanService(generation, floatingIPID)
+
+	planIDIP, err := ipPricingClient.GetIPPlan()
+	if err != nil {
+		return 0, err
+	}
+	ipcost, err := iPCost(planIDIP, token)
+	if err != nil {
+		return 0, err
+	}
+	vpncost += ipcost
+
+	return vpncost, nil
 
 }
 
