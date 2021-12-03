@@ -24,15 +24,18 @@ type costFunction func(Resource, string, int) (*BillOfMaterial, float64, error)
 type pf map[string]costFunction
 
 var ResourceFuncMap = pf{
-	"ibm_is_volume":      getVolumeCost,
-	"ibm_is_vpn_gateway": getVpnCost,
-	"ibm_is_image":       getVolumeCost,
+	// "ibm_is_volume":      getVolumeCost,
+	// "ibm_is_vpn_gateway": getVpnCost,
+	// "ibm_is_image":       getVolumeCost,
 }
 
 type incCostFunction func(*zap.Logger, ResourceConf, string) (float64, error)
 type cf map[string]incCostFunction
 
 var IncCostFuncMap = cf{
+	"ibm_is_volume":                     getVolumeCost2,
+	"ibm_is_vpn_gateway":                getVpnCost2,
+	"ibm_is_image":                      getImageCost2,
 	"ibm_container_cluster":             containerCost,
 	"ibm_container_worker_pool":         workerPoolContainerCost,
 	"ibm_is_lb":                         getLoadBalancerCost,
@@ -134,9 +137,11 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 				actions := reschanges.Change.Actions
 				var before, after float64
 				var err error
+
 				//if it is create new resource or no change
 				if len(actions) == 1 && (actions[0] == "create" || actions[0] == "no-op") {
 					after, err = IncCostFuncMap[resourceType](logger, reschanges.Change.After, token)
+
 					if err != nil {
 						logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
 						// return 0, bom, err

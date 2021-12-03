@@ -5,6 +5,7 @@ import (
 
 	"github.com/IBM-Cloud/terraform-cost-estimator/ibm/pricing"
 	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
+	"go.uber.org/zap"
 )
 
 const (
@@ -37,6 +38,26 @@ func getImageCost(resdata Resource, token string, generation int) (BillOfMateria
 	billdata.AddLineItemData(resdata, planID, imagecost)
 
 	return billdata, imagecost, nil
+
+}
+
+//New function IncCostFuncMap
+func getImageCost2(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
+
+	logger.Info("Entry:getImageCost")
+
+	PricingClient := pricing.NewPlanService(generation, isImageID)
+
+	planID, err := PricingClient.GetVPCPlan()
+	if err != nil {
+		return 0, err
+	}
+	imagecost, err := imageCost(planID, token)
+	if err != nil {
+		return 0, err
+	}
+
+	return imagecost, nil
 
 }
 
