@@ -2,9 +2,12 @@ package costcalculator
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 
 	"github.com/IBM-Cloud/terraform-cost-estimator/ibm/pricing"
 	rest "github.com/IBM-Cloud/terraform-cost-estimator/ibm/rest"
+	"go.uber.org/zap"
 )
 
 const (
@@ -35,6 +38,29 @@ func getVolumeCost(resdata Resource, token string, generation int) (*BillOfMater
 	billdata.AddLineItemData(resdata, planID, volcost)
 
 	return &billdata, volcost, nil
+
+}
+
+//New function IncCostFuncMap
+func getVolumeCost2(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
+	logger.Info("Entry:getVolumeCost2")
+
+	var planID string
+	iops, _ := strconv.Atoi(strings.Replace(changeData.ISInstance.Profile, "iops-tier", "", 1))
+
+	pricingClient := pricing.NewPlanService(generation, volumeID)
+
+	planID, err := pricingClient.GetVolumePlan(changeData.ISInstance.Profile)
+	if err != nil {
+		return 0, err
+	}
+
+	volcost, err := volumeCost(100, iops, planID, token)
+	if err != nil {
+		return 0, err
+	}
+
+	return volcost, nil
 
 }
 
