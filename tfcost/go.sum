@@ -1,6 +1,8 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20211111104858-d2c48ecce73d h1:m3ZxFzfLPJxgAe3z0XUFRuHPWEQjKcGBVPPryViL8Tk=
 github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20211111104858-d2c48ecce73d/go.mod h1:qrMXvFpEhDukJfnGAdMj6KXiBJDfweqxie20W/TNqKQ=
+github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20211202101046-9b01b0333844 h1:8RxoSV4nkgPihCP8JgbFPryxIQ1QG6Qe2P73tSJq5kk=
+github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20211202101046-9b01b0333844/go.mod h1:qrMXvFpEhDukJfnGAdMj6KXiBJDfweqxie20W/TNqKQ=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d h1:U+s90UTSYgptZMwQh2aRr3LuazLJIa+Pg3Kc1ylSYVY=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
