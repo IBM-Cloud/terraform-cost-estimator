@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/api"
+	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/ibm"
 )
 
 //DisplayTable ...
