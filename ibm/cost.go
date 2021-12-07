@@ -49,6 +49,7 @@ var IncCostFuncMap = cf{
 	"ibm_is_floating_ip":                getIPCost,
 	"ibm_satellite_cluster":             getSatelliteCluster,
 	"ibm_satellite_cluster_worker_pool": getSatelliteCluster,
+	"ibm_database":                      getDatabaseCost,
 }
 
 func NewTFCostClient(config *Config) (*CostV1Config, error) {
