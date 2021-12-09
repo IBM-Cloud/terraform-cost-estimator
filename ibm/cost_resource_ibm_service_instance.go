@@ -9,11 +9,12 @@ import (
 
 ///Parse container cost details, configure the body, call restapi and return the estimated cost
 func serviceInstanceCost(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
-	// for vpc the hardware is always shared
+
 	logger.Info("Entry:serviceInstanceCost")
 	plan := changeData.Plan
 	service := changeData.Service
 	var objectID, serviceID string
+
 	switch service {
 	case "cloudant":
 		serviceID = "cloudant-" + plan
@@ -33,19 +34,28 @@ func serviceInstanceCost(logger *zap.Logger, changeData ResourceConf, token stri
 		serviceID = "databases-for-cassandra-" + plan
 	case "databases-for-enterprisedb":
 		serviceID = "databases-for-enterprisedb-" + plan
+	case "blockchain":
+		serviceID = "blockchain-" + plan
+	case "data-virtualization":
+		serviceID = "data-virtualization-" + plan
+	case "functions":
+		serviceID = "functions-" + plan
+	case "satellite-iaas":
+		serviceID = plan
+	case "schematics":
+		return 0, nil
 	default:
-		err := fmt.Errorf("invalid Service Provided")
-		logger.Error("Invalid Service Provided", zap.Any("Service", service))
+		err := fmt.Errorf("service not suported")
+		logger.Error("Service not suported", zap.Any("Service", service))
 		return 0, err
 	}
-	// fmt.Println("serviceid ", serviceID)
 
 	planResp, err := rest.GetGlobalCatalogPlan(serviceID)
 	if err != nil {
 		logger.Error("Error occured while getting plan", zap.Error(err))
 		return 0, err
 	}
-	// fmt.Printf("%+v\n", planResp)
+
 	objectID = planResp.Resources[0].ID
 
 	InstanceCostResp, err := rest.GetGlobalCatalogCost(objectID, "")
