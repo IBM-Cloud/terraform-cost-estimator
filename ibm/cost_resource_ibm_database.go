@@ -9,13 +9,12 @@ import (
 
 ///Parse container cost details, configure the body, call restapi and return the estimated cost
 func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
-	// for vpc the hardware is always shared
 	logger.Info("Entry:getDatabaseCost")
 	plan := changeData.Plan
 	service := changeData.Service
 	var objectID, serviceID string
-	// fmt.Println("service ", service)
 	switch service {
+	//cases for all database services
 	case "databases-for-mongodb":
 		serviceID = "databases-for-mongodb-" + plan
 	case "databases-for-etcd":
@@ -37,7 +36,6 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 		logger.Error("Invalid Service Provided", zap.Any("Service", service))
 		return 0, err
 	}
-	// fmt.Println("serviceid ", serviceID)
 
 	planResp, err := rest.GetGlobalCatalogPlan(serviceID)
 	if err != nil {
