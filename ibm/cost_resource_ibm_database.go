@@ -32,8 +32,8 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 	case "databases-for-enterprisedb":
 		serviceID = "databases-for-enterprisedb-" + plan
 	default:
-		err := fmt.Errorf("invalid Service Provided")
-		logger.Error("Invalid Service Provided", zap.Any("Service", service))
+		err := fmt.Errorf("cost Estimation not supported for input service")
+		logger.Error("Cost Estimation not supported for input service", zap.Any("Service", service))
 		return 0, err
 	}
 
