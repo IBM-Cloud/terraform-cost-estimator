@@ -1,134 +1,236 @@
 {
     "format_version": "0.1",
-    "terraform_version": "0.12.7",
+    "terraform_version": "0.13.7",
+    "variables": {
+        "account_groups_name": {
+            "value": "placeholder"
+        },
+        "accounts_name": {
+            "value": "placeholder"
+        },
+        "enterprise_account_group_name": {
+            "value": "name"
+        },
+        "enterprise_account_group_parent": {
+            "value": "parent"
+        },
+        "enterprise_account_group_primary_contact_iam_id": {
+            "value": "primary_contact_iam_id"
+        },
+        "enterprise_account_name": {
+            "value": "name"
+        },
+        "enterprise_account_owner_iam_id": {
+            "value": "owner_iam_id"
+        },
+        "enterprise_account_parent": {
+            "value": "parent"
+        },
+        "enterprise_domain": {
+            "value": "placeholder"
+        },
+        "enterprise_name": {
+            "value": "name"
+        },
+        "enterprise_primary_contact_iam_id": {
+            "value": "primary_contact_iam_id"
+        },
+        "enterprise_source_account_id": {
+            "value": "source_account_id"
+        },
+        "enterprises_name": {
+            "value": "placeholder"
+        },
+        "ibmcloud_api_key": {
+            "value": ""
+        }
+    },
     "planned_values": {
         "root_module": {
             "resources": [
                 {
-                    "address": "ibm_container_cluster.testacc_cluster",
+                    "address": "ibm_cis.cis_instance",
+                    "mode": "managed",
+                    "type": "ibm_cis",
+                    "name": "cis_instance",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "location": "global",
+                        "name": "test",
+                        "parameters": null,
+                        "plan": "standard",
+                        "tags": [
+                            "tag1",
+                            "tag2"
+                        ],
+                        "timeouts": {
+                            "create": "15m",
+                            "delete": "15m",
+                            "update": "15m"
+                        }
+                    }
+                },
+                {
+                    "address": "ibm_compute_vm_instance.terraform-sample-flavor",
+                    "mode": "managed",
+                    "type": "ibm_compute_vm_instance",
+                    "name": "terraform-sample-flavor",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "bulk_vms": [],
+                        "datacenter": "dal06",
+                        "datacenter_choice": null,
+                        "dedicated_acct_host_only": false,
+                        "dedicated_host_id": null,
+                        "dedicated_host_name": null,
+                        "disks": [
+                            10,
+                            20,
+                            30
+                        ],
+                        "domain": "bar.example.com",
+                        "evault": null,
+                        "flavor_key_name": "B1_2X8X25",
+                        "hostname": "terraform-sample-flavor",
+                        "hourly_billing": true,
+                        "image_id": null,
+                        "ipv6_enabled": true,
+                        "ipv6_static_enabled": false,
+                        "local_disk": false,
+                        "network_speed": 10,
+                        "notes": "VM notes",
+                        "os_reference_code": "DEBIAN_8_64",
+                        "placement_group_id": null,
+                        "placement_group_name": null,
+                        "post_install_script_uri": null,
+                        "private_network_only": false,
+                        "public_bandwidth_unlimited": false,
+                        "quote_id": null,
+                        "reserved_capacity_id": null,
+                        "reserved_capacity_name": null,
+                        "reserved_instance_primary_disk": null,
+                        "secondary_ip_count": 4,
+                        "ssh_key_ids": null,
+                        "tags": [
+                            "collectd"
+                        ],
+                        "timeouts": null,
+                        "transient": null,
+                        "user_metadata": "{\\\"value\\\":\\\"newvalue\\\"}",
+                        "wait_time_minutes": 90
+                    }
+                },
+                {
+                    "address": "ibm_compute_vm_instance.twc_terraform_sample",
+                    "mode": "managed",
+                    "type": "ibm_compute_vm_instance",
+                    "name": "twc_terraform_sample",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "bulk_vms": [],
+                        "cores": 1,
+                        "datacenter": "wdc01",
+                        "datacenter_choice": null,
+                        "dedicated_acct_host_only": true,
+                        "dedicated_host_id": null,
+                        "dedicated_host_name": null,
+                        "disks": [
+                            25,
+                            10,
+                            20
+                        ],
+                        "domain": "bar.example.com",
+                        "evault": null,
+                        "hostname": "twc-terraform-sample-name",
+                        "hourly_billing": false,
+                        "image_id": null,
+                        "ipv6_enabled": false,
+                        "ipv6_static_enabled": false,
+                        "local_disk": false,
+                        "memory": 1024,
+                        "network_speed": 10,
+                        "notes": null,
+                        "os_reference_code": "CLOUDLINUX_5_32",
+                        "placement_group_id": null,
+                        "placement_group_name": null,
+                        "post_install_script_uri": null,
+                        "private_network_only": false,
+                        "private_security_group_ids": [
+                            576973
+                        ],
+                        "private_vlan_id": 7721931,
+                        "public_bandwidth_unlimited": false,
+                        "public_vlan_id": 1391277,
+                        "quote_id": null,
+                        "reserved_capacity_id": null,
+                        "reserved_capacity_name": null,
+                        "reserved_instance_primary_disk": null,
+                        "secondary_ip_count": null,
+                        "ssh_key_ids": null,
+                        "tags": null,
+                        "timeouts": null,
+                        "transient": null,
+                        "user_metadata": "{\"value\":\"newvalue\"}",
+                        "wait_time_minutes": 90
+                    }
+                },
+                {
+                    "address": "ibm_container_cluster.cluster",
                     "mode": "managed",
                     "type": "ibm_container_cluster",
-                    "name": "testacc_cluster",
-                    "provider_name": "ibm",
+                    "name": "cluster",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
                     "schema_version": 0,
                     "values": {
                         "account_guid": null,
                         "billing": null,
                         "datacenter": "dal10",
-                        "default_pool_size": 1,
+                        "default_pool_size": 3,
                         "disk_encryption": true,
-                        "entitlement": null,
+                        "entitlement": "cloud_pak",
                         "force_delete_storage": false,
                         "gateway_enabled": false,
                         "hardware": "shared",
                         "is_trusted": null,
                         "kms_config": [],
+                        "kube_version": "4.3_openshift",
                         "machine_type": "b3c.4x16",
-                        "name": "test",
+                        "name": "test-openshift-cluster",
                         "no_subnet": false,
                         "org_guid": null,
-                        "private_vlan_id": "vlan",
-                        "public_vlan_id": "vlan",
+                        "patch_version": null,
+                        "private_vlan_id": "2863616",
+                        "public_vlan_id": "2863614",
+                        "retry_patch_version": null,
                         "space_guid": null,
-                        "subnet_id": [
-                            "1154643"
-                        ],
+                        "subnet_id": null,
+                        "taints": [],
                         "timeouts": null,
                         "update_all_workers": false,
+                        "wait_for_worker_update": true,
+                        "wait_till": "IngressReady",
                         "wait_time_minutes": null,
-                        "webhook": [
-                            {
-                                "level": "Normal",
-                                "type": "slack",
-                                "url": "https://hooks.slack.com/services/yt7rebjhgh2r4rd44fjk"
-                            }
-                        ],
-                        "worker_num": 0,
-                        "workers": []
+                        "webhook": [],
+                        "worker_num": 0
                     }
                 },
                 {
-                    "address": "ibm_is_instance.testacc_instance",
-                    "mode": "managed",
-                    "type": "ibm_is_instance",
-                    "name": "testacc_instance",
-                    "provider_name": "ibm",
-                    "schema_version": 0,
-                    "values": {
-                        "generation": null,
-                        "image": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1",
-                        "keys": [
-                            "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21"
-                        ],
-                        "name": "testinstance2",
-                        "network_interfaces": [
-                            {
-                                "name": "eth1",
-                                "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                            }
-                        ],
-                        "primary_network_interface": [
-                            {
-                                "port_speed": null,
-                                "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                            }
-                        ],
-                        "profile": "bx2-2x16",
-                        "timeouts": null,
-                        "user_data": null,
-                        "volumes": null,
-                        "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                        "zone": "us-south-1"
-                    }
-                },
-                {
-                    "address": "ibm_is_ssh_key.testacc_sshkey",
-                    "mode": "managed",
-                    "type": "ibm_is_ssh_key",
-                    "name": "testacc_sshkey",
-                    "provider_name": "ibm",
-                    "schema_version": 0,
-                    "values": {
-                        "fingerprint": "SHA256:z4SNSdcb9yrpU0aWFzrIaXftcpoK7XRUy9dnLWxbu7M",
-                        "id": "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                        "length": 2048,
-                        "name": "testssh",
-                        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKVmnMOlHKcZK8tpt3MP1lqOLAcqcJzhsvJcjscgVERRN7/9484SOBJ3HSKxxNG5JN8owAjy5f9yYwcUg+JaUVuytn5Pv3aeYROHGGg+5G346xaq3DAwX6Y5ykr2fvjObgncQBnuU5KHWCECO/4h8uWuwh/kfniXPVjFToc+gnkqA+3RKpAecZhFXwfalQ9mMuYGFxn+fwn8cYEApsJbsEmb0iJwPiZ5hjFC8wREuiTlhPHDgkBLOiycd20op2nXzDbHfCHInquEe/gYxEitALONxm0swBOwJZwlTDOB7C6y2dzlrtxr1L59m7pCkWI4EtTRLvleehBoj3u7jB4usR",
-                        "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/sshKeys",
-                        "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::key:r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                        "resource_group_name": "Default",
-                        "resource_name": "testssh",
-                        "tags": [],
-                        "type": "rsa"
-                    }
-                },
-                {
-                    "address": "ibm_is_subnet.testacc_subnet",
+                    "address": "ibm_is_subnet.subnet1",
                     "mode": "managed",
                     "type": "ibm_is_subnet",
-                    "name": "testacc_subnet",
-                    "provider_name": "ibm",
+                    "name": "subnet1",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
                     "schema_version": 0,
                     "values": {
-                        "available_ipv4_address_count": null,
-                        "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                        "ipv4_cidr_block": "10.240.0.0/24",
-                        "ipv6_cidr_block": null,
-                        "name": "testsubnet",
-                        "network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                        "public_gateway": "",
-                        "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/subnets",
-                        "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::subnet:0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                        "resource_group_name": "Default",
-                        "resource_name": "testsubnet",
-                        "resource_status": "available",
-                        "status": "available",
+                        "ip_version": "ipv4",
+                        "name": "mysubnet1",
+                        "public_gateway": null,
                         "timeouts": null,
                         "total_ipv4_address_count": 256,
-                        "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                        "zone": "us-south-1"
+                        "zone": "us_south-1"
                     }
                 },
                 {
@@ -136,80 +238,34 @@
                     "mode": "managed",
                     "type": "ibm_is_vpc",
                     "name": "testacc_vpc",
-                    "provider_name": "ibm",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
                     "schema_version": 0,
                     "values": {
                         "address_prefix_management": "auto",
                         "classic_access": false,
-                        "crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                        "cse_source_addresses": [
-                            {
-                                "address": "10.12.122.114",
-                                "zone_name": "us-south-1"
-                            },
-                            {
-                                "address": "10.249.72.123",
-                                "zone_name": "us-south-2"
-                            },
-                            {
-                                "address": "10.249.214.174",
-                                "zone_name": "us-south-3"
-                            }
-                        ],
-                        "default_network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                        "default_security_group": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                        "id": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                        "is_default": null,
-                        "name": "testvpc",
-                        "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/vpcs",
-                        "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                        "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                        "resource_group_name": "Default",
-                        "resource_name": "testvpc",
-                        "resource_status": "available",
-                        "security_group": [
-                            {
-                                "group_id": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                "group_name": "army-gutless-sixtieth-empower",
-                                "rules": [
-                                    {
-                                        "code": 0,
-                                        "direction": "outbound",
-                                        "ip_version": "ipv4",
-                                        "port_max": 0,
-                                        "port_min": 0,
-                                        "protocol": "all",
-                                        "remote": "0.0.0.0/0",
-                                        "rule_id": "r006-f6f8fd34-16ca-454e-ba2c-b610f2330fe2",
-                                        "type": 0
-                                    },
-                                    {
-                                        "code": 0,
-                                        "direction": "inbound",
-                                        "ip_version": "ipv4",
-                                        "port_max": 0,
-                                        "port_min": 0,
-                                        "protocol": "all",
-                                        "remote": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                        "rule_id": "r006-203af722-aa2d-424f-8aa9-03fa46e13943",
-                                        "type": 0
-                                    }
-                                ]
-                            }
-                        ],
-                        "status": "available",
-                        "subnets": [
-                            {
-                                "available_ipv4_address_count": 249,
-                                "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                                "name": "testsubnet",
-                                "status": "available",
-                                "total_ipv4_address_count": 256,
-                                "zone": "us-south-1"
-                            }
-                        ],
-                        "tags": [],
+                        "name": "test-vpc",
                         "timeouts": null
+                    }
+                },
+                {
+                    "address": "ibm_subnet.portable_subnet",
+                    "mode": "managed",
+                    "type": "ibm_subnet",
+                    "name": "portable_subnet",
+                    "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+                    "schema_version": 0,
+                    "values": {
+                        "capacity": 4,
+                        "endpoint_ip": null,
+                        "ip_version": 4,
+                        "notes": "portable_subnet",
+                        "private": true,
+                        "tags": null,
+                        "timeouts": {
+                            "create": "45m"
+                        },
+                        "type": "Portable",
+                        "vlan_id": 1234567
                     }
                 }
             ]
@@ -217,11 +273,246 @@
     },
     "resource_changes": [
         {
-            "address": "ibm_container_cluster.testacc_cluster",
+            "address": "ibm_cis.cis_instance",
+            "mode": "managed",
+            "type": "ibm_cis",
+            "name": "cis_instance",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "location": "global",
+                    "name": "test",
+                    "parameters": null,
+                    "plan": "standard",
+                    "tags": [
+                        "tag1",
+                        "tag2"
+                    ],
+                    "timeouts": {
+                        "create": "15m",
+                        "delete": "15m",
+                        "update": "15m"
+                    }
+                },
+                "after_unknown": {
+                    "guid": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group_id": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "service": true,
+                    "status": true,
+                    "tags": [
+                        false,
+                        false
+                    ],
+                    "timeouts": {}
+                }
+            }
+        },
+        {
+            "address": "ibm_compute_vm_instance.terraform-sample-flavor",
+            "mode": "managed",
+            "type": "ibm_compute_vm_instance",
+            "name": "terraform-sample-flavor",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bulk_vms": [],
+                    "datacenter": "dal06",
+                    "datacenter_choice": null,
+                    "dedicated_acct_host_only": false,
+                    "dedicated_host_id": null,
+                    "dedicated_host_name": null,
+                    "disks": [
+                        10,
+                        20,
+                        30
+                    ],
+                    "domain": "bar.example.com",
+                    "evault": null,
+                    "flavor_key_name": "B1_2X8X25",
+                    "hostname": "terraform-sample-flavor",
+                    "hourly_billing": true,
+                    "image_id": null,
+                    "ipv6_enabled": true,
+                    "ipv6_static_enabled": false,
+                    "local_disk": false,
+                    "network_speed": 10,
+                    "notes": "VM notes",
+                    "os_reference_code": "CLOUDLINUX_5_32",
+                    "placement_group_id": null,
+                    "placement_group_name": null,
+                    "post_install_script_uri": null,
+                    "private_network_only": false,
+                    "public_bandwidth_unlimited": false,
+                    "quote_id": null,
+                    "reserved_capacity_id": null,
+                    "reserved_capacity_name": null,
+                    "reserved_instance_primary_disk": null,
+                    "secondary_ip_count": 4,
+                    "ssh_key_ids": null,
+                    "tags": [
+                        "collectd"
+                    ],
+                    "timeouts": null,
+                    "transient": null,
+                    "user_metadata": "{\\\"value\\\":\\\"newvalue\\\"}",
+                    "wait_time_minutes": 90
+                },
+                "after_unknown": {
+                    "block_storage_ids": true,
+                    "bulk_vms": [],
+                    "cores": true,
+                    "disks": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "file_storage_ids": true,
+                    "id": true,
+                    "ip_address_id": true,
+                    "ip_address_id_private": true,
+                    "ipv4_address": true,
+                    "ipv4_address_private": true,
+                    "ipv6_address": true,
+                    "ipv6_address_id": true,
+                    "memory": true,
+                    "private_interface_id": true,
+                    "private_security_group_ids": true,
+                    "private_subnet": true,
+                    "private_subnet_id": true,
+                    "private_vlan_id": true,
+                    "public_bandwidth_limited": true,
+                    "public_interface_id": true,
+                    "public_ipv6_subnet": true,
+                    "public_ipv6_subnet_id": true,
+                    "public_security_group_ids": true,
+                    "public_subnet": true,
+                    "public_subnet_id": true,
+                    "public_vlan_id": true,
+                    "resource_controller_url": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "secondary_ip_addresses": true,
+                    "tags": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "ibm_compute_vm_instance.twc_terraform_sample",
+            "mode": "managed",
+            "type": "ibm_compute_vm_instance",
+            "name": "twc_terraform_sample",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bulk_vms": [],
+                    "cores": 1,
+                    "datacenter": "wdc01",
+                    "datacenter_choice": null,
+                    "dedicated_acct_host_only": false,
+                    "dedicated_host_id": null,
+                    "dedicated_host_name": null,
+                    "disks": [
+                        25,
+                        10,
+                        20
+                    ],
+                    "domain": "bar.example.com",
+                    "evault": null,
+                    "hostname": "twc-terraform-sample-name",
+                    "hourly_billing": false,
+                    "image_id": null,
+                    "ipv6_enabled": false,
+                    "ipv6_static_enabled": false,
+                    "local_disk": false,
+                    "memory": 4096,
+                    "network_speed": 1000,
+                    "notes": null,
+                    "os_reference_code": "CLOUDLINUX_5_32",
+                    "placement_group_id": null,
+                    "placement_group_name": null,
+                    "post_install_script_uri": null,
+                    "private_network_only": true,
+                    "private_security_group_ids": [
+                        576973
+                    ],
+                    "private_vlan_id": 7721931,
+                    "public_bandwidth_unlimited": false,
+                    "public_vlan_id": 1391277,
+                    "quote_id": null,
+                    "reserved_capacity_id": null,
+                    "reserved_capacity_name": null,
+                    "reserved_instance_primary_disk": null,
+                    "secondary_ip_count": null,
+                    "ssh_key_ids": null,
+                    "tags": null,
+                    "timeouts": null,
+                    "transient": null,
+                    "user_metadata": "{\"value\":\"newvalue\"}",
+                    "wait_time_minutes": 90
+                },
+                "after_unknown": {
+                    "block_storage_ids": true,
+                    "bulk_vms": [],
+                    "disks": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "file_storage_ids": true,
+                    "flavor_key_name": true,
+                    "id": true,
+                    "ip_address_id": true,
+                    "ip_address_id_private": true,
+                    "ipv4_address": true,
+                    "ipv4_address_private": true,
+                    "ipv6_address": true,
+                    "ipv6_address_id": true,
+                    "private_interface_id": true,
+                    "private_security_group_ids": [
+                        false
+                    ],
+                    "private_subnet": true,
+                    "private_subnet_id": true,
+                    "public_bandwidth_limited": true,
+                    "public_interface_id": true,
+                    "public_ipv6_subnet": true,
+                    "public_ipv6_subnet_id": true,
+                    "public_security_group_ids": true,
+                    "public_subnet": true,
+                    "public_subnet_id": true,
+                    "resource_controller_url": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "secondary_ip_addresses": true
+                }
+            }
+        },
+        {
+            "address": "ibm_container_cluster.cluster",
             "mode": "managed",
             "type": "ibm_container_cluster",
-            "name": "testacc_cluster",
-            "provider_name": "ibm",
+            "name": "cluster",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
             "change": {
                 "actions": [
                     "create"
@@ -231,36 +522,33 @@
                     "account_guid": null,
                     "billing": null,
                     "datacenter": "dal10",
-                    "default_pool_size": 1,
+                    "default_pool_size": 3,
                     "disk_encryption": true,
-                    "entitlement": null,
+                    "entitlement": "cloud_pak",
                     "force_delete_storage": false,
                     "gateway_enabled": false,
                     "hardware": "shared",
                     "is_trusted": null,
                     "kms_config": [],
+                    "kube_version": "4.3_openshift",
                     "machine_type": "b3c.4x16",
-                    "name": "test",
+                    "name": "test-openshift-cluster",
                     "no_subnet": false,
                     "org_guid": null,
-                    "private_vlan_id": "vlan",
-                    "public_vlan_id": "vlan",
+                    "patch_version": null,
+                    "private_vlan_id": "2863616",
+                    "public_vlan_id": "2863614",
+                    "retry_patch_version": null,
                     "space_guid": null,
-                    "subnet_id": [
-                        "1154643"
-                    ],
+                    "subnet_id": null,
+                    "taints": [],
                     "timeouts": null,
                     "update_all_workers": false,
+                    "wait_for_worker_update": true,
+                    "wait_till": "IngressReady",
                     "wait_time_minutes": null,
-                    "webhook": [
-                        {
-                            "level": "Normal",
-                            "type": "slack",
-                            "url": "https://hooks.slack.com/services/yt7rebjhgh2r4rd44fjk"
-                        }
-                    ],
-                    "worker_num": 0,
-                    "workers": []
+                    "webhook": [],
+                    "worker_num": 0
                 },
                 "after_unknown": {
                     "albs": true,
@@ -268,9 +556,9 @@
                     "id": true,
                     "ingress_hostname": true,
                     "ingress_secret": true,
-                    "isolation": true,
                     "kms_config": [],
-                    "kube_version": true,
+                    "labels": true,
+                    "pod_subnet": true,
                     "private_service_endpoint": true,
                     "private_service_endpoint_url": true,
                     "public_service_endpoint": true,
@@ -283,256 +571,52 @@
                     "resource_name": true,
                     "resource_status": true,
                     "server_url": true,
-                    "subnet_id": [
-                        false
-                    ],
+                    "service_subnet": true,
                     "tags": true,
-                    "webhook": [
-                        {}
-                    ],
+                    "taints": [],
+                    "webhook": [],
                     "worker_pools": true,
-                    "workers": [],
                     "workers_info": true
                 }
             }
         },
         {
-            "address": "ibm_is_instance.testacc_instance",
+            "address": "ibm_is_subnet.subnet1",
             "mode": "managed",
-            "type": "ibm_is_instance",
-            "name": "testacc_instance",
-            "provider_name": "ibm",
+            "type": "ibm_is_subnet",
+            "name": "subnet1",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
             "change": {
                 "actions": [
-                    "delete",
                     "create"
                 ],
-                "before": {
-                    "boot_volume": [
-                        {
-                            "encryption": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                            "iops": 0,
-                            "name": "volume-attachment",
-                            "profile": "",
-                            "size": 0
-                        }
-                    ],
-                    "generation": null,
-                    "gpu": [],
-                    "id": "0717_4fa97374-6b56-4b65-b8e3-ad9a8a3d3adb",
-                    "image": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1",
-                    "keys": [
-                        "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21"
-                    ],
-                    "memory": 18,
-                    "name": "testinstance",
-                    "network_interfaces": [
-                        {
-                            "id": "0717-b14e3748-35fa-4a48-a76a-785c4276f464",
-                            "name": "eth1",
-                            "primary_ipv4_address": "10.240.0.5",
-                            "security_groups": [
-                                "r006-12b11a70-0648-4489-9d03-a7445e213160"
-                            ],
-                            "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                        }
-                    ],
-                    "primary_network_interface": [
-                        {
-                            "id": "0717-d98dce75-3ff7-46c6-a40b-04173aa4ff87",
-                            "name": "winking-removable-glitter-audio",
-                            "port_speed": 0,
-                            "primary_ipv4_address": "10.240.0.4",
-                            "security_groups": [
-                                "r006-12b11a70-0648-4489-9d03-a7445e213160"
-                            ],
-                            "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                        }
-                    ],
-                    "profile": "bx2-4x16",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/vs",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::instance:0717_4fa97374-6b56-4b65-b8e3-ad9a8a3d3adb",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testinstance",
-                    "resource_status": "running",
-                    "status": "running",
-                    "tags": [],
-                    "timeouts": null,
-                    "user_data": null,
-                    "vcpu": [
-                        {
-                            "architecture": "amd64",
-                            "count": 4
-                        }
-                    ],
-                    "volume_attachments": [
-                        {
-                            "id": "0717-b6ad9cbb-ced8-4cf6-bae5-e07fe80fce61",
-                            "name": "volume-attachment",
-                            "volume_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                            "volume_id": "r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                            "volume_name": "overvalue-depletion-copper-fantastic"
-                        }
-                    ],
-                    "volumes": [],
-                    "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "zone": "us-south-1"
-                },
+                "before": null,
                 "after": {
-                    "generation": null,
-                    "image": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1",
-                    "keys": [
-                        "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21"
-                    ],
-                    "name": "testinstance2",
-                    "network_interfaces": [
-                        {
-                            "name": "eth1",
-                            "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                        }
-                    ],
-                    "primary_network_interface": [
-                        {
-                            "port_speed": null,
-                            "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                        }
-                    ],
-                    "profile": "bx2-2x16",
+                    "ip_version": "ipv4",
+                    "name": "mysubnet1",
+                    "public_gateway": null,
                     "timeouts": null,
-                    "user_data": null,
-                    "volumes": null,
-                    "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "zone": "us-south-1"
+                    "total_ipv4_address_count": 256,
+                    "zone": "us_south-1"
                 },
                 "after_unknown": {
-                    "boot_volume": true,
-                    "gpu": true,
+                    "access_tags": true,
+                    "available_ipv4_address_count": true,
+                    "crn": true,
                     "id": true,
-                    "keys": [
-                        false
-                    ],
-                    "memory": true,
-                    "network_interfaces": [
-                        {
-                            "id": true,
-                            "primary_ipv4_address": true,
-                            "security_groups": true
-                        }
-                    ],
-                    "primary_network_interface": [
-                        {
-                            "id": true,
-                            "name": true,
-                            "primary_ipv4_address": true,
-                            "security_groups": true
-                        }
-                    ],
+                    "ipv4_cidr_block": true,
+                    "network_acl": true,
                     "resource_controller_url": true,
                     "resource_crn": true,
                     "resource_group": true,
                     "resource_group_name": true,
                     "resource_name": true,
                     "resource_status": true,
+                    "routing_table": true,
                     "status": true,
                     "tags": true,
-                    "vcpu": true,
-                    "volume_attachments": true
+                    "vpc": true
                 }
-            }
-        },
-        {
-            "address": "ibm_is_ssh_key.testacc_sshkey",
-            "mode": "managed",
-            "type": "ibm_is_ssh_key",
-            "name": "testacc_sshkey",
-            "provider_name": "ibm",
-            "change": {
-                "actions": [
-                    "no-op"
-                ],
-                "before": {
-                    "fingerprint": "SHA256:z4SNSdcb9yrpU0aWFzrIaXftcpoK7XRUy9dnLWxbu7M",
-                    "id": "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                    "length": 2048,
-                    "name": "testssh",
-                    "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKVmnMOlHKcZK8tpt3MP1lqOLAcqcJzhsvJcjscgVERRN7/9484SOBJ3HSKxxNG5JN8owAjy5f9yYwcUg+JaUVuytn5Pv3aeYROHGGg+5G346xaq3DAwX6Y5ykr2fvjObgncQBnuU5KHWCECO/4h8uWuwh/kfniXPVjFToc+gnkqA+3RKpAecZhFXwfalQ9mMuYGFxn+fwn8cYEApsJbsEmb0iJwPiZ5hjFC8wREuiTlhPHDgkBLOiycd20op2nXzDbHfCHInquEe/gYxEitALONxm0swBOwJZwlTDOB7C6y2dzlrtxr1L59m7pCkWI4EtTRLvleehBoj3u7jB4usR",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/sshKeys",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::key:r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testssh",
-                    "tags": [],
-                    "type": "rsa"
-                },
-                "after": {
-                    "fingerprint": "SHA256:z4SNSdcb9yrpU0aWFzrIaXftcpoK7XRUy9dnLWxbu7M",
-                    "id": "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                    "length": 2048,
-                    "name": "testssh",
-                    "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKVmnMOlHKcZK8tpt3MP1lqOLAcqcJzhsvJcjscgVERRN7/9484SOBJ3HSKxxNG5JN8owAjy5f9yYwcUg+JaUVuytn5Pv3aeYROHGGg+5G346xaq3DAwX6Y5ykr2fvjObgncQBnuU5KHWCECO/4h8uWuwh/kfniXPVjFToc+gnkqA+3RKpAecZhFXwfalQ9mMuYGFxn+fwn8cYEApsJbsEmb0iJwPiZ5hjFC8wREuiTlhPHDgkBLOiycd20op2nXzDbHfCHInquEe/gYxEitALONxm0swBOwJZwlTDOB7C6y2dzlrtxr1L59m7pCkWI4EtTRLvleehBoj3u7jB4usR",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/sshKeys",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::key:r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testssh",
-                    "tags": [],
-                    "type": "rsa"
-                },
-                "after_unknown": {}
-            }
-        },
-        {
-            "address": "ibm_is_subnet.testacc_subnet",
-            "mode": "managed",
-            "type": "ibm_is_subnet",
-            "name": "testacc_subnet",
-            "provider_name": "ibm",
-            "change": {
-                "actions": [
-                    "no-op"
-                ],
-                "before": {
-                    "available_ipv4_address_count": null,
-                    "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                    "ipv4_cidr_block": "10.240.0.0/24",
-                    "ipv6_cidr_block": null,
-                    "name": "testsubnet",
-                    "network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                    "public_gateway": "",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/subnets",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::subnet:0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testsubnet",
-                    "resource_status": "available",
-                    "status": "available",
-                    "timeouts": null,
-                    "total_ipv4_address_count": 256,
-                    "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "zone": "us-south-1"
-                },
-                "after": {
-                    "available_ipv4_address_count": null,
-                    "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                    "ipv4_cidr_block": "10.240.0.0/24",
-                    "ipv6_cidr_block": null,
-                    "name": "testsubnet",
-                    "network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                    "public_gateway": "",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/subnets",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::subnet:0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testsubnet",
-                    "resource_status": "available",
-                    "status": "available",
-                    "timeouts": null,
-                    "total_ipv4_address_count": 256,
-                    "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "zone": "us-south-1"
-                },
-                "after_unknown": {}
             }
         },
         {
@@ -540,523 +624,306 @@
             "mode": "managed",
             "type": "ibm_is_vpc",
             "name": "testacc_vpc",
-            "provider_name": "ibm",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
             "change": {
                 "actions": [
-                    "no-op"
+                    "create"
                 ],
-                "before": {
-                    "address_prefix_management": "auto",
-                    "classic_access": false,
-                    "crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "cse_source_addresses": [
-                        {
-                            "address": "10.12.122.114",
-                            "zone_name": "us-south-1"
-                        },
-                        {
-                            "address": "10.249.72.123",
-                            "zone_name": "us-south-2"
-                        },
-                        {
-                            "address": "10.249.214.174",
-                            "zone_name": "us-south-3"
-                        }
-                    ],
-                    "default_network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                    "default_security_group": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                    "id": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "is_default": null,
-                    "name": "testvpc",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/vpcs",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testvpc",
-                    "resource_status": "available",
-                    "security_group": [
-                        {
-                            "group_id": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                            "group_name": "army-gutless-sixtieth-empower",
-                            "rules": [
-                                {
-                                    "code": 0,
-                                    "direction": "outbound",
-                                    "ip_version": "ipv4",
-                                    "port_max": 0,
-                                    "port_min": 0,
-                                    "protocol": "all",
-                                    "remote": "0.0.0.0/0",
-                                    "rule_id": "r006-f6f8fd34-16ca-454e-ba2c-b610f2330fe2",
-                                    "type": 0
-                                },
-                                {
-                                    "code": 0,
-                                    "direction": "inbound",
-                                    "ip_version": "ipv4",
-                                    "port_max": 0,
-                                    "port_min": 0,
-                                    "protocol": "all",
-                                    "remote": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                    "rule_id": "r006-203af722-aa2d-424f-8aa9-03fa46e13943",
-                                    "type": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "status": "available",
-                    "subnets": [
-                        {
-                            "available_ipv4_address_count": 249,
-                            "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                            "name": "testsubnet",
-                            "status": "available",
-                            "total_ipv4_address_count": 256,
-                            "zone": "us-south-1"
-                        }
-                    ],
-                    "tags": [],
-                    "timeouts": null
-                },
+                "before": null,
                 "after": {
                     "address_prefix_management": "auto",
                     "classic_access": false,
-                    "crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "cse_source_addresses": [
-                        {
-                            "address": "10.12.122.114",
-                            "zone_name": "us-south-1"
-                        },
-                        {
-                            "address": "10.249.72.123",
-                            "zone_name": "us-south-2"
-                        },
-                        {
-                            "address": "10.249.214.174",
-                            "zone_name": "us-south-3"
-                        }
-                    ],
-                    "default_network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                    "default_security_group": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                    "id": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "is_default": null,
-                    "name": "testvpc",
-                    "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/vpcs",
-                    "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                    "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                    "resource_group_name": "Default",
-                    "resource_name": "testvpc",
-                    "resource_status": "available",
-                    "security_group": [
-                        {
-                            "group_id": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                            "group_name": "army-gutless-sixtieth-empower",
-                            "rules": [
-                                {
-                                    "code": 0,
-                                    "direction": "outbound",
-                                    "ip_version": "ipv4",
-                                    "port_max": 0,
-                                    "port_min": 0,
-                                    "protocol": "all",
-                                    "remote": "0.0.0.0/0",
-                                    "rule_id": "r006-f6f8fd34-16ca-454e-ba2c-b610f2330fe2",
-                                    "type": 0
-                                },
-                                {
-                                    "code": 0,
-                                    "direction": "inbound",
-                                    "ip_version": "ipv4",
-                                    "port_max": 0,
-                                    "port_min": 0,
-                                    "protocol": "all",
-                                    "remote": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                    "rule_id": "r006-203af722-aa2d-424f-8aa9-03fa46e13943",
-                                    "type": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "status": "available",
-                    "subnets": [
-                        {
-                            "available_ipv4_address_count": 249,
-                            "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                            "name": "testsubnet",
-                            "status": "available",
-                            "total_ipv4_address_count": 256,
-                            "zone": "us-south-1"
-                        }
-                    ],
-                    "tags": [],
+                    "name": "test-vpc",
                     "timeouts": null
                 },
-                "after_unknown": {}
+                "after_unknown": {
+                    "crn": true,
+                    "cse_source_addresses": true,
+                    "default_network_acl": true,
+                    "default_network_acl_crn": true,
+                    "default_network_acl_name": true,
+                    "default_routing_table": true,
+                    "default_routing_table_name": true,
+                    "default_security_group": true,
+                    "default_security_group_crn": true,
+                    "default_security_group_name": true,
+                    "id": true,
+                    "resource_controller_url": true,
+                    "resource_crn": true,
+                    "resource_group": true,
+                    "resource_group_name": true,
+                    "resource_name": true,
+                    "resource_status": true,
+                    "security_group": true,
+                    "status": true,
+                    "subnets": true,
+                    "tags": true
+                }
+            }
+        },
+        {
+            "address": "ibm_subnet.portable_subnet",
+            "mode": "managed",
+            "type": "ibm_subnet",
+            "name": "portable_subnet",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "capacity": 4,
+                    "endpoint_ip": null,
+                    "ip_version": 4,
+                    "notes": "portable_subnet",
+                    "private": true,
+                    "tags": null,
+                    "timeouts": {
+                        "create": "45m"
+                    },
+                    "type": "Portable",
+                    "vlan_id": 1234567
+                },
+                "after_unknown": {
+                    "id": true,
+                    "subnet_cidr": true,
+                    "timeouts": {}
+                }
             }
         }
     ],
-    "prior_state": {
-        "format_version": "0.1",
-        "terraform_version": "0.12.7",
-        "values": {
-            "root_module": {
-                "resources": [
-                    {
-                        "address": "ibm_is_instance.testacc_instance",
-                        "mode": "managed",
-                        "type": "ibm_is_instance",
-                        "name": "testacc_instance",
-                        "provider_name": "ibm",
-                        "schema_version": 0,
-                        "values": {
-                            "boot_volume": [
-                                {
-                                    "encryption": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                                    "iops": 0,
-                                    "name": "volume-attachment",
-                                    "profile": "",
-                                    "size": 0
-                                }
-                            ],
-                            "generation": null,
-                            "gpu": [],
-                            "id": "0717_4fa97374-6b56-4b65-b8e3-ad9a8a3d3adb",
-                            "image": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1",
-                            "keys": [
-                                "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21"
-                            ],
-                            "memory": 18,
-                            "name": "testinstance",
-                            "network_interfaces": [
-                                {
-                                    "id": "0717-b14e3748-35fa-4a48-a76a-785c4276f464",
-                                    "name": "eth1",
-                                    "primary_ipv4_address": "10.240.0.5",
-                                    "security_groups": [
-                                        "r006-12b11a70-0648-4489-9d03-a7445e213160"
-                                    ],
-                                    "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                                }
-                            ],
-                            "primary_network_interface": [
-                                {
-                                    "id": "0717-d98dce75-3ff7-46c6-a40b-04173aa4ff87",
-                                    "name": "winking-removable-glitter-audio",
-                                    "port_speed": 0,
-                                    "primary_ipv4_address": "10.240.0.4",
-                                    "security_groups": [
-                                        "r006-12b11a70-0648-4489-9d03-a7445e213160"
-                                    ],
-                                    "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
-                                }
-                            ],
-                            "profile": "bx2-4x16",
-                            "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/vs",
-                            "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::instance:0717_4fa97374-6b56-4b65-b8e3-ad9a8a3d3adb",
-                            "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                            "resource_group_name": "Default",
-                            "resource_name": "testinstance",
-                            "resource_status": "running",
-                            "status": "running",
-                            "tags": [],
-                            "timeouts": null,
-                            "user_data": null,
-                            "vcpu": [
-                                {
-                                    "architecture": "amd64",
-                                    "count": 4
-                                }
-                            ],
-                            "volume_attachments": [
-                                {
-                                    "id": "0717-b6ad9cbb-ced8-4cf6-bae5-e07fe80fce61",
-                                    "name": "volume-attachment",
-                                    "volume_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                                    "volume_id": "r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
-                                    "volume_name": "overvalue-depletion-copper-fantastic"
-                                }
-                            ],
-                            "volumes": [],
-                            "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                            "zone": "us-south-1"
-                        },
-                        "depends_on": [
-                            "ibm_is_ssh_key.testacc_sshkey",
-                            "ibm_is_subnet.testacc_subnet",
-                            "ibm_is_vpc.testacc_vpc"
-                        ]
-                    },
-                    {
-                        "address": "ibm_is_ssh_key.testacc_sshkey",
-                        "mode": "managed",
-                        "type": "ibm_is_ssh_key",
-                        "name": "testacc_sshkey",
-                        "provider_name": "ibm",
-                        "schema_version": 0,
-                        "values": {
-                            "fingerprint": "SHA256:z4SNSdcb9yrpU0aWFzrIaXftcpoK7XRUy9dnLWxbu7M",
-                            "id": "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                            "length": 2048,
-                            "name": "testssh",
-                            "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKVmnMOlHKcZK8tpt3MP1lqOLAcqcJzhsvJcjscgVERRN7/9484SOBJ3HSKxxNG5JN8owAjy5f9yYwcUg+JaUVuytn5Pv3aeYROHGGg+5G346xaq3DAwX6Y5ykr2fvjObgncQBnuU5KHWCECO/4h8uWuwh/kfniXPVjFToc+gnkqA+3RKpAecZhFXwfalQ9mMuYGFxn+fwn8cYEApsJbsEmb0iJwPiZ5hjFC8wREuiTlhPHDgkBLOiycd20op2nXzDbHfCHInquEe/gYxEitALONxm0swBOwJZwlTDOB7C6y2dzlrtxr1L59m7pCkWI4EtTRLvleehBoj3u7jB4usR",
-                            "resource_controller_url": "https://cloud.ibm.com/vpc-ext/compute/sshKeys",
-                            "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::key:r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21",
-                            "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                            "resource_group_name": "Default",
-                            "resource_name": "testssh",
-                            "tags": [],
-                            "type": "rsa"
-                        }
-                    },
-                    {
-                        "address": "ibm_is_subnet.testacc_subnet",
-                        "mode": "managed",
-                        "type": "ibm_is_subnet",
-                        "name": "testacc_subnet",
-                        "provider_name": "ibm",
-                        "schema_version": 0,
-                        "values": {
-                            "available_ipv4_address_count": null,
-                            "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                            "ipv4_cidr_block": "10.240.0.0/24",
-                            "ipv6_cidr_block": null,
-                            "name": "testsubnet",
-                            "network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                            "public_gateway": "",
-                            "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/subnets",
-                            "resource_crn": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::subnet:0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                            "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                            "resource_group_name": "Default",
-                            "resource_name": "testsubnet",
-                            "resource_status": "available",
-                            "status": "available",
-                            "timeouts": null,
-                            "total_ipv4_address_count": 256,
-                            "vpc": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                            "zone": "us-south-1"
-                        },
-                        "depends_on": [
-                            "ibm_is_vpc.testacc_vpc"
-                        ]
-                    },
-                    {
-                        "address": "ibm_is_vpc.testacc_vpc",
-                        "mode": "managed",
-                        "type": "ibm_is_vpc",
-                        "name": "testacc_vpc",
-                        "provider_name": "ibm",
-                        "schema_version": 0,
-                        "values": {
-                            "address_prefix_management": "auto",
-                            "classic_access": false,
-                            "crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                            "cse_source_addresses": [
-                                {
-                                    "address": "10.12.122.114",
-                                    "zone_name": "us-south-1"
-                                },
-                                {
-                                    "address": "10.249.72.123",
-                                    "zone_name": "us-south-2"
-                                },
-                                {
-                                    "address": "10.249.214.174",
-                                    "zone_name": "us-south-3"
-                                }
-                            ],
-                            "default_network_acl": "r006-16ea4e8b-0f29-4874-b446-61397e472159",
-                            "default_security_group": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                            "id": "r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                            "is_default": null,
-                            "name": "testvpc",
-                            "resource_controller_url": "https://cloud.ibm.com/vpc-ext/network/vpcs",
-                            "resource_crn": "crn:v1:bluemix:public:is:us-south:a/faf6addbf6bf476896f5e342a5bdd702::vpc:r006-1a35a584-23f6-4152-8c4e-0f7c645fae27",
-                            "resource_group": "d2f1704cfdfd44d196cbe19cbe99a15b",
-                            "resource_group_name": "Default",
-                            "resource_name": "testvpc",
-                            "resource_status": "available",
-                            "security_group": [
-                                {
-                                    "group_id": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                    "group_name": "army-gutless-sixtieth-empower",
-                                    "rules": [
-                                        {
-                                            "code": 0,
-                                            "direction": "outbound",
-                                            "ip_version": "ipv4",
-                                            "port_max": 0,
-                                            "port_min": 0,
-                                            "protocol": "all",
-                                            "remote": "0.0.0.0/0",
-                                            "rule_id": "r006-f6f8fd34-16ca-454e-ba2c-b610f2330fe2",
-                                            "type": 0
-                                        },
-                                        {
-                                            "code": 0,
-                                            "direction": "inbound",
-                                            "ip_version": "ipv4",
-                                            "port_max": 0,
-                                            "port_min": 0,
-                                            "protocol": "all",
-                                            "remote": "r006-12b11a70-0648-4489-9d03-a7445e213160",
-                                            "rule_id": "r006-203af722-aa2d-424f-8aa9-03fa46e13943",
-                                            "type": 0
-                                        }
-                                    ]
-                                }
-                            ],
-                            "status": "available",
-                            "subnets": [
-                                {
-                                    "available_ipv4_address_count": 249,
-                                    "id": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e",
-                                    "name": "testsubnet",
-                                    "status": "available",
-                                    "total_ipv4_address_count": 256,
-                                    "zone": "us-south-1"
-                                }
-                            ],
-                            "tags": [],
-                            "timeouts": null
-                        }
-                    }
-                ]
-            }
-        }
-    },
     "configuration": {
+        "provider_config": {
+            "ibm": {
+                "name": "ibm",
+                "expressions": {
+                    "ibmcloud_api_key": {
+                        "references": [
+                            "var.ibmcloud_api_key"
+                        ]
+                    },
+                    "region": {
+                        "constant_value": "us-south"
+                    }
+                }
+            }
+        },
         "root_module": {
             "resources": [
                 {
-                    "address": "ibm_container_cluster.testacc_cluster",
+                    "address": "ibm_cis.cis_instance",
+                    "mode": "managed",
+                    "type": "ibm_cis",
+                    "name": "cis_instance",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "location": {
+                            "constant_value": "global"
+                        },
+                        "name": {
+                            "constant_value": "test"
+                        },
+                        "plan": {
+                            "constant_value": "standard"
+                        },
+                        "tags": {
+                            "constant_value": [
+                                "tag1",
+                                "tag2"
+                            ]
+                        },
+                        "timeouts": {
+                            "create": {
+                                "constant_value": "15m"
+                            },
+                            "delete": {
+                                "constant_value": "15m"
+                            },
+                            "update": {
+                                "constant_value": "15m"
+                            }
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "ibm_compute_vm_instance.terraform-sample-flavor",
+                    "mode": "managed",
+                    "type": "ibm_compute_vm_instance",
+                    "name": "terraform-sample-flavor",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "datacenter": {
+                            "constant_value": "dal06"
+                        },
+                        "dedicated_acct_host_only": {
+                            "constant_value": false
+                        },
+                        "disks": {
+                            "constant_value": [
+                                10,
+                                20,
+                                30
+                            ]
+                        },
+                        "domain": {
+                            "constant_value": "bar.example.com"
+                        },
+                        "flavor_key_name": {
+                            "constant_value": "B1_2X8X25"
+                        },
+                        "hostname": {
+                            "constant_value": "terraform-sample-flavor"
+                        },
+                        "hourly_billing": {
+                            "constant_value": true
+                        },
+                        "ipv6_enabled": {
+                            "constant_value": true
+                        },
+                        "local_disk": {
+                            "constant_value": false
+                        },
+                        "network_speed": {
+                            "constant_value": 10
+                        },
+                        "notes": {
+                            "constant_value": "VM notes"
+                        },
+                        "os_reference_code": {
+                            "constant_value": "DEBIAN_8_64"
+                        },
+                        "private_network_only": {
+                            "constant_value": false
+                        },
+                        "secondary_ip_count": {
+                            "constant_value": 4
+                        },
+                        "tags": {
+                            "constant_value": [
+                                "collectd"
+                            ]
+                        },
+                        "user_metadata": {
+                            "constant_value": "{\\\"value\\\":\\\"newvalue\\\"}"
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "ibm_compute_vm_instance.twc_terraform_sample",
+                    "mode": "managed",
+                    "type": "ibm_compute_vm_instance",
+                    "name": "twc_terraform_sample",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "cores": {
+                            "constant_value": 1
+                        },
+                        "datacenter": {
+                            "constant_value": "wdc01"
+                        },
+                        "dedicated_acct_host_only": {
+                            "constant_value": true
+                        },
+                        "disks": {
+                            "constant_value": [
+                                25,
+                                10,
+                                20
+                            ]
+                        },
+                        "domain": {
+                            "constant_value": "bar.example.com"
+                        },
+                        "hostname": {
+                            "constant_value": "twc-terraform-sample-name"
+                        },
+                        "hourly_billing": {
+                            "constant_value": false
+                        },
+                        "local_disk": {
+                            "constant_value": false
+                        },
+                        "memory": {
+                            "constant_value": 1024
+                        },
+                        "network_speed": {
+                            "constant_value": 10
+                        },
+                        "os_reference_code": {
+                            "constant_value": "DEBIAN_8_64"
+                        },
+                        "private_network_only": {
+                            "constant_value": false
+                        },
+                        "private_security_group_ids": {
+                            "constant_value": [
+                                576973
+                            ]
+                        },
+                        "private_vlan_id": {
+                            "constant_value": 7721931
+                        },
+                        "public_vlan_id": {
+                            "constant_value": 1391277
+                        },
+                        "user_metadata": {
+                            "constant_value": "{\"value\":\"newvalue\"}"
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "ibm_container_cluster.cluster",
                     "mode": "managed",
                     "type": "ibm_container_cluster",
-                    "name": "testacc_cluster",
+                    "name": "cluster",
                     "provider_config_key": "ibm",
                     "expressions": {
                         "datacenter": {
                             "constant_value": "dal10"
                         },
                         "default_pool_size": {
-                            "constant_value": 1
+                            "constant_value": 3
+                        },
+                        "entitlement": {
+                            "constant_value": "cloud_pak"
                         },
                         "hardware": {
                             "constant_value": "shared"
+                        },
+                        "kube_version": {
+                            "constant_value": "4.3_openshift"
                         },
                         "machine_type": {
                             "constant_value": "b3c.4x16"
                         },
                         "name": {
-                            "constant_value": "test"
+                            "constant_value": "test-openshift-cluster"
                         },
                         "private_vlan_id": {
-                            "constant_value": "vlan"
+                            "constant_value": "2863616"
                         },
                         "public_vlan_id": {
-                            "constant_value": "vlan"
-                        },
-                        "subnet_id": {
-                            "constant_value": [
-                                "1154643"
-                            ]
-                        },
-                        "webhook": [
-                            {
-                                "level": {
-                                    "constant_value": "Normal"
-                                },
-                                "type": {
-                                    "constant_value": "slack"
-                                },
-                                "url": {
-                                    "constant_value": "https://hooks.slack.com/services/yt7rebjhgh2r4rd44fjk"
-                                }
-                            }
-                        ]
-                    },
-                    "schema_version": 0
-                },
-                {
-                    "address": "ibm_is_instance.testacc_instance",
-                    "mode": "managed",
-                    "type": "ibm_is_instance",
-                    "name": "testacc_instance",
-                    "provider_config_key": "ibm",
-                    "expressions": {
-                        "image": {
-                            "constant_value": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1"
-                        },
-                        "keys": {
-                            "references": [
-                                "ibm_is_ssh_key.testacc_sshkey"
-                            ]
-                        },
-                        "name": {
-                            "constant_value": "testinstance2"
-                        },
-                        "network_interfaces": [
-                            {
-                                "name": {
-                                    "constant_value": "eth1"
-                                },
-                                "subnet": {
-                                    "references": [
-                                        "ibm_is_subnet.testacc_subnet"
-                                    ]
-                                }
-                            }
-                        ],
-                        "primary_network_interface": [
-                            {
-                                "subnet": {
-                                    "references": [
-                                        "ibm_is_subnet.testacc_subnet"
-                                    ]
-                                }
-                            }
-                        ],
-                        "profile": {
-                            "constant_value": "bx2-2x16"
-                        },
-                        "vpc": {
-                            "references": [
-                                "ibm_is_vpc.testacc_vpc"
-                            ]
-                        },
-                        "zone": {
-                            "constant_value": "us-south-1"
+                            "constant_value": "2863614"
                         }
                     },
                     "schema_version": 0
                 },
                 {
-                    "address": "ibm_is_ssh_key.testacc_sshkey",
-                    "mode": "managed",
-                    "type": "ibm_is_ssh_key",
-                    "name": "testacc_sshkey",
-                    "provider_config_key": "ibm",
-                    "expressions": {
-                        "name": {
-                            "constant_value": "testssh"
-                        },
-                        "public_key": {
-                            "constant_value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKVmnMOlHKcZK8tpt3MP1lqOLAcqcJzhsvJcjscgVERRN7/9484SOBJ3HSKxxNG5JN8owAjy5f9yYwcUg+JaUVuytn5Pv3aeYROHGGg+5G346xaq3DAwX6Y5ykr2fvjObgncQBnuU5KHWCECO/4h8uWuwh/kfniXPVjFToc+gnkqA+3RKpAecZhFXwfalQ9mMuYGFxn+fwn8cYEApsJbsEmb0iJwPiZ5hjFC8wREuiTlhPHDgkBLOiycd20op2nXzDbHfCHInquEe/gYxEitALONxm0swBOwJZwlTDOB7C6y2dzlrtxr1L59m7pCkWI4EtTRLvleehBoj3u7jB4usR"
-                        }
-                    },
-                    "schema_version": 0
-                },
-                {
-                    "address": "ibm_is_subnet.testacc_subnet",
+                    "address": "ibm_is_subnet.subnet1",
                     "mode": "managed",
                     "type": "ibm_is_subnet",
-                    "name": "testacc_subnet",
+                    "name": "subnet1",
                     "provider_config_key": "ibm",
                     "expressions": {
-                        "ipv4_cidr_block": {
-                            "constant_value": "10.240.0.0/24"
-                        },
                         "name": {
-                            "constant_value": "testsubnet"
+                            "constant_value": "mysubnet1"
+                        },
+                        "total_ipv4_address_count": {
+                            "constant_value": 256
                         },
                         "vpc": {
                             "references": [
@@ -1064,7 +931,7 @@
                             ]
                         },
                         "zone": {
-                            "constant_value": "us-south-1"
+                            "constant_value": "us_south-1"
                         }
                     },
                     "schema_version": 0
@@ -1077,12 +944,102 @@
                     "provider_config_key": "ibm",
                     "expressions": {
                         "name": {
-                            "constant_value": "testvpc"
+                            "constant_value": "test-vpc"
+                        }
+                    },
+                    "schema_version": 0
+                },
+                {
+                    "address": "ibm_subnet.portable_subnet",
+                    "mode": "managed",
+                    "type": "ibm_subnet",
+                    "name": "portable_subnet",
+                    "provider_config_key": "ibm",
+                    "expressions": {
+                        "capacity": {
+                            "constant_value": 4
+                        },
+                        "ip_version": {
+                            "constant_value": 4
+                        },
+                        "notes": {
+                            "constant_value": "portable_subnet"
+                        },
+                        "private": {
+                            "constant_value": true
+                        },
+                        "timeouts": {
+                            "create": {
+                                "constant_value": "45m"
+                            }
+                        },
+                        "type": {
+                            "constant_value": "Portable"
+                        },
+                        "vlan_id": {
+                            "constant_value": 1234567
                         }
                     },
                     "schema_version": 0
                 }
-            ]
+            ],
+            "variables": {
+                "account_groups_name": {
+                    "default": "placeholder",
+                    "description": "The name of the account group."
+                },
+                "accounts_name": {
+                    "default": "placeholder",
+                    "description": "The name of the account."
+                },
+                "enterprise_account_group_name": {
+                    "default": "name",
+                    "description": "The name of the account group. This field must have 3 - 60 characters."
+                },
+                "enterprise_account_group_parent": {
+                    "default": "parent",
+                    "description": "The CRN of the parent under which the account group will be created. The parent can be an existing account group or the enterprise itself."
+                },
+                "enterprise_account_group_primary_contact_iam_id": {
+                    "default": "primary_contact_iam_id",
+                    "description": "The IAM ID of the primary contact for this account group, such as `IBMid-0123ABC`. The IAM ID must already exist."
+                },
+                "enterprise_account_name": {
+                    "default": "name",
+                    "description": "The name of the account. This field must have 3 - 60 characters."
+                },
+                "enterprise_account_owner_iam_id": {
+                    "default": "owner_iam_id",
+                    "description": "The IAM ID of the account owner, such as `IBMid-0123ABC`. The IAM ID must already exist."
+                },
+                "enterprise_account_parent": {
+                    "default": "parent",
+                    "description": "The CRN of the parent under which the account will be created. The parent can be an existing account group or the enterprise itself."
+                },
+                "enterprise_domain": {
+                    "default": "placeholder",
+                    "description": "A domain or subdomain for the enterprise, such as `example.com` or `my.example.com`."
+                },
+                "enterprise_name": {
+                    "default": "name",
+                    "description": "The name of the enterprise. This field must have 3 - 60 characters."
+                },
+                "enterprise_primary_contact_iam_id": {
+                    "default": "primary_contact_iam_id",
+                    "description": "The IAM ID of the enterprise primary contact, such as `IBMid-0123ABC`. The IAM ID must already exist."
+                },
+                "enterprise_source_account_id": {
+                    "default": "source_account_id",
+                    "description": "The ID of the account that is used to create the enterprise."
+                },
+                "enterprises_name": {
+                    "default": "placeholder",
+                    "description": "The name of the enterprise."
+                },
+                "ibmcloud_api_key": {
+                    "description": "IBM Cloud API key"
+                }
+            }
         }
     }
 }
