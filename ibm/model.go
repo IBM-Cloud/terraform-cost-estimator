@@ -140,6 +140,13 @@ type ResourceConf struct {
 	DedicatedHostFlag            bool   `json:"dedicated_acct_host_only"`
 	NetworkSpeed                 int    `json:"network_speed"`
 	PrivateNetworkOnly           bool   `json:"private_network_only"`
+	MembersMemoryAllocationMB    int    `json:"members_memory_allocation_mb"`
+	MembersDiskAllocationMB      int    `json:"members_disk_allocation_mb"`
+	MembersCPUAllocationCount    int    `json:"members_cpu_allocation_count"`
+	NodeCount                    int    `json:"node_count"`
+	NodeMemoryAllocationMB       int    `json:"node_memory_allocation_mb"`
+	NodeDiskAllocationMB         int    `json:"node_disk_allocation_mb"`
+	NodeCPUAllocationCount       int    `json:"node_cpu_allocation_count"`
 }
 
 type ISInstance struct {

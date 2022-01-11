@@ -55,14 +55,28 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 		logger.Warn("Cost of Instance is free, Resource have been created with Lite plan")
 		return 0, nil
 	}
+	var InstanceCost float64
+	if changeData.MembersDiskAllocationMB != 0 {
+		if service == "databases-for-postgresql" || service == "databases-for-redis" {
+			InstanceCost = 2 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.MembersDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.MembersMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.MembersCPUAllocationCount))
+		} else {
+			InstanceCost = 3 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.MembersDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.MembersMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.MembersCPUAllocationCount))
+		}
 
-	InstanceCost := InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price
+	} else {
+		if service == "databases-for-postgresql" || service == "databases-for-redis" {
+			InstanceCost = 2 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.NodeDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.NodeMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.NodeCPUAllocationCount))
+		} else {
+			InstanceCost = 3 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.NodeDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.NodeMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.NodeCPUAllocationCount))
+		}
 
-	monthlyCost := getMonthlyCost(InstanceCost, InstanceCostResp.Metrics[0].ChargeUnitName, InstanceCostResp.Metrics[0].ChargeUnitQuantity)
+	}
+
+	//monthlyCost := getMonthlyCost(InstanceCost, InstanceCostResp.Metrics[0].ChargeUnitName, InstanceCostResp.Metrics[0].ChargeUnitQuantity)
 	//configure BOM
 
 	logger.Info("Exit:getDatabaseCost")
 
-	return monthlyCost, nil
+	return InstanceCost, nil
 
 }
