@@ -147,6 +147,7 @@ type ResourceConf struct {
 	NodeMemoryAllocationMB       int    `json:"node_memory_allocation_mb"`
 	NodeDiskAllocationMB         int    `json:"node_disk_allocation_mb"`
 	NodeCPUAllocationCount       int    `json:"node_cpu_allocation_count"`
+	ImageID                      string `json:image`
 }
 
 type ISInstance struct {

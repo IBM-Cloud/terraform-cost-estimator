@@ -381,7 +381,7 @@
                 },
                 "after": {
                     "generation": null,
-                    "image": "r006-54e9238a-ffdd-4f90-9742-7424eb2b9ff1",
+                    "image": "51af68c9-5558-4425-825a-f9243a3b2c6c",
                     "keys": [
                         "r006-5281740f-f6ff-4ab5-8c64-6c0cb178da21"
                     ],
@@ -398,7 +398,7 @@
                             "subnet": "0717-289bd53f-f9e8-4e8d-b914-5371ca64205e"
                         }
                     ],
-                    "profile": "bx2-2x16",
+                    "profile": "bx2-2x8",
                     "timeouts": null,
                     "user_data": null,
                     "volumes": null,

@@ -63,13 +63,15 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 			InstanceCost = 3 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.MembersDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.MembersMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.MembersCPUAllocationCount))
 		}
 
-	} else {
+	} else if changeData.NodeDiskAllocationMB != 0 {
 		if service == "databases-for-postgresql" || service == "databases-for-redis" {
 			InstanceCost = 2 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.NodeDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.NodeMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.NodeCPUAllocationCount))
 		} else {
 			InstanceCost = 3 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.NodeDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.NodeMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.NodeCPUAllocationCount))
 		}
 
+	} else {
+		InstanceCost = 0
 	}
 
 	//monthlyCost := getMonthlyCost(InstanceCost, InstanceCostResp.Metrics[0].ChargeUnitName, InstanceCostResp.Metrics[0].ChargeUnitQuantity)
