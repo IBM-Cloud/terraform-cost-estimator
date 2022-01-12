@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 
@@ -22,8 +23,11 @@ type RateCard struct {
 }
 
 func ratecard(logger *zap.Logger, resource string, planData Planstruct) (ResourceChanges, float64, error) {
-
-	rateCard, _ := ioutil.ReadFile("../ibm/rate_card.json")
+	rateCardFilename := "../ibm/rate_card.json"
+	if os.Getenv("RATECARD") != "" {
+		rateCardFilename = os.Getenv("RATECARD")
+	}
+	rateCard, _ := ioutil.ReadFile(rateCardFilename)
 	card := []RateCard{}
 	err := json.Unmarshal([]byte(rateCard), &card)
 	if err != nil {
@@ -49,13 +53,11 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 			var temp float64
 
 			//when flavor is present
-			fmt.Println(item.Change.After)
 			if item.Change.After.FlavorKeyName != "" {
 
 				for _, classic_item := range classic_card.Flavors {
 					if item.Change.After.FlavorKeyName == classic_item.Flavor.KeyName {
 						if classic_item.Flavor.TotalMinimumRecurringFee != "" {
-							fmt.Println(instance_type, classic_item.Flavor.TotalMinimumRecurringFee)
 							temp, _ = strconv.ParseFloat(classic_item.Flavor.TotalMinimumRecurringFee, 64)
 							return item, temp, nil
 						}
