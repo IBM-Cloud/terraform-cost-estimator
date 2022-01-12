@@ -167,6 +167,7 @@ type BillOfMaterial struct {
 	Quantity            int      `json:"quantity" header:"quantity"`
 	TerraformItemID     string   `json:"terraformItemId" header:"terraformItemId"`
 	ID                  string   `json:"id" header:"id"`
+	RateCardCost        bool     `json:"rateCardCost" header:"rateCardCost"`
 	Title               string   `json:"title" header:"title"`
 	PlanID              string   `json:"planID" header:"planID"`
 	ShortDescription    string   `json:"shortDescription" header:"shortDescription"`

@@ -198,7 +198,7 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 				}
 
 				billdata.AddIncrementalCostData(reschanges, before, after)
-
+				billdata.RateCardCost = false
 				//add the bill data to list of BOM
 				bom.AddItem(billdata)
 				cost += billdata.CurrLineItemTotal
@@ -216,6 +216,7 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 
 			}
 			billdata.AddIncrementalCostData(reschanges, 0, rate)
+			billdata.RateCardCost = true
 			bom.AddItem(billdata)
 			cost += billdata.CurrLineItemTotal
 
