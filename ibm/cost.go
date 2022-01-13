@@ -212,7 +212,7 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 			reschanges, rate, err := ratecard(logger, key, planData)
 			if err != nil {
 
-				logger.Error("error getting cost for " + key)
+				logger.Error("error getting cost for, " + key + " " + err.Error())
 
 			}
 			billdata.AddIncrementalCostData(reschanges, 0, rate)

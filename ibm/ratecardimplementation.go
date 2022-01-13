@@ -49,13 +49,11 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 			var temp float64
 
 			//when flavor is present
-			fmt.Println(item.Change.After)
 			if item.Change.After.FlavorKeyName != "" {
 
 				for _, classic_item := range classic_card.Flavors {
 					if item.Change.After.FlavorKeyName == classic_item.Flavor.KeyName {
 						if classic_item.Flavor.TotalMinimumRecurringFee != "" {
-							fmt.Println(instance_type, classic_item.Flavor.TotalMinimumRecurringFee)
 							temp, _ = strconv.ParseFloat(classic_item.Flavor.TotalMinimumRecurringFee, 64)
 							return item, temp, nil
 						}
@@ -115,6 +113,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					if profile == rate_card_profile {
 						return item, card_item.Estimated_rate, nil
+					} else {
+						return item, 0, errors.New("profile not found")
 					}
 
 					//kubernetes classic infra
@@ -134,9 +134,13 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 						if hardware == card_hardware {
 							if instance_type == "ibm_container_cluster" {
 								return item, card_item.Estimated_rate * float64(item.Change.After.DefaultPoolSize), nil
-							} else {
+							} else if instance_type == "ibm_container_worker_pool" {
 								return item, card_item.Estimated_rate * float64(item.Change.After.SizePerZone), nil
+							} else {
+								return item, 0, errors.New("incorrect kubernetes configuration")
 							}
+						} else {
+							return item, 0, errors.New("hardware information not found")
 						}
 					}
 
@@ -149,6 +153,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					if profile == rate_card_profile {
 						return item, card_item.Estimated_rate * float64(item.Change.After.WorkerCount), nil
+					} else {
+						return item, 0, errors.New("profile not found")
 					}
 
 					//vpc cluster worker pool
@@ -160,6 +166,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					if profile == rate_card_profile {
 						return item, card_item.Estimated_rate * float64(item.Change.After.WorkerCount), nil
+					} else {
+						return item, 0, errors.New("profile not found")
 					}
 
 					//app config environment
@@ -196,6 +204,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 							} else {
 								return item, card_item.Estimated_rate, nil
 							}
+						} else {
+							return item, 0, errors.New("invalid configuration for " + instance_type)
 						}
 
 					} else if item.Change.After.Service == "event-notifications" && card_elements[1] == "event-notifications" {
@@ -209,6 +219,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 							} else {
 								return item, card_item.Estimated_rate, nil
 							}
+						} else {
+							return item, 0, errors.New("invalid configuration for " + instance_type)
 						}
 					}
 
@@ -218,6 +230,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 						capacity, _ := strconv.Atoi(card_elements[2])
 						if item.Change.After.Capacity == capacity {
 							return item, card_item.Estimated_rate, nil
+						} else {
+							return item, 0, errors.New("capacity not found")
 						}
 					}
 
@@ -232,6 +246,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 						} else {
 							return item, card_item.Estimated_rate, nil
 						}
+					} else {
+						return item, 0, errors.New("plan not found")
 					}
 
 					// this is for dedicated host for VPC
@@ -244,6 +260,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					if profile == rate_card_profile {
 						return item, card_item.Estimated_rate, nil
+					} else {
+						return item, 0, errors.New("profile not found")
 					}
 
 					//this is for every other resource
@@ -256,6 +274,8 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 						} else {
 							return item, card_item.Estimated_rate, nil
 						}
+					} else {
+						return item, 0, errors.New("invalid configuration for " + instance_type)
 					}
 				}
 			}
