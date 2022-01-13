@@ -109,28 +109,11 @@ terraform show -json tfplan.binary > tfplan.json
             "line_item_total": "84.24"
         }
     ]
-}```
-
-List of terraform Resources Supported by the SDK are
-
-- ibm_is_instance
-- ibm_is_volume
-- ibm_is_lb
-- ibm_is_floating_ip
-- ibm_is_vpn_gateway
-- ibm_is_image      
-- ibm_is_vpc   
-- ibm_is_subnet     
-- ibm_container_cluster
-- ibm_container_worker_pool
-- ibm_container_vpc_cluster
-- ibm_container_vpc_worker_pool
-- ibm_satellite_cluster
-- ibm_satellite_cluster_worker_pool
-- ibm_service_instance
-- ibm_resource_instance
+}
 ```
 
+## Know more about the resources that are supported
+[link to design docs](designdocs/README.md)
 
 # Terraform cost CLI
 The following are the instructions and steps to use cli for IBM-Cloud terraform cost calculator
@@ -183,5 +166,6 @@ go run main.go plan=../example/tfplan.json
 
 ## Sample output
 ![Estimated cost](/image.png)
+
 
 

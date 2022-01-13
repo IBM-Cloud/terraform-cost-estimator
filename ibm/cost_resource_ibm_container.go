@@ -84,7 +84,7 @@ func containerCost(logger *zap.Logger, changeData ResourceConf, token string) (f
 	objectID := getContainerObjectID(hardware, machine)
 	workerCostResp, err := rest.GetGlobalCatalogCost(objectID, "")
 	if err != nil || workerCostResp.Origin == nil {
-		return 0, fmt.Errorf("Error getting workercost")
+		return 0, fmt.Errorf("error getting workercost")
 	}
 
 	workerCost := workerCostResp.Metrics[0].Amounts[0].Prices[0].Price

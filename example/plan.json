@@ -303,6 +303,37 @@
                     ]
                 }
             }
+        },
+        {
+            "address": "ibm_is_vpc_routing_table.example",
+            "mode": "managed",
+            "type": "ibm_is_vpc_routing_table",
+            "name": "example",
+            "provider_name": "registry.terraform.io/ibm-cloud/ibm",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "example-routing-table",
+                    "route_direct_link_ingress": false,
+                    "route_transit_gateway_ingress": false,
+                    "route_vpc_zone_ingress": false,
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "created_at": true,
+                    "href": true,
+                    "id": true,
+                    "is_default": true,
+                    "lifecycle_state": true,
+                    "resource_type": true,
+                    "routing_table": true,
+                    "subnets": true,
+                    "vpc": true
+                }
+            }
         }
     ],
     "configuration": {

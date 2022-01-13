@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 
@@ -22,8 +23,11 @@ type RateCard struct {
 }
 
 func ratecard(logger *zap.Logger, resource string, planData Planstruct) (ResourceChanges, float64, error) {
-
-	rateCard, _ := ioutil.ReadFile("../ibm/rate_card.json")
+	rateCardFilename := "../ibm/rate_card.json"
+	if os.Getenv("RATECARD") != "" {
+		rateCardFilename = os.Getenv("RATECARD")
+	}
+	rateCard, _ := ioutil.ReadFile(rateCardFilename)
 	card := []RateCard{}
 	err := json.Unmarshal([]byte(rateCard), &card)
 	if err != nil {
@@ -47,7 +51,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 		if instance_type == "ibm_compute_vm_instance" && item.Type == instance_type {
 			var cost float64
 			var temp float64
-
+			logger.Info("Entry:getComputeVMinstanceCost")
 			//when flavor is present
 			if item.Change.After.FlavorKeyName != "" {
 
@@ -55,6 +59,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 					if item.Change.After.FlavorKeyName == classic_item.Flavor.KeyName {
 						if classic_item.Flavor.TotalMinimumRecurringFee != "" {
 							temp, _ = strconv.ParseFloat(classic_item.Flavor.TotalMinimumRecurringFee, 64)
+							logger.Info("Exit:getComputeVMinstanceCost")
 							return item, temp, nil
 						}
 					}
@@ -82,7 +87,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 					}
 				}
 				for _, classic_item := range classic_card.NetworkComponents {
-					if item.Change.After.DedicatedHostFlag == false {
+					if !item.Change.After.DedicatedHostFlag {
 						if (item.Change.After.NetworkSpeed == 1000 && classic_item.Template.NetworkComponent[0].MaxSpeed == 1000) && (classic_item.Template.PrivateNetworkOnly == false && item.Change.After.PrivateNetworkOnly == false) {
 							temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
 							cost += temp
@@ -95,10 +100,11 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 					}
 
 				}
+				logger.Info("Exit:getComputeVMinstanceCost")
 				return item, cost, nil
 			}
 		}
-
+		image := ""
 		for _, card_item := range card {
 			card_elements := strings.Split(card_item.Plan, ".")
 
@@ -106,12 +112,19 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 				//virtual server for vpc
 				if instance_type == "ibm_is_instance" && card_elements[0] == "ibm_is_instance" {
-
+					logger.Info("Entry:getInstanceCost")
 					profile = item.Change.After.Profile
-
-					rate_card_profile = strings.Split(card_item.Plan, ".")[1]
-
-					if profile == rate_card_profile {
+					rate_card_image := strings.Split(card_item.Plan, ".")[1]
+					rate_card_profile = strings.Split(card_item.Plan, ".")[2]
+					if item.Change.After.ImageID == "51af68c9-5558-4425-825a-f9243a3b2c6c" || item.Change.After.ImageID == "624cde4a-b4fe-4426-8f60-150a019a67f9" || item.Change.After.ImageID == "a7a0626c-f97e-4180-afbe-0331ec62f32a" {
+						image = "windows"
+					} else if item.Change.After.ImageID == "54c1ba68-6d29-42e5-9ca7-e5f4a62c1503" {
+						image = "rhel"
+					} else {
+						image = "centos"
+					}
+					if profile == rate_card_profile && image == rate_card_image {
+						logger.Info("Exit:getInstanceCost")
 						return item, card_item.Estimated_rate, nil
 					} else {
 						return item, 0, errors.New("profile not found")
@@ -119,7 +132,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//kubernetes classic infra
 				} else if instance_type == "ibm_container_cluster" && card_elements[0] == "ibm_container_cluster" || instance_type == "ibm_container_worker_pool" && card_elements[0] == "ibm_container_worker_pool" {
-
+					logger.Info("Entry:getKubernetesCost")
 					profile = item.Change.After.MachineType
 
 					rate_card_profile = strings.SplitAfterN(card_item.Plan, ".", 4)[3]
@@ -133,6 +146,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 					if profile == rate_card_profile {
 						if hardware == card_hardware {
 							if instance_type == "ibm_container_cluster" {
+								logger.Info("Exit:getKubernetesCost")
 								return item, card_item.Estimated_rate * float64(item.Change.After.DefaultPoolSize), nil
 							} else if instance_type == "ibm_container_worker_pool" {
 								return item, card_item.Estimated_rate * float64(item.Change.After.SizePerZone), nil
@@ -146,12 +160,13 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//kubernetes vpc cluster (rate changes with the Operating System)
 				} else if instance_type == "ibm_container_vpc_cluster" && card_elements[0] == "ibm_container_vpc_cluster" {
-
+					logger.Info("Entry:getKubernetesCost")
 					profile = item.Change.After.Flavour
 
 					rate_card_profile = strings.Split(card_item.Plan, ".")[3]
 
 					if profile == rate_card_profile {
+						logger.Info("Exit:getKubernetesCost")
 						return item, card_item.Estimated_rate * float64(item.Change.After.WorkerCount), nil
 					} else {
 						return item, 0, errors.New("profile not found")
@@ -159,12 +174,13 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//vpc cluster worker pool
 				} else if instance_type == "ibm_container_vpc_worker_pool" && card_elements[0] == "ibm_container_vpc_worker_pool" {
-
+					logger.Info("Entry:getVPCclusterCost")
 					profile = item.Change.After.Flavour
 
 					rate_card_profile = strings.SplitAfterN(card_item.Plan, ".", 3)[2]
 
 					if profile == rate_card_profile {
+						logger.Info("Exit:getVPCclusterCost")
 						return item, card_item.Estimated_rate * float64(item.Change.After.WorkerCount), nil
 					} else {
 						return item, 0, errors.New("profile not found")
@@ -172,21 +188,23 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//app config environment
 				} else if instance_type == "ibm_app_config_environment" && card_elements[0] == "ibm_app_config_environment" {
-
+					logger.Info("Entry:getAppConfigCost")
 					if card_item.Usage_based {
 						err = errors.New("it is a usage based resource")
 						return item, 0, err
 					} else {
+						logger.Info("Exit:getAppConfigCost")
 						return item, card_item.Estimated_rate, nil
 					}
 
 					//app config feature
 				} else if instance_type == "ibm_app_config_feature" && card_elements[0] == "ibm_app_config_feature" {
-
+					logger.Info("Entry:getAppConfigCost")
 					if card_item.Usage_based {
 						err = errors.New("it is a usage based resource")
 						return item, 0, err
 					} else {
+						logger.Info("Exit:getAppConfigCost")
 						return item, card_item.Estimated_rate, nil
 					}
 
@@ -194,7 +212,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 				} else if instance_type == "ibm_resource_instance" && card_elements[0] == "ibm_resource_instance" {
 
 					if item.Change.After.Service == "cloud-object-storage" && card_elements[1] == "cos_instance" {
-
+						logger.Info("Entry:getCosInstaneCost")
 						if item.Change.After.Plan == card_elements[2] {
 
 							if card_item.Usage_based {
@@ -202,6 +220,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 								return item, 0, err
 
 							} else {
+								logger.Info("Exit:getCosInstaneCost")
 								return item, card_item.Estimated_rate, nil
 							}
 						} else {
@@ -209,7 +228,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 						}
 
 					} else if item.Change.After.Service == "event-notifications" && card_elements[1] == "event-notifications" {
-
+						logger.Info("Entry:getEventNotificationCost")
 						if item.Change.After.Plan == card_elements[2] {
 
 							if card_item.Usage_based {
@@ -217,6 +236,7 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 								return item, 0, err
 
 							} else {
+								logger.Info("Exit:getEventNotificationCost")
 								return item, card_item.Estimated_rate, nil
 							}
 						} else {
@@ -226,9 +246,12 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//secondary subnets
 				} else if instance_type == "ibm_subnet" && card_elements[0] == "ibm_subnet" {
+
 					if strings.ToLower(item.Change.After.Type) == card_elements[1] {
 						capacity, _ := strconv.Atoi(card_elements[2])
 						if item.Change.After.Capacity == capacity {
+							logger.Info("Entry:getSecondarySubnetCost")
+							logger.Info("Exit:getSecondarySubnetCost")
 							return item, card_item.Estimated_rate, nil
 						} else {
 							return item, 0, errors.New("capacity not found")
@@ -239,11 +262,13 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 				} else if instance_type == "ibm_cis" && card_elements[0] == "ibm_cis" {
 
 					if item.Change.After.Plan == card_elements[1] {
+						logger.Info("Entry:getCISCost")
 						if card_item.Usage_based {
 							err = errors.New("it is a usage based resource")
 							return item, 0, err
 
 						} else {
+							logger.Info("Exit:getCISCost")
 							return item, card_item.Estimated_rate, nil
 						}
 					} else {
@@ -252,13 +277,14 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					// this is for dedicated host for VPC
 				} else if instance_type == "ibm_is_dedicated_host" && card_elements[0] == "ibm_is_dedicated_host" {
-
+					logger.Info("Entry:getDedicatedHostCost")
 					profile = item.Change.After.Profile
 
 					rate_card_profile = strings.Split(card_item.Plan, ".")[2]
 					//fmt.Println(profile, rate_card_profile)
 
 					if profile == rate_card_profile {
+						logger.Info("Exit:getDedicatedHostCost")
 						return item, card_item.Estimated_rate, nil
 					} else {
 						return item, 0, errors.New("profile not found")
@@ -266,16 +292,16 @@ func ratecard(logger *zap.Logger, resource string, planData Planstruct) (Resourc
 
 					//this is for every other resource
 				} else {
+					//logger.Info("Entry:getRateCardCost")
 					if instance_type == card_elements[0] {
 						if card_item.Usage_based {
 							err = errors.New("it is a usage based resource")
 							return item, 0, err
 
 						} else {
+							//logger.Info("Exit:getRateCardCost")
 							return item, card_item.Estimated_rate, nil
 						}
-					} else {
-						return item, 0, errors.New("invalid configuration for " + instance_type)
 					}
 				}
 			}
