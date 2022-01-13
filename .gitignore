@@ -30,4 +30,5 @@ website/vendor
 *.xml
 *.old
 vendor/
+runner.go
 

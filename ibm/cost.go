@@ -64,6 +64,7 @@ func (costConfig *CostV1Config) GetCost(planFile string) (BOM, error) {
 	if err != nil {
 		panic(err)
 	}
+
 	logger.Info("Entry:GetCost")
 
 	planData, _ := ioutil.ReadFile(planFile)
@@ -128,7 +129,11 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 		}
 
 	}
-
+	resourcearray := make(map[string]int)
+	for i, item := range planData.ResourceChanges {
+		resourcearray[item.Type] = i
+	}
+	billdata := BillOfMaterial{}
 	//Use this for incremental Cost
 	for _, reschanges := range planData.ResourceChanges {
 		resourceType := reschanges.Type
@@ -141,14 +146,27 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 				var err error
 
 				//if it is create new resource or no change
-				if len(actions) == 1 && (actions[0] == "create" || actions[0] == "no-op") {
+				if len(actions) == 1 && (actions[0] == "create") {
 					after, err = IncCostFuncMap[resourceType](logger, reschanges.Change.After, token)
 
 					if err != nil {
-						logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
+						//logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
 						// return 0, bom, err
 						continue
 					}
+					delete(resourcearray, resourceType)
+
+				}
+				if len(actions) == 1 && (actions[0] == "no-op") {
+					before, err = IncCostFuncMap[resourceType](logger, reschanges.Change.After, token)
+
+					if err != nil {
+						// logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
+						// // return 0, bom, err
+						continue
+					}
+					after = before
+					delete(resourcearray, resourceType)
 
 				}
 
@@ -156,30 +174,31 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 				if len(actions) == 1 && (actions[0] == "delete") {
 					before, err = IncCostFuncMap[resourceType](logger, reschanges.Change.Before, token)
 					if err != nil {
-						logger.Error("Error while trying to get before activity for delete actions", zap.Error(err))
-						// return 0, bom, err
+						// logger.Error("Error while trying to get before activity for delete actions", zap.Error(err))
+						// // return 0, bom, err
 						continue
 					}
+					delete(resourcearray, resourceType)
 				}
 				//if change in existing resource
 				if len(actions) == 2 || stringInSlice("update", actions) {
 					before, err = IncCostFuncMap[resourceType](logger, reschanges.Change.Before, token)
 					if err != nil {
-						logger.Error("Error while trying to get before activity for update actions", zap.Error(err))
-						// return 0, bom, err
+						// logger.Error("Error while trying to get before activity for update actions", zap.Error(err))
+						// // return 0, bom, err
 						continue
 					}
 					after, err = IncCostFuncMap[resourceType](logger, reschanges.Change.After, token)
 					if err != nil {
-						logger.Error("Error while trying to get after activity for update actions", zap.Error(err))
-						// return 0, bom, err
+						// logger.Error("Error while trying to get after activity for update actions", zap.Error(err))
+						// // return 0, bom, err
 						continue
 					}
+					delete(resourcearray, resourceType)
 				}
 
-				billdata := BillOfMaterial{}
 				billdata.AddIncrementalCostData(reschanges, before, after)
-
+				billdata.RateCardCost = false
 				//add the bill data to list of BOM
 				bom.AddItem(billdata)
 				cost += billdata.CurrLineItemTotal
@@ -187,6 +206,21 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 			}
 		}
 
+	}
+	if len(resourcearray) != 0 {
+		for key, _ := range resourcearray {
+			reschanges, rate, err := ratecard(logger, key, planData)
+			if err != nil {
+
+				logger.Error("error getting cost for, " + key + " " + err.Error())
+
+			}
+			billdata.AddIncrementalCostData(reschanges, 0, rate)
+			billdata.RateCardCost = true
+			bom.AddItem(billdata)
+			cost += billdata.CurrLineItemTotal
+
+		}
 	}
 
 	logger.Info("Exit:calculateCost")
@@ -218,12 +252,21 @@ func (billdata *BillOfMaterial) AddLineItemData(resdata Resource, planID string,
 
 //AddLineItemData to the BOM
 func (billdata *BillOfMaterial) AddIncrementalCostData(resdata ResourceChanges, before, after float64) BillOfMaterial {
+	actions := resdata.Change.Actions
 	billdata.Quantity = 1
 	billdata.ID = resdata.Name
 	billdata.TerraformItemID = resdata.Type
 	billdata.CurrLineItemTotal = after
 	billdata.PrevLineItemTotal = before
-	billdata.ChangeLineItemTotal = after - before
+	if len(actions) == 1 && actions[0] != "no-op" {
+		billdata.ChangeLineItemTotal = after - before
+	} else if len(actions) == 2 || stringInSlice("update", actions) {
+		billdata.ChangeLineItemTotal = after - before
+	} else {
+
+		billdata.ChangeLineItemTotal = after
+	}
+
 	billdata.Title = resourceMap[resdata.Type]
 	return *billdata
 }

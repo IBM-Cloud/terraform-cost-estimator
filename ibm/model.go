@@ -2,7 +2,25 @@ package costcalculator
 
 import "time"
 
-//Resource contains properties of plan for a terraform resource
+var resourceMap = map[string]string{
+	"ibm_is_instance":           "Virtual Server",
+	"ibm_is_lb":                 "Load Balancer",
+	"ibm_is_floating_ip":        "Floating IP",
+	"ibm_is_vpn_gateway":        "VPN Gateway",
+	"ibm_is_volume":             "Storage Volume",
+	"ibm_is_image":              "Custom image",
+	"ibm_is_vpc":                "VPC",
+	"ibm_container_vpc_cluster": "IKS on VPC",
+	"ibm_is_subnet":             "Subnet",
+	"ibm_container_cluster":     "IKS",
+}
+
+var planIDMap = map[string]string{
+	"instance_1": "66380d42-d4a9-4627-88fa-7b6631e5bd63",
+	"instance_2": "a736a57f-0584-474f-8411-55dc7d9dc811",
+	"instance_p": "69a9646a-8f46-42bf-9834-1a92558bb618",
+}
+
 type Resource struct {
 	Address       string `json:"address"`
 	Mode          string `json:"mode"`
@@ -113,7 +131,23 @@ type ResourceChanges struct {
 type ResourceConf struct {
 	Container
 	ISInstance
-	//Add new resource schemas here
+	Type                         string `json:"type"`
+	Capacity                     int    `json:"capacity"`
+	FlavorKeyName                string `json:"flavor_key_name"`
+	Memory                       int    `json:"memory"`
+	Cores                        int    `json:"cores"`
+	OperatingSystemReferenceCode string `json:"os_reference_code"`
+	DedicatedHostFlag            bool   `json:"dedicated_acct_host_only"`
+	NetworkSpeed                 int    `json:"network_speed"`
+	PrivateNetworkOnly           bool   `json:"private_network_only"`
+	MembersMemoryAllocationMB    int    `json:"members_memory_allocation_mb"`
+	MembersDiskAllocationMB      int    `json:"members_disk_allocation_mb"`
+	MembersCPUAllocationCount    int    `json:"members_cpu_allocation_count"`
+	NodeCount                    int    `json:"node_count"`
+	NodeMemoryAllocationMB       int    `json:"node_memory_allocation_mb"`
+	NodeDiskAllocationMB         int    `json:"node_disk_allocation_mb"`
+	NodeCPUAllocationCount       int    `json:"node_cpu_allocation_count"`
+	ImageID                      string `json:"image"`
 }
 
 type ISInstance struct {
@@ -134,6 +168,7 @@ type BillOfMaterial struct {
 	Quantity            int      `json:"quantity" header:"quantity"`
 	TerraformItemID     string   `json:"terraformItemId" header:"terraformItemId"`
 	ID                  string   `json:"id" header:"id"`
+	RateCardCost        bool     `json:"rateCardCost" header:"rateCardCost"`
 	Title               string   `json:"title" header:"title"`
 	PlanID              string   `json:"planID" header:"planID"`
 	ShortDescription    string   `json:"shortDescription" header:"shortDescription"`
@@ -207,21 +242,50 @@ type GlobalCatalog struct {
 	} `json:"metrics"`
 }
 
-var resourceMap = map[string]string{
-	"ibm_is_instance":           "Virtual Server",
-	"ibm_is_lb":                 "Load Balancer",
-	"ibm_is_floating_ip":        "Floating IP",
-	"ibm_is_vpn_gateway":        "VPN Gateway",
-	"ibm_is_volume":             "Storage Volume",
-	"ibm_is_image":              "Custom image",
-	"ibm_is_vpc":                "VPC",
-	"ibm_container_vpc_cluster": "IKS on VPC",
-	"ibm_is_subnet":             "Subnet",
-	"ibm_container_cluster":     "IKS",
-}
-
-var planIDMap = map[string]string{
-	"instance_1": "66380d42-d4a9-4627-88fa-7b6631e5bd63",
-	"instance_2": "a736a57f-0584-474f-8411-55dc7d9dc811",
-	"instance_p": "69a9646a-8f46-42bf-9834-1a92558bb618",
+type ClassicRateCard struct {
+	BlockDevices interface{} `json:"blockDevices"`
+	DataCenters  interface{} `json:"datacenters"`
+	Flavors      []struct {
+		Flavor struct {
+			KeyName                  string `json:"keyName"`
+			TotalMinimumRecurringFee string `json:"totalMinimumRecurringFee"`
+		} `json:"flavor"`
+	}
+	Memory []struct {
+		ItemPrice struct {
+			RecurringFee string `json:"recurringFee"`
+		} `json:"itemPrice"`
+		Template struct {
+			MaxMemory int `json:"maxMemory"`
+		} `json:"template"`
+	}
+	NetworkComponents []struct {
+		ItemPrice struct {
+			RecurringFee              string `json:"recurringFee"`
+			DedicatedHostInstanceFlag bool   `json:"dedicatedHostInstanceFlag"`
+		} `json:"itemPrice"`
+		Template struct {
+			NetworkComponent []struct {
+				MaxSpeed int `json:"maxSpeed"`
+			} `json:"networkComponents"`
+			PrivateNetworkOnly bool `json:"privateNetworkOnlyFlag"`
+		} `json:"template"`
+	} `json:"networkComponents"`
+	OperatingSystems []struct {
+		ItemPrice struct {
+			RecurringFee string `json:"recurringFee"`
+		} `json:"itemPrice"`
+		Template struct {
+			OperatingSystem string `json:"operatingSystemreferenceCode"`
+		} `json:"template"`
+	} `json:"operatingSystems"`
+	Processors []struct {
+		ItemPrice struct {
+			RecurringFee string `json:"recurringFee"`
+		} `json:"itemPrice"`
+		Template struct {
+			StartCpus     int  `json:"startCpus"`
+			DedicatedHost bool `json:"dedicatedAccountHostOnlyFlag"`
+		} `json:"template"`
+	}
 }

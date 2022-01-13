@@ -1,6 +1,8 @@
 package helpers
 
 import (
+	"strconv"
+
 	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/ibm"
 )
 
@@ -13,6 +15,7 @@ type DisplayTable struct {
 	CurrentEstimatedCost  float64 `header:"Current cost"`
 	PreviousEstimatedCost float64 `header:"Previous cost"`
 	ChangedEstimatedCost  float64 `header:"Changed cost"`
+	RateCardCost          string  `header:"Cost from Ratecard"`
 }
 
 //GetTable ...
@@ -28,6 +31,7 @@ func GetTable(bom []costcalculator.BillOfMaterial) []DisplayTable {
 		instance.CurrentEstimatedCost = item.CurrLineItemTotal
 		instance.PreviousEstimatedCost = item.PrevLineItemTotal
 		instance.ChangedEstimatedCost = item.ChangeLineItemTotal
+		instance.RateCardCost = strconv.FormatBool(item.RateCardCost)
 		resourceMap = append(resourceMap, instance)
 
 	}
