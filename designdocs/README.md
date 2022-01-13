@@ -1,4 +1,4 @@
-# List of terraform Resources Supported by the SDK are 
+# List of Terraform Resources Supported by the SDK are 
 
 1. [IBM_API_GATEWAY_ENDPOINT](ibm_api_gateway_endpoint.md)
 2. [IBM_API_GATEWAY_ENDPOINT_SUBSCRIPTION](ibm_api_gateway_endpoint_subscription.md)
