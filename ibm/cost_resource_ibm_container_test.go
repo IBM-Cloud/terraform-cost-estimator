@@ -8,7 +8,7 @@ import (
 func TestContainerCost(t *testing.T) {
 
 	token := os.Getenv("IC_IAM_TOKEN")
-	costClient, err := NewTFCostClient(&Config{
+	costClient, _ := NewTFCostClient(&Config{
 		IAMAccessToken: token,
 	})
 	bom, err := costClient.GetCost("testplan.json")
