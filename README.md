@@ -111,6 +111,7 @@ terraform show -json tfplan.binary > tfplan.json
     ]
 }```
 
+```
 List of terraform Resources Supported by the SDK are
 
 - ibm_is_instance
@@ -180,6 +181,7 @@ cd tfcost
 go run main.go plan=../example/tfplan.json
 ```
 
+Check Design docs [here](/designDocs.md) 
 
 ## Sample output
 ![Estimated cost](/image.png)
