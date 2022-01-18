@@ -44,10 +44,11 @@ func getVolumeCost(resdata Resource, token string, generation int) (*BillOfMater
 //New function IncCostFuncMap
 func getVolumeCost2(logger *zap.Logger, changeData ResourceConf, token string) (float64, error) {
 	logger.Info("Entry:getVolumeCost2")
-
 	var planID string
 	iops, _ := strconv.Atoi(strings.Replace(changeData.ISInstance.Profile, "iops-tier", "", 1))
-
+	if iops == 0 {
+		iops = changeData.Iops
+	}
 	pricingClient := pricing.NewPlanService(generation, volumeID)
 
 	planID, err := pricingClient.GetVolumePlan(changeData.ISInstance.Profile)
@@ -55,7 +56,7 @@ func getVolumeCost2(logger *zap.Logger, changeData ResourceConf, token string) (
 		return 0, err
 	}
 
-	volcost, err := volumeCost(100, iops, planID, token)
+	volcost, err := volumeCost(changeData.Capacity, iops, planID, token)
 	if err != nil {
 		return 0, err
 	}

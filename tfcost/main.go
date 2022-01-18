@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/IBM-Cloud/terraform-cost-estimator/authentication"
@@ -67,7 +68,9 @@ func main() {
 
 				// fmt.Println("\nBOMnew= ", bom.Lineitem)
 				notice := color.New(color.Bold, color.FgGreen).PrintlnFunc()
-				notice("\nNOTE: cost displayed here are just an estimated cost not an actual cost.\n")
+				notice("\nNOTE:\n cost displayed here is estimated on monthly basis in USD, it is not the actual cost")
+				fmt.Print("\nRate Card Version: V1.0")
+				notice("\n* represents cost acquired from the rate card\n")
 
 				// if json flag enabeled
 				if c.Bool("json") || c.Bool("j") {
@@ -96,7 +99,8 @@ func main() {
 
 				// Print the slice of structs as table, as shown above.
 				printer.Print(helpers.GetTable(bom.Lineitem))
-				fmt.Println("\nTotal Estimated Cost: $", bom.TotalCost)
+				bom.TotalCost, _ = strconv.ParseFloat(fmt.Sprintf("%.2f", bom.TotalCost), 64)
+				notice("\nTotal Estimated Cost: $", bom.TotalCost)
 
 				return nil
 			},

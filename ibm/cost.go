@@ -209,18 +209,68 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 
 	} //if resource not handled in SDK, moves on to rate card and fetches the price. If not found, returns 0 with error messages
 	if len(resourcearray) != 0 {
-		for key, _ := range resourcearray {
-			reschanges, rate, err := ratecard(logger, key, planData)
-			if err != nil {
+		var before, after float64
+		var err error
+		for _, resource_changes := range planData.ResourceChanges {
+			before, after = 0, 0
+			err = nil
+			for key, _ := range resourcearray {
+				if resource_changes.Type == key {
+					actions := resource_changes.Change.Actions
 
-				logger.Error("error getting cost for, " + key + " " + err.Error())
+					//if it is create new resource or no change
+					if len(actions) == 1 && (actions[0] == "create") {
+						after, err = ratecard(logger, key, resource_changes.Change.After)
 
+						if err != nil {
+							//logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
+							// return 0, bom, err
+							continue
+						}
+
+					}
+					if len(actions) == 1 && (actions[0] == "no-op") {
+						before, err = ratecard(logger, key, resource_changes.Change.After)
+
+						if err != nil {
+							// logger.Error("Error while trying to get after activity for create actions", zap.Error(err))
+							// // return 0, bom, err
+							continue
+						}
+						after = before
+
+					}
+
+					//if it is delete existing resource
+					if len(actions) == 1 && (actions[0] == "delete") {
+						before, err = ratecard(logger, key, resource_changes.Change.Before)
+						if err != nil {
+							// logger.Error("Error while trying to get before activity for delete actions", zap.Error(err))
+							// // return 0, bom, err
+							continue
+						}
+					}
+					//if change in existing resource
+					if len(actions) == 2 || stringInSlice("update", actions) {
+						before, err = ratecard(logger, key, resource_changes.Change.Before)
+						if err != nil {
+							// logger.Error("Error while trying to get before activity for update actions", zap.Error(err))
+							// // return 0, bom, err
+							continue
+						}
+						after, err = ratecard(logger, key, resource_changes.Change.After)
+						if err != nil {
+							// logger.Error("Error while trying to get after activity for update actions", zap.Error(err))
+							// // return 0, bom, err
+							continue
+						}
+					}
+					billdata.AddIncrementalCostData(resource_changes, before, after)
+					billdata.RateCardCost = true
+					bom.AddItem(billdata)
+					cost += billdata.CurrLineItemTotal
+				}
 			}
-			billdata.AddIncrementalCostData(reschanges, 0, rate)
-			billdata.RateCardCost = true
-			bom.AddItem(billdata)
-			cost += billdata.CurrLineItemTotal
-
 		}
 	}
 

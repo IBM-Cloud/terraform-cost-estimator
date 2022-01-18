@@ -135,6 +135,7 @@ type ResourceConf struct {
 	Capacity                     int    `json:"capacity"`
 	FlavorKeyName                string `json:"flavor_key_name"`
 	Memory                       int    `json:"memory"`
+	Iops                         int    `json:"iops"`
 	Cores                        int    `json:"cores"`
 	OperatingSystemReferenceCode string `json:"os_reference_code"`
 	DedicatedHostFlag            bool   `json:"dedicated_acct_host_only"`
