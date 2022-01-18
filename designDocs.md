@@ -288,7 +288,7 @@ ibm_network_vlan_spanning
 
 1. Support for cloudant, databases-for-mongodb, databases-for-etcd, databases-for-postgresql, databases-for-redis, databases-for-elasticsearch, messages-for-rabbitmq, databases-for-cassandra, databases-for-enterprisedb, blockchain, data-virtualization, functions, satellite-iaas,and schematics is available.
 
-### IBM_IS_VOLUME
+### IBM_IS_INSTANCE
 
 1. Volume parameter is taken as 100 if not specified
 
