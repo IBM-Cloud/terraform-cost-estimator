@@ -1,10 +1,274 @@
+## List of Resources Supported
+
+```
+ibm_container_cluster
+ibm_container_worker_pool
+ibm_container_vpc_cluster
+ibm_container_vpc_worker_pool
+ibm_is_dedicated_host
+ibm_is_instance
+ibm_compute_vm_instance
+ibm_api_gateway_endpoint.share.lite.global
+ibm_api_gateway_endpoint_subscription.share.lite.global
+ibm_attacker_route.lite
+ibm_attacker_target.lite
+ibm_app_config_environment.lite
+ibm_app_config_feature.lite
+ibm_appid_action_url
+ibm_appid_apm
+ibm_appid_application
+ibm_appid_application_roles
+ibm_appid_application_scopes
+ibm_appid_audit_status
+ibm_appid_cloud_directory_template
+ibm_appid_cloud_directory_user
+ibm_appid_idp_cloud_directory
+ibm_appid_idp_custom
+ibm_appid_idp_facebook
+ibm_appid_idp_google
+ibm_appid_idp_saml
+ibm_appid_languages
+ibm_appid_mfa
+ibm_appid_mfa_channel
+ibm_appid_password_regex
+ibm_appid_redirect_urls
+ibm_appid_role
+ibm_appid_theme_color
+ibm_appid_theme_text
+ibm_appid_token_config
+ibm_appid_user_roles
+ibm_resource_instance.event-notifications.lite
+ibm_hpcs.standard
+ibm_cloud_shell_account_settings
+ibm_iam_access_group
+ibm_iam_access_group_dynamic_rule
+ibm_iam_access_group_members
+ibm_iam_access_group_policy
+ibm_iam_account_settings
+ibm_iam_api_key
+ibm_iam_authorization_policy
+ibm_iam_authorization_policy_detach
+ibm_iam_custom_role
+ibm_iam_service_api_key
+ibm_iam_service_id
+ibm_iam_service_policy
+ibm_iam_trusted_profile
+ibm_iam_trusted_profile_claim_rule
+ibm_iam_trusted_profile_link
+ibm_iam_trusted_profile_policy
+ibm_iam_user_invite
+ibm_iam_user_policy
+ibm_iam_user_settings
+ibm_cis.free_trial.global
+ibm_cis.standard.global
+ibm_resource_instance.cos_instance.lite
+ibm_resource_group
+ibm_resource_instance
+ibm_resource_key
+ibm_schematics_action
+ibm_schematics_inventory
+ibm_schematics_job
+ibm_schematics_resource_query
+ibm_schematics_workspace
+ibm_cm_catalog.lite.global
+ibm_cm_offering.lite.global
+ibm_cm_offering_instance.lite.global
+ibm_cm_version.lite.global
+ibm_certificate_manager_import
+ibm_certificate_manager_order
+ibm_compute_autoscale_group
+ibm_compute_autoscale_policy
+ibm_compute_monitor
+ibm_compute_placement_group
+ibm_compute_provisioning_hook
+ibm_compute_reserved_capacity
+ibm_compute_ssh_key
+ibm_compute_ssl_certificate
+ibm_dns_domain
+ibm_dns_domain_registration_nameservers
+ibm_dns_record
+ibm_dns_reverse_record
+ibm_dns_secondary
+ibm_firewall_policy
+ibm_object_storage_account.lite
+ibm_security_group
+ibm_security_group_rule
+ibm_ssl_certificate
+ibm_subnet.static
+ibm_subnet.portable
+ibm_cr_namespace
+ibm_cr_retention_policy
+ibm_cbr_rule
+ibm_cbr_zone
+ibm_function_action
+ibm_function_namespace
+ibm_function_package
+ibm_function_rule
+ibm_function_trigger
+ibm_resource_tag
+ibm_secret_manager_secret.lite
+ibm_secret_manager_secrets.lite
+ibm_is_dedicated_host_group
+ibm_is_floating_ip
+ibm_is_flow_log
+ibm_is_ike_policy
+ibm_is_image
+ibm_is_instance_action
+ibm_is_instance_group_manager
+ibm_is_instance_group_manager_action
+ibm_is_instance_group_manager_policy
+ibm_is_instance_group_membership
+ibm_is_instance_network_interface
+ibm_is_instance_template
+ibm_is_ipsec_policy
+ibm_is_lb_listener
+ibm_is_lb_listener_policy
+ibm_is_lb_listener_policy_rule
+ibm_is_lb_pool_member
+ibm_is_network_acl
+ibm_is_network_acl_rule
+ibm_is_placement_group
+ibm_is_public_gateway
+ibm_is_security_group
+ibm_is_security_group_network_interface_attachment
+ibm_is_security_group_rule
+ibm_is_security_group_target
+ibm_is_ssh_key
+ibm_is_subnet
+ibm_is_subnet_network_acl_attachment
+ibm_is_subnet_reserved_ip
+ibm_is_virtual_endpoint_gateway
+ibm_is_virtual_endpoint_gateway_ip
+ibm_is_vpc
+ibm_is_vpc_address_prefix
+ibm_is_vpc_route
+ibm_is_vpc_routing_table
+ibm_is_vpc_routing_table_route
+ibm_is_vpn_gateway
+ibm_is_vpn_gateway_connection
+```
+
+## List of Resources Not-Supported
+
+### Usage Based Resources
+
+```
+ibm_cdn
+ibm_compute_bare_metal
+ibm_compute_dedicated_host
+ibm_lb
+ibm_lb_service
+ibm_lb_service_group
+ibm_lb_vpx
+ibm_lb_vpx_ha
+ibm_lb_vpx_service
+ibm_lb_vpx_vip
+ibm_lbaas
+ibm_lbaas_health_monitor
+ibm_lbaas_server_instance_attachment
+ibm_object_storage_account.standard
+ibm_storage_block
+ibm_storage_evault
+ibm_cloudant.standard-transaction-engine
+ibm_cloudant.standard
+ibm_app
+ibm_app_domain_private
+ibm_app_domain_shared
+ibm_app_route
+ibm_org
+ibm_service_instance
+ibm_service_key
+ibm_space
+ibm_pi_cloud_connection
+ibm_pi_dhcp
+ibm_pi_image
+ibm_pi_instance
+ibm_pi_key
+ibm_pi_network
+ibm_pi_network_port
+ibm_pi_snapshot
+ibm_pi_volume
+ibm_pi_vpn_connection
+ibm_pi_vpn_ike_policy
+ibm_pi_vpn_ipsec_policy
+ibm_pn_application_chrome
+ibm_tg_connection
+ibm_tg_gateway
+ibm_app_config_environment.standard
+ibm_app_config_feature.standard
+ibm_app_config_environment.enterprise
+ibm_app_config_feature.enterprise
+ibm_resource_instance.event-notifications.standard
+ibm_en_destination
+ibm_en_subscription
+ibm_en_topic
+ibm_event_streams_schema.messagehub.standard
+ibm_event_streams_schema.messagehub.enterprise
+ibm_cis.enterprise_usage.global
+ibm_cis.enterprise_package.global
+ibm_cis.security.global
+ibm_cis.global_load_balancer.global
+ibm_cis_cache_settings
+ibm_cis_certificate_order
+ibm_cis_certificate_upload
+ibm_cis_custom_page
+ibm_cis_dns_record
+ibm_cis_dns_records_import
+ibm_cis_domain
+ibm_cis_domain_settings
+ibm_cis_edge_functions_action
+ibm_cis_edge_functions_trigger
+ibm_cis_filter
+ibm_cis_firewall
+ibm_cis_firewall_rules
+ibm_cis_global_load_balancer
+ibm_cis_healthcheck
+ibm_cis_origin_pool
+ibm_cis_page_rule
+ibm_cis_range_app
+ibm_cis_rate_limit
+ibm_cis_routing
+ibm_cis_tls_settings
+ibm_cis_waf_group
+ibm_cis_waf_package
+ibm_cis_waf_rule
+ibm_kms_key
+ibm_kms_key_alias
+ibm_kms_key_policies
+ibm_kms_key_rings
+ibm_kp_key
+ibm_resource_instance.cos_instance.standard
+ibm_cos_bucket
+ibm_cos_bucket_object
+ibm_is_dedicated_host_disk_management
+ibm_is_instance_disk_management
+ibm_is_instance_group
+ibm_is_instance_volume_attachment
+ibm_is_lb
+ibm_is_lb_pool
+ibm_is_snapshot
+ibm_is_volume
+```
+
+### Resources which are not supported by catalog
+
+```
+ibm_network_gateway
+ibm_network_gateway_vlan_association
+ibm_network_interface_sg_attachment
+ibm_network_public_ip
+ibm_network_vlan
+ibm_network_vlan_spanning
+```
+
 ## Common asumptions taken 
 
 1. Cost is fetched from BSS api for all vpc infrastructure resources
 2. Cost fetched from global catalog apis for all other services
 3. Cost is fetched from custom rate card(fallbackDB) for all other services in case resource not supported by globalcatalog/bss apis
 4. Cost calculated only for us-geo region
-
+5. Cost calculated is based on monthly metrics
+6. Terraform v12+ needs to be present in the system to use the tool
 
 
 ## Resource respective asumptions
@@ -26,7 +290,7 @@
 
 ### IBM_IS_VOLUME
 
-1. Volume parameter is taken as 100
+1. Volume parameter is taken as 100 if not specified
 
 ### IBM_DATABASE
 
@@ -36,5 +300,6 @@
 
 1. Integrations along with the instances are excluded to compute the cost
 2. Region is US South Dallas 10
-3. Single zone
+3. Single zone is accepted
 4. Number of worker nodes/ worker pool count is taken into consideration while computing cost
+
