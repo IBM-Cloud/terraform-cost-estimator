@@ -162,7 +162,7 @@
                         "auto_delete_volume": null,
                         "boot_volume": [
                             {
-                                "encryption": "crn:v1:bluemix:public:kms:us-south:a/dffc98a0f1f0f95f6613b3b752286b87:e4a29d1a-2ef0-42a6-8fd2-350deb1c647e:key:5437653b-c4b1-447f-9646-b2a2a4cd6179",
+                                "encryption": "",
                                 "snapshot": null
                             }
                         ],
@@ -441,7 +441,7 @@
                     "auto_delete_volume": null,
                     "boot_volume": [
                         {
-                            "encryption": "crn:v1:bluemix:public:kms:us-south:a/dffc98a0f1f0f95f6613b3b752286b87:e4a29d1a-2ef0-42a6-8fd2-350deb1c647e:key:5437653b-c4b1-447f-9646-b2a2a4cd6179",
+                            "encryption": "",
                             "snapshot": null
                         }
                     ],

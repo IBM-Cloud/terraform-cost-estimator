@@ -56,14 +56,14 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 		return 0, nil
 	}
 	var InstanceCost float64
-	if changeData.MembersDiskAllocationMB != 0 {
+	if changeData.MembersDiskAllocationMB != 0 && changeData.MembersMemoryAllocationMB != 0 {
 		if service == "databases-for-postgresql" || service == "databases-for-redis" {
 			InstanceCost = 2 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.MembersDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.MembersMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.MembersCPUAllocationCount))
 		} else {
 			InstanceCost = 3 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.MembersDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.MembersMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.MembersCPUAllocationCount))
 		}
 
-	} else if changeData.NodeDiskAllocationMB != 0 {
+	} else if changeData.NodeDiskAllocationMB != 0 && changeData.NodeCPUAllocationCount != 0 && changeData.NodeMemoryAllocationMB != 0 {
 		if service == "databases-for-postgresql" || service == "databases-for-redis" {
 			InstanceCost = 2 * (InstanceCostResp.Metrics[0].Amounts[0].Prices[0].Price*(float64(changeData.NodeDiskAllocationMB)/1024) + InstanceCostResp.Metrics[1].Amounts[0].Prices[0].Price*(float64(changeData.NodeMemoryAllocationMB)/1024) + InstanceCostResp.Metrics[3].Amounts[0].Prices[0].Price*float64(changeData.NodeCPUAllocationCount))
 		} else {
@@ -77,8 +77,12 @@ func getDatabaseCost(logger *zap.Logger, changeData ResourceConf, token string) 
 	//monthlyCost := getMonthlyCost(InstanceCost, InstanceCostResp.Metrics[0].ChargeUnitName, InstanceCostResp.Metrics[0].ChargeUnitQuantity)
 	//configure BOM
 
-	logger.Info("Exit:getDatabaseCost")
+	if InstanceCost == 0 {
 
+		logger.Error("insufficient parameters")
+
+	}
+	logger.Info("Exit:getDatabaseCost")
 	return InstanceCost, nil
 
 }

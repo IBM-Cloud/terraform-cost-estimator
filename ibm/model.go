@@ -133,9 +133,9 @@ type ResourceConf struct {
 	ISInstance
 	Type                         string `json:"type"`
 	Capacity                     int    `json:"capacity"`
+	Iops                         int    `json:"iops"`
 	FlavorKeyName                string `json:"flavor_key_name"`
 	Memory                       int    `json:"memory"`
-	Iops                         int    `json:"iops"`
 	Cores                        int    `json:"cores"`
 	OperatingSystemReferenceCode string `json:"os_reference_code"`
 	DedicatedHostFlag            bool   `json:"dedicated_acct_host_only"`
@@ -289,4 +289,21 @@ type ClassicRateCard struct {
 			DedicatedHost bool `json:"dedicatedAccountHostOnlyFlag"`
 		} `json:"template"`
 	}
+}
+type RateCardJson struct {
+	Version struct {
+		Version      string `json:"version"`
+		Last_Updated string `json:"last_updated"`
+	}
+	RateCard []RateCard `json:"rate_card"`
+}
+
+type RateCard struct {
+	Service_name   string  `json:"service_name"`
+	Plan           string  `json:"plan_id"`
+	Estimated_rate float64 `json:"estimated_rate"`
+	Units          string  `json:"unit"`
+	Currency       string  `json:"currency"`
+	Unit_quantity  string  `json:"unit_quantity"`
+	Usage_based    bool    `json:"usage_based"`
 }

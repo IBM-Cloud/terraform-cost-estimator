@@ -207,7 +207,8 @@ func calculateCost(planData Planstruct, token string, logger *zap.Logger) (float
 			}
 		}
 
-	} //if resource not handled in SDK, moves on to rate card and fetches the price. If not found, returns 0 with error messages
+	}
+	//if resource not handled in SDK, moves on to rate card and fetches the price. If not found, returns 0 with error messages
 	if len(resourcearray) != 0 {
 		var before, after float64
 		var err error

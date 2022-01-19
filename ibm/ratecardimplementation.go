@@ -12,28 +12,19 @@ import (
 	"go.uber.org/zap"
 )
 
-type RateCard struct {
-	Service_name   string  `json:"service_name"`
-	Plan           string  `json:"plan_id"`
-	Estimated_rate float64 `json:"estimated_rate"`
-	Units          string  `json:"unit"`
-	Currency       string  `json:"currency"`
-	Unit_quantity  string  `json:"unit_quantity"`
-	Usage_based    bool    `json:"usage_based"`
-}
-
 func ratecard(logger *zap.Logger, resource string, planData ResourceConf) (float64, error) {
 	rateCardFilename := "../ibm/rate_card.json"
 	if os.Getenv("RATECARD") != "" {
 		rateCardFilename = os.Getenv("RATECARD")
 	}
 	rateCard, _ := ioutil.ReadFile(rateCardFilename)
-	card := []RateCard{}
-	err := json.Unmarshal([]byte(rateCard), &card)
+	cardjson := RateCardJson{}
+	err := json.Unmarshal([]byte(rateCard), &cardjson)
 	if err != nil {
 		logger.Error("Error while Unmarshalling Plan Data", zap.Error(err))
 		fmt.Print(err)
 	}
+	card := cardjson.RateCard
 	classic_rateCard, _ := ioutil.ReadFile("../ibm/classic_vm.json")
 	classic_card := ClassicRateCard{}
 	err = json.Unmarshal([]byte(classic_rateCard), &classic_card)
@@ -68,39 +59,43 @@ func ratecard(logger *zap.Logger, resource string, planData ResourceConf) (float
 			}
 		} else {
 			//when flavor is absent
-			for _, classic_item := range classic_card.Memory {
-				if planData.Memory == classic_item.Template.MaxMemory {
-					temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
-					cost += temp
-				}
-			}
-			for _, classic_item := range classic_card.Processors {
-				if planData.Cores == classic_item.Template.StartCpus {
-					if !classic_item.Template.DedicatedHost {
+			if planData.Memory != 0 && planData.Cores != 0 && planData.OperatingSystemReferenceCode != "" && planData.NetworkSpeed != 0 {
+				for _, classic_item := range classic_card.Memory {
+					if planData.Memory == classic_item.Template.MaxMemory {
 						temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
 						cost += temp
 					}
 				}
-			}
-			for _, classic_item := range classic_card.OperatingSystems {
-				if planData.OperatingSystemReferenceCode == classic_item.Template.OperatingSystem {
-					temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
-					cost += temp
-				}
-			}
-			for _, classic_item := range classic_card.NetworkComponents {
-				if !planData.DedicatedHostFlag {
-					if (planData.NetworkSpeed == 1000 && classic_item.Template.NetworkComponent[0].MaxSpeed == 1000) && (classic_item.Template.PrivateNetworkOnly == false && planData.PrivateNetworkOnly == false) {
-						temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
-						cost += temp
-					} else if (planData.NetworkSpeed == 1000 && classic_item.Template.NetworkComponent[0].MaxSpeed == 1000) && (classic_item.Template.PrivateNetworkOnly == true && planData.PrivateNetworkOnly == true) {
-						temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
-						cost += temp
-					} else {
-						continue
+				for _, classic_item := range classic_card.Processors {
+					if planData.Cores == classic_item.Template.StartCpus {
+						if !classic_item.Template.DedicatedHost {
+							temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
+							cost += temp
+						}
 					}
 				}
+				for _, classic_item := range classic_card.OperatingSystems {
+					if planData.OperatingSystemReferenceCode == classic_item.Template.OperatingSystem {
+						temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
+						cost += temp
+					}
+				}
+				for _, classic_item := range classic_card.NetworkComponents {
+					if !planData.DedicatedHostFlag {
+						if (planData.NetworkSpeed == 1000 && classic_item.Template.NetworkComponent[0].MaxSpeed == 1000) && (classic_item.Template.PrivateNetworkOnly == false && planData.PrivateNetworkOnly == false) {
+							temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
+							cost += temp
+						} else if (planData.NetworkSpeed == 1000 && classic_item.Template.NetworkComponent[0].MaxSpeed == 1000) && (classic_item.Template.PrivateNetworkOnly == true && planData.PrivateNetworkOnly == true) {
+							temp, _ = strconv.ParseFloat(classic_item.ItemPrice.RecurringFee, 64)
+							cost += temp
+						} else {
+							continue
+						}
+					}
 
+				}
+			} else {
+				logger.Error("insufficient parameters")
 			}
 			logger.Info("Exit:getComputeVMinstanceCost")
 			return cost, nil

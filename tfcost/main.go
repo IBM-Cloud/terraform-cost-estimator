@@ -16,6 +16,7 @@ import (
 	"github.com/kataras/tablewriter"
 	"github.com/landoop/tableprinter"
 	"github.com/urfave/cli"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -68,9 +69,20 @@ func main() {
 
 				// fmt.Println("\nBOMnew= ", bom.Lineitem)
 				notice := color.New(color.Bold, color.FgGreen).PrintlnFunc()
-				notice("\nNOTE:\n cost displayed here is estimated on monthly basis in USD, it is not the actual cost")
-				fmt.Print("\nRate Card Version: V1.0")
-				notice("\n* represents cost acquired from the rate card\n")
+				notice("\nNOTE: cost displayed here is estimated on monthly basis in USD, it is not the actual cost\n")
+				rateCardFilename := "../ibm/rate_card.json"
+				if os.Getenv("RATECARD") != "" {
+					rateCardFilename = os.Getenv("RATECARD")
+				}
+				rateCard, _ := ioutil.ReadFile(rateCardFilename)
+				cardjson := costcalculator.RateCardJson{}
+				err = json.Unmarshal([]byte(rateCard), &cardjson)
+				if err != nil {
+					log.Println("Error while Unmarshalling Plan Data", zap.Error(err))
+					fmt.Print(err)
+				}
+				fmt.Printf("Rate card Version %s \nLast Updated %s\n", cardjson.Version.Version, cardjson.Version.Last_Updated)
+				fmt.Print("\n* represents cost acquired from the rate card\n")
 
 				// if json flag enabeled
 				if c.Bool("json") || c.Bool("j") {
