@@ -310,7 +310,7 @@
                 "before": {
                     "boot_volume": [
                         {
-                            "encryption": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
+                            "encryption": "",
                             "iops": 0,
                             "name": "volume-attachment",
                             "profile": "",
@@ -711,7 +711,7 @@
                         "values": {
                             "boot_volume": [
                                 {
-                                    "encryption": "crn:v1:bluemix:public:is:us-south-1:a/faf6addbf6bf476896f5e342a5bdd702::volume:r006-06f7c1b1-d1a3-4333-9054-14668e4acba6",
+                                    "encryption": "",
                                     "iops": 0,
                                     "name": "volume-attachment",
                                     "profile": "",

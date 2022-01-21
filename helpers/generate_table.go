@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"strconv"
+	"fmt"
 
 	costcalculator "github.com/IBM-Cloud/terraform-cost-estimator/ibm"
 )
@@ -12,10 +12,9 @@ type DisplayTable struct {
 	LocalName string `header:"local name"`
 	Title     string `header:"title"`
 	//EstimatedCost         float64 `header:"estimated cost"`
-	CurrentEstimatedCost  float64 `header:"Current cost"`
-	PreviousEstimatedCost float64 `header:"Previous cost"`
-	ChangedEstimatedCost  float64 `header:"Changed cost"`
-	RateCardCost          string  `header:"Cost from Ratecard"`
+	CurrentEstimatedCost  string `header:"Current cost"`
+	PreviousEstimatedCost string `header:"Previous cost"`
+	ChangedEstimatedCost  string `header:"Changed cost"`
 }
 
 //GetTable ...
@@ -28,10 +27,14 @@ func GetTable(bom []costcalculator.BillOfMaterial) []DisplayTable {
 		instance.LocalName = item.ID
 		instance.Title = item.Title
 		//instance.EstimatedCost = item.LineItemTotal
-		instance.CurrentEstimatedCost = item.CurrLineItemTotal
-		instance.PreviousEstimatedCost = item.PrevLineItemTotal
-		instance.ChangedEstimatedCost = item.ChangeLineItemTotal
-		instance.RateCardCost = strconv.FormatBool(item.RateCardCost)
+		instance.CurrentEstimatedCost = fmt.Sprintf("%.2f", item.CurrLineItemTotal)
+		instance.PreviousEstimatedCost = fmt.Sprintf("%.2f", item.PrevLineItemTotal)
+		instance.ChangedEstimatedCost = fmt.Sprintf("%.2f", item.ChangeLineItemTotal)
+		if item.RateCardCost {
+			instance.CurrentEstimatedCost = instance.CurrentEstimatedCost + " *"
+			instance.PreviousEstimatedCost = instance.PreviousEstimatedCost + " *"
+			instance.ChangedEstimatedCost = instance.ChangedEstimatedCost + " *"
+		}
 		resourceMap = append(resourceMap, instance)
 
 	}
