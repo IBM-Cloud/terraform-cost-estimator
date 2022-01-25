@@ -3,7 +3,7 @@ module github.com/IBM-Cloud/terraform-cost-estimator/tfcost
 go 1.15
 
 require (
-	github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20211202101046-9b01b0333844
+	github.com/IBM-Cloud/terraform-cost-estimator v0.0.0-20220121043039-1804168cb96b
 	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/fatih/color v1.13.0
 	github.com/kataras/tablewriter v0.0.0-20180708051242-e063d29b7c23

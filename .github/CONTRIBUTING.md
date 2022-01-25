@@ -72,3 +72,7 @@ Cost Estimator SDK includes an acceptance test harness that does most of the rep
  * Update the testplan.json with updated plan.json and verify the estimated cost for current state and previous state(create,update and destroy scenarios).
 
  * Note: Doing a terraform apply might cost you money as it would provision the infrastructure on your account but a terraform plan will not incurr any cost.
+
+ * Note  before doing release do go get github.com/IBM-Cloud/terraform-cost-estimator
+ then do go mod vendor inside tfcost directory
+ for Private Repo export GOPRIVATE="github.com/IBM-Cloud/terraform-cost-estimator"
