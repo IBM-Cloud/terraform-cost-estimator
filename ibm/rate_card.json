@@ -1,9 +1,4 @@
-{
-  "version":{
-    "version": "1.0",
-    "last_updated": "10-01-2022"
-  },
-  "rate_card":[
+[
   {
     "service_name": "API Gateweway Endpoint",
     "plan_id": "ibm_api_gateway_endpoint.share.lite.global",
@@ -8114,4 +8109,3 @@
           "usage_based": false
         }
 ]
-}
