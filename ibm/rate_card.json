@@ -1711,7 +1711,7 @@
   },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-2x4",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.2x4",
       "estimated_rate": 80.31,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1720,7 +1720,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-2x8",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.2x8",
       "estimated_rate": 89.7,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1729,7 +1729,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-2x16",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.2x16",
       "estimated_rate": 108.48,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1738,7 +1738,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-4x8",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.4x8",
       "estimated_rate": 167.11,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1747,7 +1747,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-4x16",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.4x16",
       "estimated_rate": 185.89,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1756,7 +1756,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-4x32",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.4x32",
       "estimated_rate": 223.45,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1765,7 +1765,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-8x16",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.8x16",
       "estimated_rate": 283.23,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1774,7 +1774,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-8x32",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.8x32",
       "estimated_rate": 320.79,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1783,7 +1783,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-8x64",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.8x64",
       "estimated_rate": 395.9,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1792,7 +1792,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-16x32",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.16x32",
       "estimated_rate": 553.79,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1801,7 +1801,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-16x64",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.16x64",
       "estimated_rate": 628.9,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1810,7 +1810,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-16x128",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.16x128",
       "estimated_rate": 779.12,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1819,7 +1819,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-32x64",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.32x64",
       "estimated_rate": 1125.56,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1828,7 +1828,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-32x128",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.32x128",
       "estimated_rate": 1275.78,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1837,7 +1837,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-32x256",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.32x256",
       "estimated_rate": 1576.23,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1846,7 +1846,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.cx2-48x96",
+      "plan_id": "ibm_container_vpc_cluster.vpc.cx2.48x96",
       "estimated_rate": 1682,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1855,7 +1855,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.bx2-48x192",
+      "plan_id": "ibm_container_vpc_cluster.vpc.bx2.48x192",
       "estimated_rate": 1907.34,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1864,7 +1864,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-48x384",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.48x384",
       "estimated_rate": 2358.01,
       "unit": "MONTHLY",
       "currency": "USD",
@@ -1873,7 +1873,7 @@
     },
     {
       "service_name": "Kubernetes Service",
-      "plan_id": "ibm_container_vpc_cluster.vpc.mx2-64x512",
+      "plan_id": "ibm_container_vpc_cluster.vpc.mx2.64x512",
       "estimated_rate": 3139.79,
       "unit": "MONTHLY",
       "currency": "USD",

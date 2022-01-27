@@ -152,7 +152,7 @@ func ratecard(logger *zap.Logger, resource string, planData ResourceConf) (float
 			logger.Info("Entry:getKubernetesCost")
 			profile = planData.Flavour
 
-			rate_card_profile = strings.Split(card_item.Plan, ".")[3]
+			rate_card_profile = strings.SplitAfterN(card_item.Plan, ".", 3)[2]
 
 			if profile == rate_card_profile {
 				logger.Info("Exit:getKubernetesCost")
