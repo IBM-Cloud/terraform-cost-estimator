@@ -10,7 +10,4 @@ require (
 	github.com/landoop/tableprinter v0.0.0-20201125135848-89e81fc956e7
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/urfave/cli v1.22.5
-	go.uber.org/zap v1.19.1
 )
-
-// replace github.com/IBM-Cloud/terraform-cost-estimator => ./terraform-cost-estimator

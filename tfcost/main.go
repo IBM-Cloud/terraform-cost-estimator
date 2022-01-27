@@ -16,7 +16,6 @@ import (
 	"github.com/kataras/tablewriter"
 	"github.com/landoop/tableprinter"
 	"github.com/urfave/cli"
-	"go.uber.org/zap"
 )
 
 func main() {
@@ -70,18 +69,11 @@ func main() {
 				// fmt.Println("\nBOMnew= ", bom.Lineitem)
 				notice := color.New(color.Bold, color.FgGreen).PrintlnFunc()
 				notice("\nNOTE: cost displayed here is estimated on monthly basis in USD, it is not the actual cost\n")
-				rateCardFilename := "../ibm/rate_card.json"
-				if os.Getenv("RATECARD") != "" {
-					rateCardFilename = os.Getenv("RATECARD")
-				}
-				rateCard, _ := ioutil.ReadFile(rateCardFilename)
-				cardjson := costcalculator.RateCardJson{}
-				err = json.Unmarshal([]byte(rateCard), &cardjson)
+				meta, err := ioutil.ReadFile("../ibm/.metadata")
 				if err != nil {
-					log.Println("Error while Unmarshalling Plan Data", zap.Error(err))
-					fmt.Print(err)
+					log.Println(err)
 				}
-				fmt.Printf("Rate card Version %s \nLast Updated %s\n", cardjson.Version.Version, cardjson.Version.Last_Updated)
+				notice(string(meta))
 				fmt.Print("\n* represents cost acquired from the rate card\n")
 
 				// if json flag enabeled
@@ -112,7 +104,7 @@ func main() {
 				// Print the slice of structs as table, as shown above.
 				printer.Print(helpers.GetTable(bom.Lineitem))
 				bom.TotalCost, _ = strconv.ParseFloat(fmt.Sprintf("%.2f", bom.TotalCost), 64)
-				notice("\nTotal Estimated Cost: $", bom.TotalCost)
+				notice("\nTotal Estimated Cost: $", bom.TotalCost, "/mo")
 
 				return nil
 			},

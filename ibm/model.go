@@ -290,13 +290,6 @@ type ClassicRateCard struct {
 		} `json:"template"`
 	}
 }
-type RateCardJson struct {
-	Version struct {
-		Version      string `json:"version"`
-		Last_Updated string `json:"last_updated"`
-	}
-	RateCard []RateCard `json:"rate_card"`
-}
 
 type RateCard struct {
 	Service_name   string  `json:"service_name"`

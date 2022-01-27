@@ -18,13 +18,12 @@ func ratecard(logger *zap.Logger, resource string, planData ResourceConf) (float
 		rateCardFilename = os.Getenv("RATECARD")
 	}
 	rateCard, _ := ioutil.ReadFile(rateCardFilename)
-	cardjson := RateCardJson{}
-	err := json.Unmarshal([]byte(rateCard), &cardjson)
+	card := []RateCard{}
+	err := json.Unmarshal([]byte(rateCard), &card)
 	if err != nil {
-		logger.Error("Error while Unmarshalling Plan Data", zap.Error(err))
+		//logger.Error("Error while Unmarshalling Plan Data", zap.Error(err))
 		fmt.Print(err)
 	}
-	card := cardjson.RateCard
 	classic_rateCard, _ := ioutil.ReadFile("../ibm/classic_vm.json")
 	classic_card := ClassicRateCard{}
 	err = json.Unmarshal([]byte(classic_rateCard), &classic_card)
@@ -153,7 +152,7 @@ func ratecard(logger *zap.Logger, resource string, planData ResourceConf) (float
 			logger.Info("Entry:getKubernetesCost")
 			profile = planData.Flavour
 
-			rate_card_profile = strings.Split(card_item.Plan, ".")[3]
+			rate_card_profile = strings.SplitAfterN(card_item.Plan, ".", 3)[2]
 
 			if profile == rate_card_profile {
 				logger.Info("Exit:getKubernetesCost")
