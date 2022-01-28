@@ -56,7 +56,16 @@ func main() {
 					log.Println("Cannot initialise config")
 					return nil
 				}
-				planfile := c.Args().First()
+				var planfile string
+				if c.Bool("json") || c.Bool("j") {
+					planfile = c.Args().Get(1)
+					if c.Args().Get(1) == "" {
+						planfile = c.Args().First()
+					}
+
+				} else {
+					planfile = c.Args().First()
+				}
 				if planfile == "" {
 					log.Fatal("Error invalid argument plan.json. Please enter a valid path to plan.json file or check usage")
 					return nil
@@ -78,7 +87,12 @@ func main() {
 
 				// if json flag enabeled
 				if c.Bool("json") || c.Bool("j") {
+
 					outputByte, err := json.Marshal(bom)
+					costjson_path := "cost.json"
+					if c.Args().Get(1) != "" {
+						costjson_path = c.Args().Get(0)
+					}
 					if err != nil {
 						log.Println(err)
 						return nil
@@ -86,7 +100,7 @@ func main() {
 
 					outputJSON := string(outputByte[:])
 					fmt.Println("\njson:", outputJSON)
-					err = ioutil.WriteFile("cost.json", outputByte, 0644)
+					err = ioutil.WriteFile(costjson_path, outputByte, 0644)
 					return nil
 				}
 

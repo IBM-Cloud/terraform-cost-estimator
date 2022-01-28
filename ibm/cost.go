@@ -316,7 +316,7 @@ func (billdata *BillOfMaterial) AddIncrementalCostData(resdata ResourceChanges, 
 		billdata.ChangeLineItemTotal = after - before
 	} else {
 
-		billdata.ChangeLineItemTotal = after
+		billdata.ChangeLineItemTotal = after - before
 	}
 
 	billdata.Title = resourceMap[resdata.Type]
