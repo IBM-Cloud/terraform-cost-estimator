@@ -24,9 +24,6 @@ Specifically, we have provided checklists below for each type of issue and pull 
 
  - [ ] __Include a use case description__: In addition to describing the behavior of the feature you'd like to see added, it's helpful to also lay out the reason why the feature would be important and how it would benefit Terraform users.
 
-#### Questions
-
- - [ ] __Search for answers in Terraform documentation__: We're happy to answer questions in GitHub Issues, but it helps reduce issue churn and maintainer workload if you work to find answers to common questions in the documentation. Often times Question issues result in documentation updates to help future users, so if you don't find an answer, you can give us pointers for where you'd expect to see it in the docs.
 
 ## Pull Requests
 
@@ -76,3 +73,12 @@ Cost Estimator SDK includes an acceptance test harness that does most of the rep
  * Note  before doing release do go get github.com/IBM-Cloud/terraform-cost-estimator
  then do go mod vendor inside tfcost directory
  for Private Repo export GOPRIVATE="github.com/IBM-Cloud/terraform-cost-estimator"
+ * Note after adding a new feature in the /ibm (sdk) you need to raise a Pr. After your PR is merged to add the new features to the tfcost tool you need to go get the latest /ibm inside the tfcost. 
+ Do the following inside /tfcost after new features has been merged.
+ ```
+ cd tfcost
+ go get github.com/IBM-Cloud/terraform-cost-estimator
+ go mod vendor
+ cd ..
+ go build 
+ ```
