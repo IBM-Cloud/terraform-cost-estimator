@@ -102,15 +102,15 @@ terraform show -json tfplan.binary > tfplan.json
             "terraform_item_id": "ibm_is_instance",
             "quantity": "1",
             "title": "testacc_instance",
-            "plan_id": "66380d42-d4a9-4627-88fa-7b6631e5bd63 ",
+            "plan_id": "66380d42-d4a9-4627-88fa-7b6631e54443 ",
             "short_desciption": "",
             "features": "",
             "estimate_type": "custom",
             "line_item_total": "84.24"
         }
     ]
-}```
-
+}
+```
 
 The following are the instructions and steps to use cli for IBM-Cloud terraform cost calculator
 
