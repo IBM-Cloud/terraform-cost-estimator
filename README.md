@@ -1,12 +1,12 @@
 # IBM Cloud Terraform Cost estimator 
 
-This project provides the Go implementation for Plan based terraform cost estimation for terraform-provider-ibm by parsing the input terraform plan data, and provides an estimated cost of the template. It can be used as an SDK as well as a CLI
+This project provides the Go implementation for Plan based terraform cost estimation for [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0) by parsing the input terraform plan data, and provides an estimated cost of the template. It can be used as an SDK as well as a CLI
 # tfcost CLI
 The following are the instructions and steps to use cli for IBM-Cloud terraform cost calculator
 
 ## Prerequisites
 
->Must have installed- terraform 0.12+, terraform-provider-ibm (https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0)
+>Must have installed- terraform 0.12+, [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0)
 >You must have a working Terraform template with IBM-Cloud resources
 
 ## Using the CLI
@@ -20,7 +20,7 @@ The following are the instructions and steps to use cli for IBM-Cloud terraform 
 
 Steps to generate the tfplan.json planFile
 
-1. Inside the directory which contains the tf files do
+1. Inside the directory which contains the .tf files do
 ```bash
 terraform plan --out tfplan.binary
 ```
@@ -63,7 +63,19 @@ go get -u github.com/IBM-Cloud/terraform-cost-estimator
 
 >You must have a working terraform template with IBM cloud resources.
 
-The SDK has ```examples``` folder which cites few examples on how to use the SDK.
+The SDK has ```examples``` folder which cites few examples on how to use the SDK. or generate your own tfplan.json
+
+### Steps to generate the json planFile
+ Note: running terraform commands requires terraform and its plugins [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0) to be present as a prerequisite
+1. Inside the directory which contains the .tf files do
+```bash
+terraform plan --out tfplan.binary
+```
+2. After generating the binary file generate the respective plan json file using
+```bash
+terraform show -json tfplan.binary > tfplan.json
+```
+
 
 ```go
 import "github.com/IBM-Cloud/terraform-cost-estimator/api"
@@ -74,20 +86,9 @@ func main(){
 	    IAMAccessToken: token,
     })
 
-    bom, err := costClient.GetCost(planFile.json)
+    bom, err := costClient.GetCost(tfplan.json)
     .....
 }
-```
-
-### Steps to generate the json planFile
- Note: running terraform commands requires terraform and its plugins to be present as a prerequisite
-1. Inside the directory which contains the tf files do
-```bash
-terraform plan --out tfplan.binary
-```
-2. After generating the binary file generate the respective plan json file using
-```bash
-terraform show -json tfplan.binary > tfplan.json
 ```
 
 ## Sample BOM output
@@ -116,7 +117,7 @@ The following are the instructions and steps to use cli for IBM-Cloud terraform 
 
 ## Prerequisites
 
->Must have installed- terraform 0.12+, terraform-provider-ibm (https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0)
+>Must have installed- terraform 0.12+, [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0)
 >You must have a working Terraform template with IBM-Cloud resources
 
 
@@ -138,9 +139,6 @@ export GO111MODULE=on
 ```
 
 Check Supported Resources docs [here](/supportedResources.md) 
-
-## Sample output
-![Estimated cost](/image.png)
 
 ## Developing the tool
 
