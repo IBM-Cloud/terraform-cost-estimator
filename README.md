@@ -65,7 +65,7 @@ export RATECARD=path_to_your_rate_card.json
 go get github.com/IBM-Cloud/terraform-cost-estimator
 ```
 
-2. Update the SDK to the latest version using the following command
+2. Update the SDK to the latest version using the following  command
 
 ```bash
 go get -u github.com/IBM-Cloud/terraform-cost-estimator
