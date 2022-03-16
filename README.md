@@ -1,6 +1,10 @@
 # IBM Cloud Terraform Cost estimator 
 
 This project provides the Go implementation for Plan based terraform cost estimation for [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm/tree/v1.36.0) by parsing the input terraform plan data, and provides an estimated cost of the template. It can be used as an SDK as well as a CLI
+
+## Disclaimer
+
+The following is an experimental beta release. Get the full list of supported resources and common assumptions here [https://github.com/IBM-Cloud/terraform-cost-estimator/blob/main/supportedResources.md]. The generated output is just an estimated cost, not the actual cost.
 # tfcost CLI
 The following are the instructions and steps to use cli for IBM-Cloud terraform cost calculator
 
@@ -159,7 +163,15 @@ go build
 $GOPATH/bin/terraform-cost-estimator
 ...
 ```
+## Rate Card Support
 
+The cost estimator comes with a custom [rate card](https://github.com/IBM-Cloud/terraform-cost-estimator/ibm/rate_card.json) that acts as a fallbackDB and helps you to fetch the cost for most of the IBM-Cloud resources. The rate card is bundled with the tool. 
+
+You can choose to bring your own rate card and get cost estimation based on your custiom rate card. To import your custom rate card do export the Absolute Path of your custom rate card and run tfcost command over your plan.json.
+
+```sh
+export RATECARD=path_to_your_rate_card.json
+```
 
 ## Release notes
 
