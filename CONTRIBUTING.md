@@ -1,4 +1,4 @@
-# Contributing to IBMCloud Cost Estimator SDK
+# Contributing to 'IBM Cloud Cost estimator for Terraform'
 
 **First:** if you're unsure  _anything_, just ask or submit the issue or pull request anyways. We appreciate any sort of contributions.
 
@@ -7,7 +7,6 @@ However, for those individuals who want a bit more guidance on the best way to c
 Specifically, we have provided checklists below for each type of issue and pull request that can happen on the project. These checklists represent everything we need to be able to review and respond quickly.
 
 ## Issues
-
 
 
 #### Bug Reports
@@ -45,7 +44,7 @@ Working on implementing cost estimate logic for existing resources is a great wa
 
 #### Cost estimate for New Resource
 
-Implementing a cost estimator logic for new resource is a good way to learn more about how Terraform plan configuration is responsible for calculating cost using the plan.json input parameters. There are plenty of examples to draw from in the existing resources, but you still get to implement something completely new.
+The cost estimator logic for new resource is a good way to learn more about how Terraform plan configuration is responsible for calculating cost using the tfplan.json input parameters. There are plenty of examples to draw from, in the existing resources, but you still get to implement something completely new.
 
  - [ ] __Minimal LOC__: It can be inefficient for both the reviewer and author to go through long feedback cycles on a big PR with many resources. We therefore encourage you to only submit **1 resource at a time**.
 
@@ -54,31 +53,35 @@ Implementing a cost estimator logic for new resource is a good way to learn more
 
 ### Writing Acceptance Tests
 
-Cost Estimator SDK includes an acceptance test harness that does most of the repetitive work involved in testing a resource.
+'IBM Cloud Cost estimator for Terraform' SDK includes an acceptance test harness that does most of the repetitive work involved in testing a resource.
+
 
 ### Steps for writting and running the acceptance test
 
- * Generate plan.json for the terraform template for which you are calculating the resource. To  generate plan.json run the following command
- ```bash
- terraform init
+* Generate plan.json for the terraform template for which you are calculating the resource. To  generate plan.json run the following command
+  ```bash
+  terraform init
+  terraform plan --out tfplan.binary
+  terraform show -json tfplan.binary > tfplan.json
+  ``` 
+* Update the testplan.json with updated plan.json and verify the estimated cost for current state and previous state(create,update and destroy scenarios).
 
- terraform plan --out tfplan.binary
+* Note: Doing a terraform apply might cost you money as it would provision the infrastructure on your account but a terraform plan will not incurr any cost.
 
- terraform show -json tfplan.binary > tfplan.json
- ``` 
- * Update the testplan.json with updated plan.json and verify the estimated cost for current state and previous state(create,update and destroy scenarios).
+* Note: before any release release, do the following:
+  * `go get github.com/IBM-Cloud/terraform-cost-estimator`
+  * `go mod vendor` inside tfcost directory
+  * for private repository 
+    * `export GOPRIVATE="github.com/IBM-Cloud/terraform-cost-estimator"`
 
- * Note: Doing a terraform apply might cost you money as it would provision the infrastructure on your account but a terraform plan will not incurr any cost.
-
- * Note  before doing release do go get github.com/IBM-Cloud/terraform-cost-estimator
- then do go mod vendor inside tfcost directory
- for Private Repo export GOPRIVATE="github.com/IBM-Cloud/terraform-cost-estimator"
- * Note after adding a new feature in the /ibm (sdk) you need to raise a Pr. After your PR is merged to add the new features to the tfcost tool you need to go get the latest /ibm inside the tfcost. 
- Do the following inside /tfcost after new features has been merged.
- ```
- cd tfcost
- go get github.com/IBM-Cloud/terraform-cost-estimator
- go mod vendor
- cd ..
- go build 
- ```
+* Note after adding a new feature in the /ibm (sdk) you need to raise a Pr. After your PR is merged to add the new features to the tfcost tool you need to go get the latest /ibm inside the tfcost. 
+  Do the following inside /tfcost after new features has been merged.
+  ```
+  cd tfcost
+  go get github.com/IBM-Cloud/terraform-cost-estimator
+  go mod vendor
+  cd ..
+  go build 
+  ```
+  
+---
