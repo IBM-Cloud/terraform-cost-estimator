@@ -80,8 +80,8 @@ The cost estimator logic for new resource is a good way to learn more about how 
   cd tfcost
   go get github.com/IBM-Cloud/terraform-cost-estimator
   go mod vendor
-  cd ..
   go build 
+  make bin
   ```
   
 ---
